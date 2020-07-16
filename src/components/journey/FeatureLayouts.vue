@@ -40,10 +40,10 @@
       </div>
 
       <div class="row">
-        <div v-for="item in items" v-bind:key="item.id" class="col-lg-6">
+        <div v-for="item in layouts" v-bind:key="item.id" class="col-lg-6">
           <div class="blog-one__single">
             <div class="blog-one__image">
-              <img @click="showModal(item.id)" :src="item.image" alt />
+              <img @click="showModal(item.id)" :src="api_url + item.preview.url" alt />
             </div>
             <div class="blog-one__content">
               <h3>
@@ -62,7 +62,7 @@
             <form>
               <form-wizard @on-complete="onComplete" shape="tab" color="#000" title subtitle>
                 <tab-content title="Layout details" icon="fab fa-font-awesome" class="text-center">
-                  <img :src="item.image" alt />
+                  <img :src="api_url + item.preview.url" alt />
                 </tab-content>
                 <tab-content title="Personal details" icon="fas fa-user">
                   <div class="container">
@@ -325,43 +325,28 @@
     width: 200px;
     height: 100px;
 <script>
+import gql from "graphql-tag";
+
 export default {
   name: "FeatureLayouts",
   data() {
     return {
-      items: [
-        {
-          id: 1,
-          name: "E commerce",
-          image: require("../../assets/unikall/images/Recurso 2-24.png")
-        },
-        {
-          id: 2,
-          name: "Marketing & Sales",
-          image: require("../../assets/unikall/images/Recurso 2-25.png")
-        },
-        {
-          id: 3,
-          name: "Lessons",
-          image: require("../../assets/unikall/images/Recurso 2-26.png")
-        },
-        {
-          id: 4,
-          name: "Household Services",
-          image: require("../../assets/unikall/images/Recurso 2-27.png")
-        },
-        {
-          id: 5,
-          name: "Construction & Home Improvements",
-          image: require("../../assets/unikall/images/Recurso 2-28.png")
-        },
-        {
-          id: 6,
-          name: "Events",
-          image: require("../../assets/unikall/images/Recurso 2-29.png")
-        }
-      ]
+      api_url: process.env.VUE_APP_STRAPI_API_URL,
+      layouts: []
     };
+  },
+  apollo: {
+    layouts: gql`
+      query Layouts {
+        layouts {
+          id
+          name
+          preview {
+            url
+          }
+        }
+      }
+    `
   },
   methods: {
     showModal(i) {

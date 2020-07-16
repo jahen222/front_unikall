@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueRouter from "vue-router";
+// apollo
 import VueApollo from "vue-apollo";
 import apolloClient from "./vue-apollo";
-import VueRouter from "vue-router";
 // bootstrap & bootstrapvue
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -18,11 +19,12 @@ import VueFormWizard from 'vue-form-wizard';
 import 'vue-form-wizard/dist/vue-form-wizard.min.css';
 
 Vue.config.productionTip = false;
-Vue.use(BootstrapVue);
-Vue.use(BootstrapVueIcons);
+
 Vue.use(VueApollo);
 Vue.use(VueRouter);
-Vue.use(VueFormWizard)
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
+Vue.use(VueFormWizard);
 
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient
