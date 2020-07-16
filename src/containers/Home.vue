@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import Header from "@/components/home/Header.vue";
+import Header from "@/components/layouts/Header.vue";
 import BannerOne from "@/components/home/BannerOne.vue";
 import ServiceOne from "@/components/home/ServiceOne.vue";
 import BannerTwo from "@/components/home/BannerTwo.vue";
@@ -73,7 +73,7 @@ import ServiceTwo from "@/components/home/ServiceTwo.vue";
 import CatalogOne from "@/components/home/CatalogOne.vue";
 import BannerThree from "@/components/home/BannerThree.vue";
 import BannerFour from "@/components/home/BannerFour.vue";
-import Footer from "@/components/home/Footer.vue";
+import Footer from "@/components/layouts/Footer.vue";
 
 
 export default {

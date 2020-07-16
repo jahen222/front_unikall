@@ -14,7 +14,7 @@
       <div class="main-nav__main-navigation one-page-scroll-menu">
         <ul class="main-nav__navigation-box">
           <li class="scrollToLink">
-            <a href="#home">Home</a>
+            <a href="/">Home</a>
           </li>
           <li class="scrollToLink">
             <a href="#freeplan">Free Plan</a>

@@ -10,7 +10,7 @@
             <br />and reach more clients who are currently looking for you through Google search, social media or any online
           </p>
         </div>
-        <a href="#" class="thm-btn thm-btn_service-btn service-one__btn">
+        <a href="/aboutus" class="thm-btn thm-btn_service-btn service-one__btn">
           <span>LEARN MORE</span>
         </a>
         <br />

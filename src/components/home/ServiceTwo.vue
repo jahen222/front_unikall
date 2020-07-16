@@ -11,6 +11,8 @@
         <div class="container">
           <img class="imageService1" src="../../assets/unikall/images/recursos-seccion.png" alt />
         </div>
+        <br />
+        <br />
         <div class="container" style="margin-top:">
           <div class="row">
             <div class="col-md-10 offset-md-2">
@@ -24,7 +26,7 @@
           </div>
         </div>
 
-        <a href="#" class="thm-btn thm-btn_service-btn service-one__btn">
+        <a href="/journey" class="thm-btn thm-btn_service-btn service-one__btn">
           <span>CREATE MY WEB PROFILE</span>
         </a>
         <br />

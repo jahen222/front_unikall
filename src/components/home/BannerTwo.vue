@@ -66,7 +66,7 @@
                     <br />Responsive Design
                     <br />Speed & Reliability
                   </p>
-                  <a href="#" class="thm-btn banner-one__btn thm-btn_baneerOne-btn">
+                  <a href="/journey" class="thm-btn banner-one__btn thm-btn_baneerOne-btn">
                     <span>START NOW</span>
                   </a>
                 </div>

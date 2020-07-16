@@ -3,7 +3,7 @@
     <div class="site-footer__upper">
       <div class="row">
         <div class="col-xl-2 col-lg-6">
-          <a href="index.html" class="logo">
+          <a href="/" class="logo">
             <img
               class="logo-footer"
               src="../../assets/unikall/images/LogosUnikall perfil-01.jpg"
