@@ -62,7 +62,7 @@
             <form>
               <form-wizard @on-complete="onComplete" shape="tab" color="#000" title subtitle>
                 <tab-content title="Layout details" icon="fab fa-font-awesome" class="text-center">
-                  <img src="../../assets/unikall/images/Recurso 2-24.png" alt />
+                  <img :src="item.image" alt />
                 </tab-content>
                 <tab-content title="Personal details" icon="fas fa-user">
                   <div class="container">

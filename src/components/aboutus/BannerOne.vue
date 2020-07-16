@@ -1,34 +1,19 @@
 <template>
-  <section class="banner-one" id="home">
-    <div class="container container_bannerOne">
+  <section class="banner-one aboutus-banner-one" id="home">
+    <div class="container container_aboutusBannerOne">
       <div class="row">
-        <div class="col-lg-6 d-flex">
+        <div class="col-lg-12 d-flex">
           <div class="my-auto">
-            <div class="banner-one__content">
+            <div class="aboutus-banner-one__content">
               <h3>
-                We Give You An Online Presence
-                <br />That Is Easy As Click Click Click!
+                It’s a piece of cake!
               </h3>
-              <p>A FREE go-to marketplace, to build your outstanding Web Profile</p>
-              <a href="/journey" class="thm-btn banner-one__btn thm-btn_baneerOne-btn">
-                <span>START FOR FREE</span>
-              </a>
+              <h4>Just pick the layout that suits better for your product or service</h4>
               <!-- /.thm-btn banner-one__btn -->
             </div>
             <!-- /.banner-one__content -->
           </div>
           <!-- /.my-auto -->
-        </div>
-        <!-- /.col-lg-6 -->
-        <div class="col-lg-6 d-flex justify-content-end wow fadeInUp" data-wow-duration="1500ms">
-          <div class="banner-one__image">
-            <img
-              class="banner-one__image_tag"
-              src="../../assets/unikall/images/icons-window-seccion-uno.png"
-              alt
-            />
-          </div>
-          <!-- /.banner-one__image -->
         </div>
         <!-- /.col-lg-6 -->
       </div>
@@ -46,24 +31,35 @@ export default {
 </script>
 
 <style>
-.banner-one {
-  background-image: url("../../assets/unikall/images/banner_cut.jpg");
+.aboutus-banner-one {
+  background-image: url("../../assets/unikall/images/Unikall-home-final-particion.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
-.banner-one::before {
+.aboutus-banner-one::before {
   background-image: none;
 }
-.banner-one::after {
+.aboutus-banner-one::after {
   background-image: none;
 }
-.container_bannerOne {
+.container_aboutusBannerOne {
   margin-right: 30%;
-  margin-bottom: 6.5%;
-  margin-top: 3%;
+  margin-bottom: 0%;
+  margin-top: 10%;
 }
-.banner-one__content {
+.aboutus-banner-one__content {
   text-align: left;
+}
+.aboutus-banner-one__content h3 {
+  font-size: 37px;
+  font-weight: 900;
+  margin: 0;
+  color: #000000;
+  letter-spacing: -0.02em;
+}
+.aboutus-banner-one__content h4 {
+  color: #000000;
 }
 .banner-one__image_tag {
   width: 200%;
@@ -81,12 +77,5 @@ export default {
   color: #ff864c;
   transition: all 500ms ease;
   background-position: bottom;
-}
-.banner-one__content h3 {
-  font-size: 37px;
-  font-weight: 100;
-}
-.banner-one__content p {
-  color: whitesmoke;
 }
 </style>
