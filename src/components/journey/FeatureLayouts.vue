@@ -62,7 +62,7 @@
             <form>
               <form-wizard @on-complete="onComplete" shape="tab" color="#000" title subtitle>
                 <tab-content title="Layout details" icon="fab fa-font-awesome" class="text-center">
-                  <img :src="api_url + item.preview.url" alt />
+                  <img :src="api_url + item.preview_complete.url" alt />
                 </tab-content>
                 <tab-content title="Personal details" icon="fas fa-user">
                   <div class="container">
@@ -331,8 +331,8 @@ export default {
   name: "FeatureLayouts",
   data() {
     return {
-      api_url: process.env.VUE_APP_STRAPI_API_URL,
-      layouts: []
+      layouts: [],
+      api_url: process.env.VUE_APP_STRAPI_API_URL
     };
   },
   apollo: {
@@ -344,6 +344,9 @@ export default {
           preview {
             url
           }
+          preview_complete {
+            url
+          }
         }
       }
     `
@@ -351,6 +354,9 @@ export default {
   methods: {
     showModal(i) {
       this.$refs["modal" + i][0].show();
+    },
+    onComplete: function() {
+      alert("Yay. Done!");
     }
   }
 };

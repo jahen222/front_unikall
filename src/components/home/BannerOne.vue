@@ -13,13 +13,9 @@
               <a href="/journey" class="thm-btn banner-one__btn thm-btn_baneerOne-btn">
                 <span>START FOR FREE</span>
               </a>
-              <!-- /.thm-btn banner-one__btn -->
             </div>
-            <!-- /.banner-one__content -->
           </div>
-          <!-- /.my-auto -->
         </div>
-        <!-- /.col-lg-6 -->
         <div class="col-lg-6 d-flex justify-content-end wow fadeInUp" data-wow-duration="1500ms">
           <div class="banner-one__image">
             <img
@@ -28,15 +24,10 @@
               alt
             />
           </div>
-          <!-- /.banner-one__image -->
         </div>
-        <!-- /.col-lg-6 -->
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container -->
   </section>
-  <!-- /.banner-one -->
 </template>
 
 <script>

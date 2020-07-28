@@ -6,22 +6,15 @@
           <div class="my-auto">
             <div class="aboutus-banner-one__content">
               <h3>
-                It’s a piece of cake!
+                Let’s make a strategic web profile
+                <br />for your business
               </h3>
-              <h4>Just pick the layout that suits better for your product or service</h4>
-              <!-- /.thm-btn banner-one__btn -->
             </div>
-            <!-- /.banner-one__content -->
           </div>
-          <!-- /.my-auto -->
         </div>
-        <!-- /.col-lg-6 -->
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container -->
   </section>
-  <!-- /.banner-one -->
 </template>
 
 <script>
@@ -30,9 +23,9 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
 .aboutus-banner-one {
-  background-image: url("../../assets/unikall/images/Unikall-home-final-particion.jpg");
+  background-image: url("../../assets/unikall/images/Unikall-home-final-particion-learn-more-banner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -55,7 +48,7 @@ export default {
   font-size: 37px;
   font-weight: 900;
   margin: 0;
-  color: #000000;
+  color: white;
   letter-spacing: -0.02em;
 }
 .aboutus-banner-one__content h4 {

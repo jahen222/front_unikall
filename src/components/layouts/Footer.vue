@@ -98,7 +98,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .site-footer {
   background-color: #e5e5e5;
 }
@@ -114,5 +114,12 @@ export default {
 }
 .footer-widget__newsletter-form button[type=submit] {
     background-image: linear-gradient( 0deg, #ff5f5e 0%, #ffc52f 51%, #ff5f5e 100% );
+}
+.footer-widget__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f2c4d;
+    margin-bottom: 30px;
 }
 </style>

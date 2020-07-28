@@ -737,7 +737,7 @@ a:visited {
 
 .main-nav__main-navigation .main-nav__navigation-box>li ul>li>a {
 	display: block;
-	color: var(--thm-black);
+	color: var(--thm-base);
 	font-size: 16px;
 	font-family: var(--thm-font);
 	word-break: break-all;
@@ -751,7 +751,7 @@ a:visited {
 
 .main-nav__main-navigation .main-nav__navigation-box>li ul>li:hover>a {
 	color: #fff;
-	background-color: var(--thm-black);
+	background-color: var(--thm-base);
 }
 
 

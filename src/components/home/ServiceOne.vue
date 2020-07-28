@@ -7,7 +7,6 @@
         <span>your competition</span>
       </h3>
     </div>
-    <!-- /.block-title -->
     <div class="row">
       <div
         class="col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp"
@@ -18,14 +17,11 @@
           <div class="service-one__icon">
             <i class="fa fa-cogs"></i>
           </div>
-          <!-- /.service-one__icon -->
           <br />
           <h3>We give you a web profile</h3>
           <p>Activate your Online Presence easily for free.</p>
         </div>
-        <!-- /.service-one__single -->
       </div>
-      <!-- /.col-lg-3 col-md-6 col-sm-12 -->
       <div
         class="col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp"
         data-wow-duration="1500ms"
@@ -35,14 +31,11 @@
           <div class="service-one__icon">
             <i class="fa fa-mouse-pointer"></i>
           </div>
-          <!-- /.service-one__icon -->
           <br />
           <h3>Increase your incomes</h3>
           <p>Get more customers quickly.</p>
         </div>
-        <!-- /.service-one__single -->
       </div>
-      <!-- /.col-lg-3 col-md-6 col-sm-12 -->
       <div
         class="col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp"
         data-wow-duration="1500ms"
@@ -52,7 +45,6 @@
           <div class="service-one__icon">
             <i class="fa fa-globe"></i>
           </div>
-          <!-- /.service-one__icon -->
           <br />
           <h3>Save time & money</h3>
           <p>
@@ -61,9 +53,7 @@
             drive them to buy with you.
           </p>
         </div>
-        <!-- /.service-one__single -->
       </div>
-      <!-- /.col-lg-3 col-md-6 col-sm-12 -->
       <div
         class="col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp"
         data-wow-duration="1500ms"
@@ -80,20 +70,15 @@
             you need to drive your online
             business.
           </p>
-          <!-- /.service-one__icon -->
         </div>
-        <!-- /.service-one__single -->
       </div>
-      <!-- /.col-lg-3 col-md-6 col-sm-12 -->
     </div>
-    <!-- /.row -->
 
     <br />
     <a href="/journey" class="thm-btn thm-btn_service-btn service-one__btn">
       <span>CREATE MY WEB PROFILE</span>
     </a>
   </section>
-  <!-- /.service-one -->
 </template>
 
 <script>

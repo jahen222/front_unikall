@@ -37,10 +37,10 @@
                   </p>
                   <br />
                   <a
-                    href="#"
+                    href="/social"
                     class="thm-btn banner-one__btn thm-btn_baneerOne-btn banner-four__btn"
                   >
-                    <span>SOCIAL CENTER</span>
+                    <span>CENTRE FOR SOCIAL IMPACT</span>
                   </a>
                 </div>
               </div>

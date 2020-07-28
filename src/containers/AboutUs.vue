@@ -1,19 +1,23 @@
 <template>
   <div class="page-wrapper">
-    <Header />
+    <HeaderAlt />
     <BannerOne />
+    <ServiceOne />
   </div>
 </template>
 
 <script>
-import Header from "@/components/layouts/Header.vue";
+import HeaderAlt from "@/components/layouts/HeaderAlt.vue";
 import BannerOne from "@/components/aboutus/BannerOne.vue";
+import ServiceOne from "@/components/aboutus/ServiceOne.vue";
+
 
 export default {
   name: "AboutUs",
   components: {
-    Header,
-    BannerOne
+    HeaderAlt,
+    BannerOne,
+    ServiceOne
   }
 };
 </script>

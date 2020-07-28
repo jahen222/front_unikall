@@ -9,19 +9,12 @@
                 It’s a piece of cake!
               </h3>
               <h4>Just pick the layout that suits better for your product or service</h4>
-              <!-- /.thm-btn banner-one__btn -->
             </div>
-            <!-- /.banner-one__content -->
           </div>
-          <!-- /.my-auto -->
         </div>
-        <!-- /.col-lg-6 -->
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container -->
   </section>
-  <!-- /.banner-one -->
 </template>
 
 <script>
