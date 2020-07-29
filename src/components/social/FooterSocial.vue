@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 .footer-about {
   background-image: url("../../assets/unikall/images/footerabout.jpg");
   background-repeat: no-repeat;

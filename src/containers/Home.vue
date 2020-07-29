@@ -1,9 +1,9 @@
 <template>
   <div class="page-wrapper">
-    <div v-show="config.builder_page">
-      <ConstructionPage />
+    <div v-show="configs[0].builder_page">
+      <InConstruction />
     </div>
-    <div v-show="!config.builder_page">
+    <div v-show="!configs[0].builder_page">
       <Header />
       <BannerOne />
       <ServiceOne />
@@ -80,7 +80,7 @@ import BannerThree from "@/components/home/BannerThree.vue";
 import BannerFour from "@/components/home/BannerFour.vue";
 import Footer from "@/components/layouts/Footer.vue";
 import gql from "graphql-tag";
-import ConstructionPage from "@/containers/ConstructionPage.vue";
+import InConstruction from "@/containers/InConstruction.vue";
 
 export default {
   name: "Home",
@@ -94,18 +94,18 @@ export default {
     BannerThree,
     BannerFour,
     Footer,
-    ConstructionPage,
+    InConstruction,
   },
   data() {
     return {
-      config: [],
+      configs: [],
       api_url: process.env.VUE_APP_STRAPI_API_URL,
     };
   },
   apollo: {
-    config: gql`
-      query getInitConfig($id: ID! = 1) {
-        config(id: $id) {
+    configs: gql`
+      query getInitConfig($where: JSON = {name: "init"}) {
+        configs(where: $where) {
           id
           name
           builder_page

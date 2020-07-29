@@ -20,7 +20,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 .social-banner-one {
   background-image: url("../../assets/unikall/images/Unikall-home-final-particion-hand.jpg");
   background-repeat: no-repeat;

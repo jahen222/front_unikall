@@ -62,7 +62,7 @@
             <form>
               <form-wizard @on-complete="onComplete" shape="tab" color="#000" title subtitle>
                 <tab-content title="Layout details" icon="fab fa-font-awesome" class="text-center">
-                  <img :src="api_url + item.preview_complete.url" alt />
+                  <img :src="api_url + item.mockup.url" alt />
                 </tab-content>
                 <tab-content title="Personal details" icon="fas fa-user">
                   <div class="container">
@@ -344,7 +344,7 @@ export default {
           preview {
             url
           }
-          preview_complete {
+          mockup {
             url
           }
         }

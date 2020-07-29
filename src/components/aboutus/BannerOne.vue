@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 .aboutus-banner-one {
   background-image: url("../../assets/unikall/images/Unikall-home-final-particion-learn-more-banner.jpg");
   background-repeat: no-repeat;
