@@ -27,7 +27,7 @@
             <a href="#support">Support</a>
           </li>
           <li class="dropdown scrollToLink">
-            <a href="#blog">Blog</a>
+            <a href="/articles">Blog</a>
           </li>
           <li class="dropdown scrollToLink">
             <a href="#legal">Legal</a>

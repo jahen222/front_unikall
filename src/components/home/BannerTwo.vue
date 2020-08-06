@@ -66,7 +66,7 @@
                     <br />Responsive Design
                     <br />Speed & Reliability
                   </p>
-                  <a href="/journey" class="thm-btn banner-one__btn thm-btn_baneerOne-btn">
+                  <a href="/journey" class="thm-btn banner-one__btn thm-btn_baneertwo-btn">
                     <span>START NOW</span>
                   </a>
                 </div>
@@ -81,7 +81,7 @@
 
 <script>
 export default {
-  name: "BannerTwo"
+  name: "BannerTwo",
 };
 </script>
 
@@ -127,6 +127,17 @@ export default {
   font-size: 60px;
   color: #fff;
   margin-top: 80px;
+}
+.thm-btn_baneertwo-btn {
+  border: solid 2px #ffffff;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0);
+  font-size: 25px;
+}
+.thm-btn_baneertwo-btn:hover {
+    color: #ff864c;
+    transition: all 500ms ease;
+    background-position: bottom;
 }
 </style>
 

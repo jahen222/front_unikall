@@ -42,8 +42,11 @@
       <div class="row">
         <div v-for="item in layouts" v-bind:key="item.id" class="col-lg-6">
           <div class="blog-one__single">
-            <div class="blog-one__image">
+            <div class="blog-one__image" v-if="item.preview && item.preview.url">
               <img @click="showModal(item.id)" :src="api_url + item.preview.url" alt />
+            </div>
+            <div class="blog-one__image" v-else>
+              <img @click="showModal(item.id)" src="../../assets/unikall/images/default.jpg" alt />
             </div>
             <div class="blog-one__content">
               <h3>
@@ -61,8 +64,21 @@
           >
             <form>
               <form-wizard @on-complete="onComplete" shape="tab" color="#000" title subtitle>
-                <tab-content title="Layout details" icon="fab fa-font-awesome" class="text-center">
+                <tab-content
+                  title="Layout details"
+                  icon="fab fa-font-awesome"
+                  class="text-center"
+                  v-if="item.mockup && item.mockup.url"
+                >
                   <img :src="api_url + item.mockup.url" alt />
+                </tab-content>
+                <tab-content
+                  title="Layout details"
+                  icon="fab fa-font-awesome"
+                  class="text-center"
+                  v-else
+                >
+                  <img src="../../assets/unikall/images/default.jpg" alt />
                 </tab-content>
                 <tab-content title="Personal details" icon="fas fa-user">
                   <div class="container">
@@ -332,7 +348,7 @@ export default {
   data() {
     return {
       layouts: [],
-      api_url: process.env.VUE_APP_STRAPI_API_URL
+      api_url: process.env.VUE_APP_STRAPI_API_URL,
     };
   },
   apollo: {
@@ -349,16 +365,16 @@ export default {
           }
         }
       }
-    `
+    `,
   },
   methods: {
     showModal(i) {
       this.$refs["modal" + i][0].show();
     },
-    onComplete: function() {
+    onComplete: function () {
       alert("Yay. Done!");
-    }
-  }
+    },
+  },
 };
 </script>
 

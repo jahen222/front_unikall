@@ -87,7 +87,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .block-title h3 {
   color: black;
   font-size: 58px;

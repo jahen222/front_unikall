@@ -38,7 +38,7 @@
                   <br />
                   <a
                     href="/social"
-                    class="thm-btn banner-one__btn thm-btn_baneerOne-btn banner-four__btn"
+                    class="thm-btn banner-one__btn thm-btn_baneerfour-btn banner-four__btn"
                   >
                     <span>CENTRE FOR SOCIAL IMPACT</span>
                   </a>
@@ -69,7 +69,6 @@ export default {
   margin-top: 5%;
   text-align: left;
 }
-
 .banner-four__content h3 {
   margin: 0;
   font-size: 37px;
@@ -98,6 +97,12 @@ export default {
 .banner-four__btn {
   color: #ffc20f;
   border-color: #ffc20f;
+}
+.thm-btn_baneerfour-btn {
+  border: solid 2px #ffffff;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0);
+  font-size: 25px;
 }
 </style>
 

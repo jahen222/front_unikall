@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .journey-banner-one {
   background-image: url("../../assets/unikall/images/Unikall-home-final-particion.jpg");
   background-repeat: no-repeat;

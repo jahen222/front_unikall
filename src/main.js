@@ -44,12 +44,12 @@ const router = new VueRouter({
       components: require("./containers/Home.vue")
     },
     {
-      path: "/register",
-      components: require("./components/auth/Register.vue")
-    },
-    {
       path: "/login",
       components: require("./components/auth/Login.vue")
+    },
+    {
+      path: "/register",
+      components: require("./components/auth/Register.vue")
     },
     {
       path: "/journey",
@@ -62,6 +62,14 @@ const router = new VueRouter({
     {
       path: "/social",
       components: require("./containers/Social.vue")
+    },
+    {
+      path: "/articles",
+      components: require("./containers/Articles.vue")
+    },
+    {
+      path: "/article/:id",
+      components: require("./containers/Article.vue")
     },
     {
       path: "/dashboard",

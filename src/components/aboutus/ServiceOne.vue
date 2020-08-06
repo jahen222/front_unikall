@@ -17,7 +17,7 @@
         <img src="../../assets/unikall/images/learn-more-png-complete.png" width="100%" alt />
       </div>
     </div>
-    <a href="/journey" class="thm-btn banner-one__btn thm-btn_baneerOne-btn footer-about__btn">
+    <a href="/journey" class="thm-btn banner-one__btn thm-btn_footerabout-btn">
       <span>GET YOURS</span>
     </a>
     <br />
@@ -100,21 +100,16 @@ h2 {
   font-size: 25px;
   color: #000;
 }
-.service-btn::before {
-  content: "";
-  position: absolute;
-  background-color: #000;
-  border-radius: 50%;
-  opacity: 0.2;
-  width: 32px;
-  height: 32px;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 10px;
+.thm-btn_footerabout-btn {
+  border: solid 3px #000;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0);
+  font-size: 25px;
+  color: #000000;
 }
-.thm-btn_service-btn:hover {
-  color: #ff864c;
-  transition: all 500ms ease;
-  background-position: bottom;
+.thm-btn_footerabout-btn:hover {
+    color: #ff864c;
+    transition: all 500ms ease;
+    background-position: bottom;
 }
 </style>

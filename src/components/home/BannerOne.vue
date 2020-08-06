@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .banner-one {
   background-image: url("../../assets/unikall/images/banner_cut.jpg");
   background-repeat: no-repeat;

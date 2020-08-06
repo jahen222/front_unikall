@@ -5,7 +5,7 @@
         <div class="col-lg-12 d-flex">
           <div class="my-auto">
             <div class="social-banner-one__content">
-              <img src="../../assets/unikall/images/unikall-logo-png (1).png" width="136" alt />
+              <img src="../../assets/unikall/images/logo_amarillo.png" width="250" alt />
             </div>
           </div>
         </div>

@@ -1,9 +1,9 @@
 <template>
   <div class="page-wrapper">
-    <div v-show="configs[0].builder_page">
+    <div v-if="configs[0].builder_page">
       <InConstruction />
     </div>
-    <div v-show="!configs[0].builder_page">
+    <div v-else>
       <Header />
       <BannerOne />
       <ServiceOne />
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import gql from "graphql-tag";
 import Header from "@/components/layouts/Header.vue";
 import BannerOne from "@/components/home/BannerOne.vue";
 import ServiceOne from "@/components/home/ServiceOne.vue";
@@ -79,7 +80,6 @@ import CatalogOne from "@/components/home/CatalogOne.vue";
 import BannerThree from "@/components/home/BannerThree.vue";
 import BannerFour from "@/components/home/BannerFour.vue";
 import Footer from "@/components/layouts/Footer.vue";
-import gql from "graphql-tag";
 import InConstruction from "@/containers/InConstruction.vue";
 
 export default {
@@ -98,13 +98,13 @@ export default {
   },
   data() {
     return {
-      configs: [],
+      configs: [0],
       api_url: process.env.VUE_APP_STRAPI_API_URL,
     };
   },
   apollo: {
     configs: gql`
-      query getInitConfig($where: JSON = {name: "init"}) {
+      query getInitConfig($where: JSON = { name: "init" }) {
         configs(where: $where) {
           id
           name

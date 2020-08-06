@@ -93,7 +93,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .blog-one {
   background-color: #ffffff;
 }

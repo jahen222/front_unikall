@@ -18,7 +18,7 @@
                   <br />
                   <a
                     href="/journey"
-                    class="thm-btn banner-one__btn thm-btn_baneerOne-btn footer-about__btn"
+                    class="thm-btn banner-one__btn thm-btn_footersocial-btn"
                   >
                     <span>START YOUR EXPERIENCE</span>
                   </a>
@@ -82,8 +82,16 @@ export default {
   color: #fff;
   margin-top: 80px;
 }
-.footer-about__btn {
+.thm-btn_footersocial-btn {
+  border: solid 3px #000;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0);
+  font-size: 25px;
   color: #000000;
-  border-color: #000000;
+}
+.thm-btn_footersocial-btn:hover {
+    color: #ff864c;
+    transition: all 500ms ease;
+    background-position: bottom;
 }
 </style>
