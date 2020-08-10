@@ -104,20 +104,16 @@ export default {
 }
 .service-one__single:hover {
   background-color: black;
-}
-.service-one__single:hover i {
   color: white;
 }
 .service-one__single::before {
   background-image: none;
 }
 .service-one__single h3 {
-  color: black;
   font-size: 23px;
 }
 .service-one__single p {
-  color: black;
-  font-weight: normal;
+  font-size: 18px;
 }
 .service-one__icon {
   background-image: none;

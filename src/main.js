@@ -9,6 +9,9 @@ import apolloClient from "./utils/vue-apollo";
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+// notifications
+import VueNotifications from 'vue-notifications'
+import miniToastr from 'mini-toastr'
 // styles
 import './assets/oapee/css/style.css';
 import './assets/oapee/css/responsive.css';
@@ -24,13 +27,29 @@ import Cookies from "js-cookie";
 import store from './store/auth'
 
 Vue.config.productionTip = false;
-
 Vue.use(VueRouter);
 Vue.use(Vuex)
 Vue.use(VueApollo);
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 Vue.use(VueFormWizard);
+const toastTypes = {
+  success: 'success',
+  error: 'error',
+  info: 'info',
+  warn: 'warn'
+}
+miniToastr.init({types: toastTypes})
+function toast ({title, message, type, timeout, cb}) {
+  return miniToastr[type](message, title, timeout, cb)
+}
+const options = {
+  success: toast,
+  error: toast,
+  info: toast,
+  warn: toast
+}
+Vue.use(VueNotifications, options)
 
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient

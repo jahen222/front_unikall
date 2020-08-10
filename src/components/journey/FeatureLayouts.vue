@@ -55,15 +55,12 @@
             </div>
           </div>
 
-          <b-modal
-            :ref="'modal'+item.id"
-            hide-footer
-            :title="item.name"
-            size="xl"
-            class="text-center"
-          >
+          <b-modal :ref="'modal'+item.id" hide-footer size="xl" class="text-center">
+            <template v-slot:modal-header="{ close }">
+              <b-button size="sm" variant="danger" @click="close()">Close</b-button>
+            </template>
             <form>
-              <form-wizard @on-complete="onComplete" shape="tab" color="#000" title subtitle>
+              <form-wizard @on-complete="onComplete" color="#343a40" title subtitle>
                 <tab-content
                   title="Layout details"
                   icon="fab fa-font-awesome"

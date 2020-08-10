@@ -20,11 +20,14 @@
     "graphql-tag": "^2.10.4",
     "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",
+    "mini-toastr": "^0.8.1",
     "strapi-sdk-javascript": "^0.3.3",
     "vue": "^2.6.11",
     "vue-apollo": "^3.0.3",
     "vue-form-wizard": "^0.8.4",
+    "vue-notifications": "^1.0.2",
     "vue-router": "^3.3.4",
+    "vue-upload-multiple-image": "^1.1.4",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
