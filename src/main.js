@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import App from './App.vue';
-import VueRouter from "vue-router";
 // apollo
 import VueApollo from "vue-apollo";
 import apolloClient from "./utils/vue-apollo";
@@ -24,82 +23,53 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css';
 // cookies
 import Cookies from "js-cookie";
 // stores
-import store from './store/auth'
+import store from './store'
+// router
+import router from './router'
+// multi images
+import VueLazyload from 'vue-lazyload'
+/* piaf dashboard imports */
+// Multi Language Add
+import en from './dashboard/locales/en.json'
+import es from './dashboard/locales/es.json'
+import VueI18n from 'vue-i18n'
+import { defaultLocale, localeOptions, firebaseConfig } from './dashboard/constants/config'
+// Notification Component Add
+import Notifications from './dashboard/components/Common/Notification'
+// Breadcrumb Component Add
+import Breadcrumb from './dashboard/components/Common/Breadcrumb'
+// RefreshButton Component Add
+import RefreshButton from './dashboard/components/Common/RefreshButton'
+// Colxx Component Add
+import Colxx from './dashboard/components/Common/Colxx'
+// Perfect Scrollbar Add
+import vuePerfectScrollbar from 'vue-perfect-scrollbar'
+import contentmenu from 'v-contextmenu'
+import VueLineClamp from 'vue-line-clamp'
+import VueScrollTo from 'vue-scrollto'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
-Vue.config.productionTip = false;
-Vue.use(VueRouter);
-Vue.use(Vuex)
-Vue.use(VueApollo);
-Vue.use(BootstrapVue);
-Vue.use(BootstrapVueIcons);
-Vue.use(VueFormWizard);
+// definitions
+const apolloProvider = new VueApollo({
+  defaultClient: apolloClient
+});
+
 const toastTypes = {
   success: 'success',
   error: 'error',
   info: 'info',
   warn: 'warn'
 }
-miniToastr.init({types: toastTypes})
-function toast ({title, message, type, timeout, cb}) {
-  return miniToastr[type](message, title, timeout, cb)
-}
+
 const options = {
   success: toast,
   error: toast,
   info: toast,
   warn: toast
 }
-Vue.use(VueNotifications, options)
 
-const apolloProvider = new VueApollo({
-  defaultClient: apolloClient
-});
-
-const router = new VueRouter({
-  mode: "history",
-  routes: [
-    {
-      path: "/",
-      components: require("./containers/Home.vue")
-    },
-    {
-      path: "/login",
-      components: require("./components/auth/Login.vue")
-    },
-    {
-      path: "/register",
-      components: require("./components/auth/Register.vue")
-    },
-    {
-      path: "/journey",
-      components: require("./containers/Journey.vue")
-    },
-    {
-      path: "/aboutus",
-      components: require("./containers/AboutUs.vue")
-    },
-    {
-      path: "/social",
-      components: require("./containers/Social.vue")
-    },
-    {
-      path: "/articles",
-      components: require("./containers/Articles.vue")
-    },
-    {
-      path: "/article/:id",
-      components: require("./containers/Article.vue")
-    },
-    {
-      path: "/dashboard",
-      components: require("./containers/Dashboard.vue"),
-      meta: {
-        requiresAuth: true
-      }
-    }
-  ],
-});
-
+// auth
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (Cookies.get("user") !== undefined) {
@@ -112,7 +82,48 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-new Vue({
+// init
+miniToastr.init({ types: toastTypes })
+function toast({ title, message, type, timeout, cb }) {
+  return miniToastr[type](message, title, timeout, cb)
+}
+
+Vue.config.productionTip = false;
+Vue.use(Vuex)
+Vue.use(VueApollo);
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
+Vue.use(VueFormWizard);
+Vue.use(VueLazyload)
+Vue.use(VueNotifications, options)
+
+// dashboard
+Vue.use(VueI18n);
+const messages = { en: en, es: es };
+const locale = (localStorage.getItem('currentLanguage') && localeOptions.filter(x => x.id === localStorage.getItem('currentLanguage')).length > 0) ? localStorage.getItem('currentLanguage') : defaultLocale;
+const i18n = new VueI18n({
+  locale: locale,
+  fallbackLocale: 'en',
+  messages
+});
+Vue.use(Notifications);
+Vue.use(require('vue-shortkey'));
+Vue.use(contentmenu);
+Vue.use(VueScrollTo);
+Vue.use(VueLineClamp, {
+  importCss: true
+});
+
+Vue.component('piaf-breadcrumb', Breadcrumb);
+Vue.component('b-refresh-button', RefreshButton);
+Vue.component('b-colxx', Colxx);
+Vue.component('vue-perfect-scrollbar', vuePerfectScrollbar);
+
+firebase.initializeApp(firebaseConfig);
+Vue.config.productionTip = false;
+
+export default new Vue({
+  i18n,
   store,
   router,
   apolloProvider,

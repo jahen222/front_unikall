@@ -9,6 +9,32 @@
   <title><%= htmlWebpackPlugin.options.title %></title>
   <link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">
   <script src="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.js"></script>
+  <link rel="stylesheet" href="/assets/fonts/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="/assets/fonts/iconsmind-s/css/iconsminds.css">
+
+  <style>
+    .loading {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border: 2px solid rgba(0,0,0,.2 );
+        border-radius: 50%;
+        border-top-color: rgba(0,0,0,.4 );
+        animation: spin 1s ease-in-out infinite;
+        -webkit-animation: spin 1s ease-in-out infinite;
+        left: calc(50%);
+        top: calc(50%);
+        position: fixed;
+        z-index: 1;
+        }
+
+        @keyframes spin {
+        to { -webkit-transform: rotate(360deg); }
+        }
+        @-webkit-keyframes spin {
+        to { -webkit-transform: rotate(360deg); }
+        }
+    </style>
 </head>
 
 <body>

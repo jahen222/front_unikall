@@ -66,14 +66,14 @@
 
 <script>
 import { mapMutations } from "vuex";
-import store from "../../store/auth";
+import store from "../../store";
 import Cookies from "js-cookie";
 
 export default {
   name: "HeaderAlt",
   computed: {
     username() {
-      let user = store.state.user;
+      let user = store.state.auth.user;
 
       if (Cookies.get("user") !== undefined) {
         user = JSON.parse(Cookies.get("user"));

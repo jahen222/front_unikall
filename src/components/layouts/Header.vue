@@ -237,10 +237,22 @@
                             <div class="form-group">
                               <div class="row">
                                 <div class="col-4">
-                                  <button
-                                    type="submit"
-                                    class="fl-btn-set-images-form"
-                                  >Click to upload file</button>
+                                  <div
+                                    id="my-strictly-unique-vue-upload-multiple-image"
+                                    style="display: flex;"
+                                  >
+                                    <vue-upload-multiple-image
+                                      @upload-success="uploadWorkImagesSuccess"
+                                      @before-remove="beforeWorkImagesRemove"
+                                      @edit-image="editWorkImagesImage"
+                                      dragText="Click to upload file"
+                                      browseText
+                                      maxImage="6"
+                                      primaryText="Primary"
+                                      markIsPrimaryText="Mark as Primary"
+                                      popupText="This image will be displayed as default"
+                                    ></vue-upload-multiple-image>
+                                  </div>
                                 </div>
                                 <div class="col-8">
                                   <p class="fl-micro-text">
@@ -252,53 +264,6 @@
                                     *If you want to upload more photos, please upgrade your
                                     plan*I
                                   </p>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-4">
-                                  <input
-                                    type="file"
-                                    class="form-control fl-input-form"
-                                    aria-describedby="emailHelp"
-                                  />
-                                </div>
-                                <div class="col-4">
-                                  <input
-                                    type="file"
-                                    class="form-control fl-input-form"
-                                    aria-describedby="emailHelp"
-                                  />
-                                </div>
-                                <div class="col-4">
-                                  <input
-                                    type="file"
-                                    class="form-control fl-input-form"
-                                    aria-describedby="emailHelp"
-                                  />
-                                </div>
-                              </div>
-                              <br />
-                              <div class="row">
-                                <div class="col-4">
-                                  <input
-                                    type="file"
-                                    class="form-control fl-input-form"
-                                    aria-describedby="emailHelp"
-                                  />
-                                </div>
-                                <div class="col-4">
-                                  <input
-                                    type="file"
-                                    class="form-control fl-input-form"
-                                    aria-describedby="emailHelp"
-                                  />
-                                </div>
-                                <div class="col-4">
-                                  <input
-                                    type="file"
-                                    class="form-control fl-input-form"
-                                    aria-describedby="emailHelp"
-                                  />
                                 </div>
                               </div>
                             </div>
@@ -460,23 +425,23 @@
 
 <script>
 import { mapMutations } from "vuex";
-//import strapi from "../../utils/strapi";
-import store from "../../store/auth";
+import store from "../../store";
 import Cookies from "js-cookie";
 import axios from "axios";
+import VueUploadMultipleImage from "vue-upload-multiple-image";
 
 export default {
   name: "Header",
+  components: {
+    VueUploadMultipleImage,
+  },
   data() {
     return {
       api_url: process.env.VUE_APP_STRAPI_API_URL,
-      // modal
       headerBgVariant: "dark",
       headerTextVariant: "light",
-      // login
       login_username: null,
       login_password: null,
-      // register
       register_errors: [],
       register_business_name: null,
       register_logo: null,
@@ -488,12 +453,13 @@ export default {
       register_email: null,
       register_password: null,
       register_confirm_password: null,
+      register_work_images: [],
     };
   },
   computed: {
     username() {
-      let user = store.state.user;
-
+      let user = store.state.auth.user;
+      console.log(store.state);
       if (Cookies.get("user") !== undefined) {
         user = JSON.parse(Cookies.get("user"));
         return user.username;
@@ -503,18 +469,6 @@ export default {
   },
   methods: {
     async handleSubmitLogin() {
-      /*await strapi
-        .login(this.login_username, this.login_password)
-        .then((result) => {
-          this.showLoginSuccess({ message: "Welcome " + result.user.username });
-          this.setUser(result.user);
-          this.$router.push("/").catch(() => {});
-        })
-        .catch((error) => {
-          console.log(error.response);
-          this.showLoginError({ message: error });
-        });
-      */
       await axios
         .post(this.api_url + "/auth/local", {
           identifier: this.login_username,
@@ -525,7 +479,8 @@ export default {
             message: "Welcome " + response.data.user.username,
           });
           this.setUser(response.data.user);
-          this.$router.push("/").catch(() => {});
+          this.$router.go();
+          //this.$router.push("/").catch(() => {});
         })
         .catch((error) => {
           this.showLoginError({
@@ -534,23 +489,7 @@ export default {
         });
     },
     async handleSubmitRegister() {
-      /*await strapi
-        .register(
-          this.register_username,
-          this.register_email,
-          this.register_password
-        )
-        .then((result) => {
-          this.showRegisterSuccess({
-            message: "Welcome " + result.user.username,
-          });
-          this.setUser(result.user);
-          this.$router.push("/").catch(() => {});
-        })
-        .catch(() => {
-          this.showRegisterError({ message: "Failed to register" });
-        });*/
-      axios
+      await axios
         .post(this.api_url + "/auth/local/register", {
           username: this.register_username,
           email: this.register_email,
@@ -558,6 +497,8 @@ export default {
           password: this.register_password,
         })
         .then((response) => {
+
+          // is here mutation
           this.showRegisterSuccess({
             message: "Welcome " + response.data.user.username,
           });
@@ -581,7 +522,7 @@ export default {
       const file = e.target.files[0];
       this.register_logo = URL.createObjectURL(file);
     },
-    checkRegisterForm: function (e) {
+    checkRegisterForm: function () {
       this.errors = [];
 
       if (!this.register_business_name) {
@@ -611,14 +552,36 @@ export default {
       if (this.register_password != this.register_confirm_password) {
         this.errors.push(" The password and confirm password must match.");
       }
-
+      if (this.register_work_images.length < 3) {
+        this.errors.push(" Must be at least 3 work images.");
+      }
+      //if (this.register_logo.length < 1) {
+      //  this.errors.push(" The logo is required.");
+      //}
       if (this.errors.length) {
         this.showRegisterError({ message: this.errors });
       } else {
         this.handleSubmitRegister();
       }
-      e.preventDefault();
     },
+    uploadWorkImagesSuccess: function (formData, index, fileList) {
+      this.register_work_images = fileList;
+    },
+    beforeWorkImagesRemove: function (index, done, fileList) {
+      this.register_work_images = fileList;
+    },
+    editWorkImagesImage: function (formData, index, fileList) {
+      this.register_work_images = fileList;
+    },
+    /*uploadLogoSuccess: function (formData, index, fileList) {
+      this.register_logo = fileList;
+    },
+    beforeLogoRemove: function (index, done, fileList) {
+      this.register_logo = fileList;
+    },
+    editLogoImage: function (formData, index, fileList) {
+      this.register_logo = fileList;
+    },*/
   },
   notifications: {
     showLoginError: {
