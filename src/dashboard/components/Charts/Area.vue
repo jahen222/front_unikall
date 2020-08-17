@@ -5,7 +5,7 @@
 </template>
 <script>
 import Chart from "chart.js";
-//import { areaChartOptions } from "./config";
+import { areaChartOptions } from "./config";
 
 export default {
   props: {
@@ -40,12 +40,13 @@ export default {
         }
       });
     }
-    /*const ctx = this.$refs.chart;
+    const ctx = this.$refs.chart;
     const myChart = new Chart(ctx, {
       type: this.shadow ? "lineWithShadow" : "line",
       data: this.data,
       options: areaChartOptions
-    });*/
+    });
+    console.log(myChart);
   }
 };
 </script>

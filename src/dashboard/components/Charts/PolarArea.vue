@@ -5,7 +5,7 @@
 </template>
 <script>
 import Chart from "chart.js";
-//import { polarAreaChartOptions } from "./config";
+import { polarAreaChartOptions } from "./config";
 
 export default {
   props: {
@@ -39,12 +39,13 @@ export default {
         }
       });
     }
-    /*const ctx = this.$refs.chart;
+    const ctx = this.$refs.chart;
     const myChart = new Chart(ctx, {
       type: this.shadow ? 'polarWithShadow' : 'polarArea',
       data: this.data,
       options: polarAreaChartOptions
-    });*/
+    });
+    console.log(myChart);
   }
 };
 </script>

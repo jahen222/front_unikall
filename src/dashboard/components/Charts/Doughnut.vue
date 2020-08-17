@@ -5,8 +5,8 @@
 </template>
 <script>
 import Chart from "chart.js";
-//import { doughnutChartOptions } from "./config";
-//import { centerTextPlugin } from "./utils";
+import { doughnutChartOptions } from "./config";
+import { centerTextPlugin } from "./utils";
 
 export default {
   props: {
@@ -40,13 +40,14 @@ export default {
         }
       });
     }
-    /*const ctx = this.$refs.chart;
+    const ctx = this.$refs.chart;
     const myChart = new Chart(ctx, {
       type: this.shadow ? "doughnutWithShadow" : "doughnut",
       data: this.data,
       options: doughnutChartOptions,
       plugins: [centerTextPlugin]
-    });*/
+    });
+    console.log(myChart);
   }
 };
 </script>

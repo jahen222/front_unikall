@@ -5,7 +5,7 @@
 </template>
 <script>
 import Chart from "chart.js";
-//import { scatterChartOptions } from "./config";
+import { scatterChartOptions } from "./config";
 
 export default {
   props: {
@@ -39,12 +39,13 @@ export default {
         }
       });
     }
-    /*const ctx = this.$refs.chart;
+    const ctx = this.$refs.chart;
     const myChart = new Chart(ctx, {
       type: this.shadow ? 'scatterWithShadow' : 'scatter',
       data: this.data,
       options: scatterChartOptions
-    });*/
+    });
+    console.log(myChart);
   }
 };
 </script>

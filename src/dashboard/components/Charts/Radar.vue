@@ -5,7 +5,7 @@
 </template>
 <script>
 import Chart from "chart.js";
-//import { radarChartOptions } from "./config";
+import { radarChartOptions } from "./config";
 
 export default {
   props: {
@@ -39,12 +39,13 @@ export default {
         }
       });
     }
-    /*const ctx = this.$refs.chart;
+    const ctx = this.$refs.chart;
     const myChart = new Chart(ctx, {
       type: this.shadow ? 'radarWithShadow' : 'radar',
       data: this.data,
       options: radarChartOptions
-    });*/
+    });
+    console.log(myChart);
   }
 };
 </script>

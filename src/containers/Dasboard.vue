@@ -12,7 +12,7 @@ import { getDirection } from "../dashboard/utils";
 
 export default {
   components: {
-    "color-switcher": ColorSwitcher
+    "color-switcher": ColorSwitcher,
   },
   beforeMount() {
     const direction = getDirection();
@@ -25,12 +25,6 @@ export default {
       document.dir = "ltr";
       document.body.classList.remove("rtl");
     }
-  }
+  },
 };
 </script>
-
-<style scoped>
-#app-container {
-  text-align: left !important;
-}
-</style>

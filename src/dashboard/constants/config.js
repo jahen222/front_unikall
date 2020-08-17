@@ -29,7 +29,7 @@ export const apiUrl = 'https://api.coloredstrategies.com'
 
 export const currentUser = {
   id: 1,
-  title: 'Sarah Kortney',
+  title: 'Jahen222',
   img: '/assets/img/profile-pic-l.jpg',
   date: 'Last seen today 15:24'
 }

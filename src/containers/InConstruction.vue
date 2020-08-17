@@ -6,7 +6,12 @@
           <div class="col-lg-12 d-flex">
             <div class="my-auto">
               <div class="social-banner-one__content">
-                <img src="../assets/unikall/images/unikall-logo-png (1).png" width="230" alt />
+                <img
+                  class="build_page_logo"
+                  src="../assets/unikall/images/unikall-logo-png (1).png"
+                  width="230"
+                  alt
+                />
                 <br />
                 <br />
                 <br />
@@ -250,5 +255,34 @@ h2 {
 .footer-about__btn {
   color: #000000;
   border-color: #000000;
+}
+@media only screen and (max-width: 720px) {
+  .build_page_logo {
+    margin-top: -95%;
+    width: 30%;
+  }
+  .social-banner-one__content h3 {
+    font-size: 35px;
+    font-weight: 900;
+    margin: 0;
+    color: #ffff;
+    letter-spacing: -0.02em;
+  }
+  .social-banner-one__content h4 {
+    display: none;
+  }
+  .service-one {
+    margin-top: -15%;
+  }
+  .block-title h3 {
+    color: black;
+    font-weight: 200;
+    font-size: 20px;
+  }
+  .block-title h4 {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+  }
 }
 </style>

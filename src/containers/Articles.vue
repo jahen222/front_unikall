@@ -33,3 +33,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.page-header {
+    background-color: var(--thm-black);
+    background-image: url("../assets/unikall/images/banner-fondo.jpg");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: cover;
+    padding-bottom: 84px;
+    padding-top: 186px;
+}
+</style>
+

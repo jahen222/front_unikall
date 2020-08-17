@@ -5,21 +5,21 @@
 </template>
 <script>
 import Chart from "chart.js";
-//import { barChartOptions } from "./config";
+import { barChartOptions } from "./config";
 
 export default {
   props: {
     data: {
-      type: Object
+      type: Object,
     },
     containerClass: {
       type: String,
-      default: "chart-container"
+      default: "chart-container",
     },
     shadow: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   mounted() {
     if (this.shadow) {
@@ -38,16 +38,17 @@ export default {
           chartCtx.responsive = true;
           Chart.controllers.bar.prototype.draw.apply(this, arguments);
           chartCtx.restore();
-        }
+        },
       });
     }
-    /*const ctx = this.$refs.chart;
+    const ctx = this.$refs.chart;
     const myChart = new Chart(ctx, {
       type: this.shadow ? "barWithShadow" : "bar",
       data: this.data,
-      options: barChartOptions
-    });*/
-  }
+      options: barChartOptions,
+    });
+    console.log(myChart);
+  },
 };
 </script>
 

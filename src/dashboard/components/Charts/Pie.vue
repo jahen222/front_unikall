@@ -5,7 +5,7 @@
 </template>
 <script>
 import Chart from "chart.js";
-//import { pieChartOptions } from "./config";
+import { pieChartOptions } from "./config";
 
 export default {
   props: {
@@ -39,12 +39,13 @@ export default {
         }
       });
     }
-    /*const ctx = this.$refs.chart;
+    const ctx = this.$refs.chart;
     const myChart = new Chart(ctx, {
       type: this.shadow ? "pieWithShadow" : "pie",
       data: this.data,
       options: pieChartOptions
-    });*/
+    });
+    console.log(myChart);
   }
 };
 </script>

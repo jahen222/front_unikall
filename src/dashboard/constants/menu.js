@@ -1,7 +1,8 @@
 const data = [{
   id: "dashboards",
   icon: "iconsminds-shop-4",
-  label: "menu.dashboards",
+  //label: "menu.dashboards",
+  label: "Home",
   to: "/app/dashboards",
   subs: [{
     icon: "simple-icon-briefcase",
@@ -12,25 +13,15 @@ const data = [{
     icon: "simple-icon-pie-chart",
     label: "menu.analytics",
     to: "/app/dashboards/analytics"
-  },
-  {
-    icon: "simple-icon-basket-loaded",
-    label: "menu.ecommerce",
-    to: "/app/dashboards/ecommerce"
-  },
-  {
-    icon: "simple-icon-doc",
-    label: "menu.content",
-    to: "/app/dashboards/content"
-  }
-  ]
+  }]
 },
 {
   id: "pages",
   icon: "iconsminds-digital-drawing",
-  label: "menu.pages",
+  //label: "menu.pages",
+  label: "Business",
   to: "/app/pages",
-  subs: [{
+  subs: [/*{
     id: "pages-authorization",
     label: "menu.authorization",
     to: "/user",
@@ -59,24 +50,27 @@ const data = [{
       newWindow: true
     }
     ]
-  },
+  },*/
   {
     id: "pages-product",
     label: "menu.product",
     to: "/app/pages/product",
     subs: [{
       icon: "simple-icon-credit-card",
-      label: "menu.data-list",
+      //label: "menu.data-list",
+      label: "Orders",
       to: "/app/pages/product/data-list"
     },
     {
       icon: "simple-icon-list",
-      label: "menu.thumb-list",
+      //label: "menu.thumb-list",
+      label: "Products list",
       to: "/app/pages/product/thumb-list"
     },
     {
       icon: "simple-icon-grid",
-      label: "menu.image-list",
+      //label: "menu.image-list",
+      label: "Products list",
       to: "/app/pages/product/image-list"
     },
     {
@@ -159,13 +153,6 @@ const data = [{
         icon: "simple-icon-bag",
         label: "menu.invoice",
         to: "/app/pages/miscellaneous/invoice"
-      },
-
-      {
-        icon: "simple-icon-exclamation",
-        label: "menu.error",
-        to: "/error",
-        newWindow: true
       }
     ]
   },
@@ -174,18 +161,20 @@ const data = [{
 {
   id: "applications",
   icon: "iconsminds-air-balloon-1",
-  label: "menu.applications",
+  //label: "menu.applications",
+  label: "Personal",
   to: "/app/applications",
   subs: [{
     icon: "simple-icon-check",
-    label: "menu.todo",
+    //label: "menu.todo",
+    label: "Profile",
     to: "/app/applications/todo"
   },
-  {
+  /*{
     icon: "simple-icon-calculator",
     label: "menu.survey",
     to: "/app/applications/survey"
-  },
+  },*/
   {
     icon: "simple-icon-bubbles",
     label: "menu.chat",
@@ -193,7 +182,7 @@ const data = [{
   }
   ]
 },
-{
+/*{
   id: "ui",
   icon: "iconsminds-pantone",
   label: "menu.ui",
@@ -391,6 +380,6 @@ const data = [{
   label: "menu.docs",
   to: "https://piaf-vue-docs.coloredstrategies.com/",
   newWindow: true
-}
+}*/
 ];
 export default data;

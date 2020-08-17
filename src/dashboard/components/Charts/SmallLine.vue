@@ -11,7 +11,7 @@
 
 <script>
 import Chart from "chart.js";
-//import { smallLineChartOptions } from "./config";
+import { smallLineChartOptions } from "./config";
 import { addCommas } from "./utils";
 export default {
   props: {
@@ -59,14 +59,14 @@ export default {
         }
       }
     });
-    /*const $that = this;
+    const $that = this;
     const ctx = this.$refs.chart;
     const myChart = new Chart(ctx, {
       type: "lineWithLine",
       data: this.data,
       plugins: [
         {
-          afterInit: function(chart, options) {
+          afterInit: function(chart/*, options*/) {
             const yLabel = chart.data.datasets[0].data[0];
             const xLabel = chart.data.labels[0];
             const label = chart.data.datasets[0].label;
@@ -80,7 +80,7 @@ export default {
           tooltips: {
             intersect: false,
             enabled: false,
-            custom: function(tooltipModel, data) {
+            custom: function(tooltipModel/*, data*/) {
               if (tooltipModel && tooltipModel.dataPoints) {
                 const yLabel = tooltipModel.dataPoints[0].yLabel;
                 const xLabel = tooltipModel.dataPoints[0].xLabel;
@@ -91,7 +91,8 @@ export default {
           }
         }
       )
-    });*/
+    });
+    console.log(myChart);
   },
   methods: {
     changeLabels(x, y) {
