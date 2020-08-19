@@ -35,12 +35,12 @@ module.exports = {
           })
   },
   productionSourceMap: false,
-  assetsDir: './assets/',
+  assetsDir: './dashboard/assets/',
   configureWebpack: {
     plugins: [
       new CopyWebpackPlugin([
-        { from: 'src/assets/img', to: 'assets/img' },
-        { from: 'src/assets/fonts', to: 'assets/fonts' }
+        { from: 'src/dashboard/assets/img', to: 'dashboard/assets/img' },
+        { from: 'src/dashboard/assets/fonts', to: 'dashboard/assets/fonts' }
       ])
     ]
   }

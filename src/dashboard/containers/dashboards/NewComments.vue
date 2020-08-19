@@ -7,7 +7,7 @@
       <list-with-user-item
         v-for="(item, index) in comments"
         :data="item"
-        detail-path="/app/pages/product/details"
+        detail-path="/dashboard/app/pages/product/details"
         :key="index"
       />
     </vue-perfect-scrollbar>

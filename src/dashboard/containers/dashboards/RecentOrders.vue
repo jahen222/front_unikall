@@ -8,7 +8,7 @@
       <recent-order-item
         v-for="(order,index) in products.slice(0,6)"
         :order="order"
-        detail-path="/app/pages/product/details"
+        detail-path="/dashboard/app/pages/product/details"
         :key="index"
       />
     </vue-perfect-scrollbar>

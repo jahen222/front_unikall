@@ -1,7 +1,7 @@
-import "./assets/css/vendor/dropzone.min.css";
+import "./dashboard/assets/css/vendor/dropzone.min.css";
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import "./assets/css/vendor/bootstrap.min.css";
-import "./assets/css/vendor/bootstrap.rtl.only.min.css";
+import "./dashboard/assets/css/vendor/bootstrap.min.css";
+import "./dashboard/assets/css/vendor/bootstrap.rtl.only.min.css";
 import 'video.js/dist/video-js.css'
 
 import { defaultColor,themeSelectedColorStorageKey } from "./dashboard/constants/config";
@@ -22,7 +22,7 @@ if (localStorage.getItem(themeSelectedColorStorageKey)) {
   color = localStorage.getItem(themeSelectedColorStorageKey);
 }
 let render = () => {
-  import("./assets/css/sass/themes/piaf." + color + ".scss").then(() =>
+  import("./dashboard/assets/css/sass/themes/piaf." + color + ".scss").then(() =>
     require("./main")
   );
 };

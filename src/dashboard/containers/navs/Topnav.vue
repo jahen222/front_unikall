@@ -86,27 +86,27 @@
               <i class="simple-icon-grid" />
             </template>
             <div>
-              <router-link tag="a" to="/app/dashboards/default" class="icon-menu-item">
+              <router-link tag="a" to="/dashboard/app/index/default" class="icon-menu-item">
                 <i class="iconsminds-shop-4 d-block" />
                 {{$t('menu.dashboards')}}
               </router-link>
-              <router-link tag="a" to="/app/ui" class="icon-menu-item">
+              <router-link tag="a" to="/dashboard/app/ui" class="icon-menu-item">
                 <i class="iconsminds-pantone d-block" />
                 {{$t('menu.ui')}}
               </router-link>
-              <router-link tag="a" to="/app/ui/components/charts" class="icon-menu-item">
+              <router-link tag="a" to="/dashboard/app/ui/components/charts" class="icon-menu-item">
                 <i class="iconsminds-bar-chart-4 d-block" />
                 {{$t('menu.charts')}}
               </router-link>
-              <router-link tag="a" to="/app/applications/chat" class="icon-menu-item">
+              <router-link tag="a" to="/dashboard/app/applications/chat" class="icon-menu-item">
                 <i class="iconsminds-speach-bubble d-block" />
                 {{$t('menu.chat')}}
               </router-link>
-              <router-link tag="a" to="/app/applications/survey" class="icon-menu-item">
+              <router-link tag="a" to="/dashboard/app/applications/survey" class="icon-menu-item">
                 <i class="iconsminds-formula d-block" />
                 {{$t('menu.survey')}}
               </router-link>
-              <router-link tag="a" to="/app/applications/todo" class="icon-menu-item">
+              <router-link tag="a" to="/dashboard/app/applications/todo" class="icon-menu-item">
                 <i class="iconsminds-check d-block" />
                 {{$t('menu.todo')}}
               </router-link>
@@ -133,7 +133,7 @@
                 v-for="(n,index) in notifications"
                 :key="index"
               >
-                <router-link tag="a" to="/app/pages/product/details">
+                <router-link tag="a" to="/dashboard/app/pages/product/details">
                   <img
                     :src="n.img"
                     :alt="n.title"
@@ -141,7 +141,7 @@
                   />
                 </router-link>
                 <div class="pl-3 pr-2">
-                  <router-link tag="a" to="/app/pages/product/details">
+                  <router-link tag="a" to="/dashboard/app/pages/product/details">
                     <p class="font-weight-medium mb-1">{{n.title}}</p>
                     <p class="text-muted mb-0 text-small">{{n.date}}</p>
                   </router-link>

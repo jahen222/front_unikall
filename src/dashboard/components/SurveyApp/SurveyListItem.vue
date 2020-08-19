@@ -2,7 +2,7 @@
     <b-card @click="toggleItem($event,data.id)" :class="{'d-flex mb-3':true,'active' : selectedItems.includes(data.id)}" no-body>
         <div class="d-flex flex-grow-1 min-width-zero">
             <b-card-body class="align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center pb-2">
-                <a :href="`/app/applications/survey/${data.id}`" class="list-item-heading mb-0 truncate w-40 w-xs-100  mb-1 mt-1" >
+                <a :href="`/dashboard/app/applications/survey/${data.id}`" class="list-item-heading mb-0 truncate w-40 w-xs-100  mb-1 mt-1" >
                     <i :class="{'heading-icon':true,
                                 'simple-icon-check' :data.status === 'COMPLETED',
                                 'simple-icon-refresh' : data.status !== 'COMPLETED'
