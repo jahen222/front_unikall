@@ -4,9 +4,10 @@
     <div class="container-fluid">
         <div class="row blog">
             <div class="col-md-12">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="row carousel-item active">
+                <b-carousel id="carousel-1" v-model="slide" :interval="4000" controls indicators @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
+                    <!-- Text slides with image -->
+                    <b-carousel-slide>
+                        <div class="row text-left">
                             <div class="col-md-2"></div>
                             <div class="col-md-3">
                                 <img class="d-block w-100" src="../../assets/unikall/images/templates/barbar_p10.jpg" alt="Image">
@@ -17,13 +18,15 @@
                                     here
                                     Ehsan test here
                                     Ehsan test here Ehsan test here Ehsan test here Ehsan test here </p>
-                                <p class="text-white pull-right">MORE...</p>
+                                <p class="text-white text-right">MORE...</p>
                             </div>
                             <div class="col-md-2"></div>
                         </div>
-                        <!-- next slides -->
+                    </b-carousel-slide>
 
-                        <div class="row carousel-item">
+                    <!-- Text slides with image -->
+                    <b-carousel-slide>
+                        <div class="row text-left">
                             <div class="col-md-2"></div>
                             <div class="col-md-3">
                                 <img class="d-block w-100" src="../../assets/unikall/images/templates/barbar_p10.jpg" alt="Image">
@@ -34,39 +37,12 @@
                                     here
                                     Ehsan test here
                                     Ehsan test here Ehsan test here Ehsan test here Ehsan test here </p>
-                                <p class="text-white pull-right">MORE...</p>
+                                <p class="text-white text-right">MORE...</p>
                             </div>
                             <div class="col-md-2"></div>
                         </div>
-                        <!-- next slides -->
-
-                        <div class="row carousel-item">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-3">
-                                <img class="d-block w-100" src="../../assets/unikall/images/templates/barbar_p10.jpg" alt="Image">
-                            </div>
-                            <div class="col-md-5 m-auto">
-                                <h1 class="brand-color">Blog 3</h1>
-                                <p class="text-white">Ehsan test here Ehsan test here Ehsan test here Ehsan test
-                                    here
-                                    Ehsan test here
-                                    Ehsan test here Ehsan test here Ehsan test here Ehsan test here </p>
-                                <p class="text-white pull-right">MORE...</p>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                        <!-- next slides -->
-
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                    </b-carousel-slide>
+                </b-carousel>
             </div>
         </div>
     </div>
@@ -75,6 +51,29 @@
 
 <script>
 export default {
-    name: "ServiceBlog"
+    name: "ServiceBlog",
+    data() {
+        return {
+            slide: 0,
+            sliding: null
+        }
+    },
+    methods: {
+        onSlideStart() {
+            this.sliding = true
+        },
+        onSlideEnd() {
+            this.sliding = false
+        }
+    }
 };
 </script>
+
+<style>
+.carousel-caption {
+    position: relative !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+}
+</style>
