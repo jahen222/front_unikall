@@ -484,6 +484,10 @@ const routes = [
         ]
     },
     {
+        path: "/service-templates/beauty-and-fashion",
+        components: require("./containers/ServiceTemplates.vue")
+    },
+    {
         path: "*",
         component: () => import(/* webpackChunkName: "error" */ "./dashboard/views/Error")
     }
