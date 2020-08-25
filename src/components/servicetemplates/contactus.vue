@@ -1,7 +1,7 @@
 <template>
 <!-- contact us section -->
 <section class="py-5" style="background-color: #E6E6E6;">
-    <div class="container">
+    <div id="contact" class="container">
         <form class="mt-20" action="/action_page.php">
             <div class="row">
                 <div class="col-1"></div>

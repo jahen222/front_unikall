@@ -1,6 +1,6 @@
 <template>
 <!-- Blog section -->
-<section class="py-5" style="background-color: #1A1A1A;">
+<section id="blog" class="py-5" style="background-color: #1A1A1A;">
     <div class="container-fluid">
         <div class="row blog">
             <div class="col-md-12">
