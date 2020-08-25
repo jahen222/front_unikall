@@ -30,31 +30,6 @@
           <i class="simple-icon-magnifier"></i>
         </span>
       </div>
-      <div class="d-inline-block">
-        <b-dropdown
-          id="langddm"
-          class="ml-2"
-          variant="light"
-          size="sm"
-          toggle-class="language-button"
-        >
-          <template slot="button-content">
-            <span class="name">{{$i18n.locale.toUpperCase()}}</span>
-          </template>
-          <b-dropdown-item
-            v-for="(l,index) in localeOptions"
-            :key="index"
-            @click="changeLocale(l.id, l.direction)"
-          >{{l.name}}</b-dropdown-item>
-        </b-dropdown>
-      </div>
-      <div class="position-relative d-none d-none d-lg-inline-block">
-        <a
-          class="btn btn-outline-primary btn-sm ml-2"
-          target="_top"
-          :href="buyUrl"
-        >{{$t('user.buy')}}</a>
-      </div>
     </div>
     <router-link class="navbar-logo" tag="a" to="/app">
       <span class="logo d-none d-xs-block"></span>
@@ -86,14 +61,6 @@
               <i class="simple-icon-grid" />
             </template>
             <div>
-              <router-link tag="a" to="/dashboard/app/index/default" class="icon-menu-item">
-                <i class="iconsminds-shop-4 d-block" />
-                {{$t('menu.dashboards')}}
-              </router-link>
-              <router-link tag="a" to="/dashboard/app/ui" class="icon-menu-item">
-                <i class="iconsminds-pantone d-block" />
-                {{$t('menu.ui')}}
-              </router-link>
               <router-link tag="a" to="/dashboard/app/ui/components/charts" class="icon-menu-item">
                 <i class="iconsminds-bar-chart-4 d-block" />
                 {{$t('menu.charts')}}
@@ -180,7 +147,7 @@
           <b-dropdown-item>History</b-dropdown-item>
           <b-dropdown-item>Support</b-dropdown-item>
           <b-dropdown-divider />
-          <b-dropdown-item @click="logout">Sign out</b-dropdown-item>
+          <b-dropdown-item @click="handleSubmitLogout">Logout</b-dropdown-item>
         </b-dropdown>
       </div>
     </div>
@@ -199,14 +166,14 @@ import {
   localeOptions,
   buyUrl,
   defaultColor,
-  themeSelectedColorStorageKey
+  themeSelectedColorStorageKey,
 } from "../../constants/config";
 import { getDirection, setDirection } from "../../utils";
 export default {
   components: {
     "menu-icon": MenuIcon,
     "mobile-menu-icon": MobileMenuIcon,
-    switches: Switches
+    switches: Switches,
   },
   data() {
     return {
@@ -219,11 +186,14 @@ export default {
       localeOptions,
       buyUrl,
       notifications,
-      isDarkActive: false
+      isDarkActive: false,
     };
   },
   methods: {
     ...mapMutations(["changeSideMenuStatus", "changeSideMenuForMobile"]),
+    ...mapMutations({
+      logout: "logout",
+    }),
     ...mapActions(["setLang", "signOut"]),
     search() {
       this.$router.push(`${this.searchPath}?search=${this.searchKeyword}`);
@@ -253,15 +223,12 @@ export default {
       if (direction !== currentDirection) {
         setDirection(direction);
       }
-
       this.setLang(locale);
     },
-    logout() {
-      this.signOut().then(() => {
-        this.$router.push("/user/login");
-      });
+    handleSubmitLogout: function () {
+      this.logout();
+      this.$router.go();
     },
-
     toggleFullScreen() {
       const isInFullScreen = this.isInFullScreen();
 
@@ -303,15 +270,15 @@ export default {
           document.mozFullScreenElement !== null) ||
         (document.msFullscreenElement && document.msFullscreenElement !== null)
       );
-    }
+    },
   },
   computed: {
     ...mapGetters({
       currentUser: "currentUser",
       menuType: "getMenuType",
       menuClickCount: "getMenuClickCount",
-      selectedMenuHasSubItems: "getSelectedMenuHasSubItems"
-    })
+      selectedMenuHasSubItems: "getSelectedMenuHasSubItems",
+    }),
   },
   beforeDestroy() {
     document.removeEventListener("click", this.handleDocumentforMobileSearch);
@@ -352,7 +319,15 @@ export default {
           this.handleDocumentforMobileSearch
         );
       }
-    }
-  }
+    },
+  },
 };
 </script>
+
+<style scoped>
+.navbar .navbar-logo .logo-mobile {
+  height: 100%;
+  background-image: url("../../../assets/unikall/images/unikall-logo-png-small.png");
+  background-size: contain;
+}
+</style>

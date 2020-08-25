@@ -7,15 +7,15 @@ export default {
     currentUser: isAuthActive ? currentUser : (localStorage.getItem('user') != null ? JSON.parse(localStorage.getItem('user')) : null),
     loginError: null,
     processing: false,
-    forgotMailSuccess:null,
-    resetPasswordSuccess:null
+    forgotMailSuccess: null,
+    resetPasswordSuccess: null
   },
   getters: {
     currentUser: state => state.currentUser,
     processing: state => state.processing,
     loginError: state => state.loginError,
     forgotMailSuccess: state => state.forgotMailSuccess,
-    resetPasswordSuccess:state => state.resetPasswordSuccess,
+    resetPasswordSuccess: state => state.resetPasswordSuccess,
   },
   mutations: {
     setUser(state, payload) {
@@ -41,13 +41,13 @@ export default {
       state.loginError = null
       state.currentUser = null
       state.processing = false
-      state.forgotMailSuccess=true
+      state.forgotMailSuccess = true
     },
     setResetPasswordSuccess(state) {
       state.loginError = null
       state.currentUser = null
       state.processing = false
-      state.resetPasswordSuccess=true
+      state.resetPasswordSuccess = true
     },
     clearError(state) {
       state.loginError = null
@@ -99,7 +99,7 @@ export default {
       commit('setProcessing', true)
       firebase
         .auth()
-        .confirmPasswordReset(payload.resetPasswordCode,payload.newPassword)
+        .confirmPasswordReset(payload.resetPasswordCode, payload.newPassword)
         .then(
           //user => {
           //  commit('clearError')
