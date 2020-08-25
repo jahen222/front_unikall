@@ -1,7 +1,7 @@
 <template>
   <b-row>
     <b-colxx xxs="12">
-      <h1>{{ title }}</h1>
+      <h1>Products</h1>
       <div class="top-right-button-container">
         <b-button
           v-b-modal.modalright
@@ -35,7 +35,6 @@
         </b-button-group>
       </div>
       <add-new-modal :categories="categories" :statuses="statuses"></add-new-modal>
-      <piaf-breadcrumb />
       <div class="mb-2 mt-2">
         <b-button
           variant="empty"

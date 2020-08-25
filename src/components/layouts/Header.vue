@@ -459,7 +459,7 @@ export default {
   computed: {
     username() {
       let user = store.state.auth.user;
-      console.log(store.state);
+      //console.log(store.state);
       if (Cookies.get("user") !== undefined) {
         user = JSON.parse(Cookies.get("user"));
         return user.username;
@@ -468,6 +468,10 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      setUser: "setUser",
+      logout: "logout",
+    }),
     async handleSubmitLogin() {
       await axios
         .post(this.api_url + "/auth/local", {
@@ -497,7 +501,6 @@ export default {
           password: this.register_password,
         })
         .then((response) => {
-
           // is here mutation
           this.showRegisterSuccess({
             message: "Welcome " + response.data.user.username,
@@ -514,10 +517,6 @@ export default {
     handleSubmitLogout: function () {
       this.logout();
     },
-    ...mapMutations({
-      setUser: "setUser",
-      logout: "logout",
-    }),
     onFileChange(e) {
       const file = e.target.files[0];
       this.register_logo = URL.createObjectURL(file);

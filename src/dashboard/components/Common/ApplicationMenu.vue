@@ -23,7 +23,8 @@ export default {
       document.removeEventListener('click', this.handleDocumentClick)
       document.removeEventListener('touchstart', this.handleDocumentClick)
     },
-    handleDocumentClick (/*e*/) {
+    handleDocumentClick (e) {
+      console.log(e);
       if (!this.isMenuOver) {
         this.toggle()
       }

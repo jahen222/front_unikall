@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 export const defaultMenuType = 'menu-default' // 'menu-default', 'menu-sub-hidden', 'menu-hidden';
 export const defaultStartPath = '/dashboard/app/index/default'
 export const searchPath = '/dashboard/app/pages/miscellaneous/search'
@@ -27,12 +29,23 @@ export const firebaseConfig = {
 
 export const apiUrl = 'https://api.coloredstrategies.com'
 
-export const currentUser = {
+var aux = {
   id: 1,
-  title: 'Jahen222',
+  title: 'undefined',
   img: '/assets/img/profile-pic-l.jpg',
-  date: 'Last seen today 15:24'
+  date: 'Last seen today'
 }
+if (Cookies.get("user") !== undefined) {
+  var user = JSON.parse(Cookies.get("user"));
+  aux = {
+    id: user.id,
+    title: user.username,
+    img: '/assets/img/profile-pic-l.jpg',
+    date: 'Last seen today'
+  }
+}
+
+export const currentUser = aux;
 
 export const isAuthActive = true
 export const themeRadiusStorageKey = 'theme_radius'

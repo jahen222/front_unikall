@@ -64,7 +64,7 @@ export default {
             searchKey: '',
             isLoadCurrentConversation: false,
             otherUser: null,
-            conversationMessages: null
+            conversationMessages: null,
         }
     },
     computed: {
