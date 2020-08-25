@@ -1,6 +1,6 @@
 <template>
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav id="home" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">Start Bootstrap</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,18 +9,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
+                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('home')">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('about')">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('service')">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('blog')">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
                 </li>
             </ul>
         </div>
@@ -38,7 +39,13 @@ export default {
         };
     },
     computed: {},
-    methods: {},
+    methods: {
+        gotoPage(tag) {
+            var anchor = document.querySelector('#' + tag);
+            window.scrollTo(anchor.offsetLeft, (anchor.offsetTop - 150));
+            return false;
+        }
+    },
     notifications: {},
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
 <!-- more information section -->
-<section class="py-5" style="background-color: #E6E6E6;">
+<section id="service" class="py-5" style="background-color: #E6E6E6;">
     <div class="container">
         <div class="row">
             <div class="col-1"></div>
