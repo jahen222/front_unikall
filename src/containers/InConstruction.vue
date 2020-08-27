@@ -7,3 +7,9 @@ export default {
   name: "ConstructionPage",
 };
 </script>
+
+<style scoped>
+.img-fluid {
+  width: 100%;
+}
+</style>
