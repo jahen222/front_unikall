@@ -5,13 +5,13 @@
         <div class="row">
             <div class="col-1"></div>
             <div class="col-4 text-left">
-                <h1 class="brand-color">Title</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, suscipit, rerum quos facilis
+                <h1 class="brand-color poppinfont">Title</h1>
+                <p class="poppinfont font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, suscipit, rerum quos facilis
                     repellat
                     architecto commodi officia atque nemo facere eum non illo voluptatem quae delectus odit vel
                     itaque amet.
                 </p>
-                <p><button type="button" class="btn btn-outline-primary brand-color brand-btn">Primary</button></p>
+                <p><button type="button" class="btn btn-outline-primary brand-color brand-btn poppinfont">Primary</button></p>
             </div>
             <div class="col-2"></div>
             <div class="col-4">

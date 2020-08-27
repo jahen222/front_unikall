@@ -13,12 +13,12 @@
                                 <img class="d-block w-100" src="../../assets/unikall/images/templates/barbar_p10.jpg" alt="Image">
                             </div>
                             <div class="col-md-5 m-auto">
-                                <h1 class="brand-color">Blog 1</h1>
-                                <p class="text-white">Ehsan test here Ehsan test here Ehsan test here Ehsan test
+                                <h1 class="brand-color poppinfont">Blog 1</h1>
+                                <p class="text-white poppinfont font-weight-normal">Ehsan test here Ehsan test here Ehsan test here Ehsan test
                                     here
                                     Ehsan test here
                                     Ehsan test here Ehsan test here Ehsan test here Ehsan test here </p>
-                                <p class="text-white text-right">MORE...</p>
+                                <p class="text-white text-right poppinfont">MORE...</p>
                             </div>
                             <div class="col-md-2"></div>
                         </div>
@@ -32,12 +32,12 @@
                                 <img class="d-block w-100" src="../../assets/unikall/images/templates/barbar_p10.jpg" alt="Image">
                             </div>
                             <div class="col-md-5 m-auto">
-                                <h1 class="brand-color">Blog 2</h1>
-                                <p class="text-white">Ehsan test here Ehsan test here Ehsan test here Ehsan test
+                                <h1 class="brand-color poppinfont">Blog 2</h1>
+                                <p class="text-white poppinfont font-weight-normal">Ehsan test here Ehsan test here Ehsan test here Ehsan test
                                     here
                                     Ehsan test here
                                     Ehsan test here Ehsan test here Ehsan test here Ehsan test here </p>
-                                <p class="text-white text-right">MORE...</p>
+                                <p class="text-white text-right poppinfont">MORE...</p>
                             </div>
                             <div class="col-md-2"></div>
                         </div>

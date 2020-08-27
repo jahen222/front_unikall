@@ -2,26 +2,26 @@
 <!-- Navigation -->
 <nav id="home" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand poppinfont" href="#">Start Bootstrap</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('home')">Home</a>
+                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('home')">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('about')">About</a>
+                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('about')">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('service')">Services</a>
+                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('service')">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('blog')">Blog</a>
+                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('blog')">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
+                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
                 </li>
             </ul>
         </div>
@@ -53,6 +53,19 @@ export default {
 <style>
 :root {
     --brandColor: #EDBC61;
+}
+
+.poppinfont {
+    font-family: 'poppinsregular' !important;
+}
+
+.sfooter p {
+    font-family: 'poppinsregular' !important;
+    font-weight: normal;
+}
+
+.font-weight-normal {
+    font-weight: normal !important;
 }
 
 .bg-image-full {

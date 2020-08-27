@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row gallary">
             <div class="col-md-12 text-center">
-                <h2 class="brand-color"><i>&ldquo;Gallery View&rdquo;</i></h2>
-                <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h2 class="brand-color poppinfont"><i>&ldquo;Gallery View&rdquo;</i></h2>
+                <p class="text-white poppinfont font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <div id="gallaryCarousel" class="carousel slide" data-ride="carousel">
                     <!-- <ol class="carousel-indicators">
                             <li data-target="#gallaryCarousel" data-slide-to="0" class="active"></li>
@@ -71,7 +71,7 @@
                     </div>
                     <!--.carousel-inner-->
                 </div>
-                <p class="mt-20"><button type="button" class="btn btn-outline-primary brand-color brand-btn mt-20">View All</button></p>
+                <p class="mt-20"><button type="button" class="btn btn-outline-primary brand-color brand-btn mt-20 poppinfont">View All</button></p>
             </div>
         </div>
     </div>

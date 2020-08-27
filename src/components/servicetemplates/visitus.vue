@@ -8,19 +8,19 @@
                 <h1 class="brand-color">VISIT US</h1>
                 <div class="mt-20">
                     <i class="fa fa-map-marker brand-color" aria-hidden="true"></i>
-                    <span>123 street, main st, san fransisco</span>
+                    <span class="poppinfont font-weight-normal">123 street, main st, san fransisco</span>
                 </div>
                 <div>
                     <i class="fa fa-envelope brand-color" aria-hidden="true"></i>
-                    <span>testemail@server.com</span>
+                    <span calss="poppinfont font-weight-normal">testemail@server.com</span>
                 </div>
                 <div>
                     <i class="fa fa-phone-square brand-color" aria-hidden="true"></i>
-                    <span>123 123 1234</span>
+                    <span class="poppinfont font-weight-normal">123 123 1234</span>
                 </div>
                 <div>
                     <i class="fa fa-phone-square brand-color" aria-hidden="true"></i>
-                    <span>1234 123 123</span>
+                    <span class="poppinfont font-weight-normal">1234 123 123</span>
                 </div>
             </div>
             <div class="col-6 m-auto">

@@ -17,6 +17,8 @@ import './assets/oapee/css/responsive.css';
 // icons
 import './assets/oapee/css/oapee-icons.css';
 import './assets/oapee/css/fontawesome-all.min.css';
+// poppins font style
+import './assets/fonts/poppins/popin-stylesheet.css';
 // wizard
 import VueFormWizard from 'vue-form-wizard';
 import 'vue-form-wizard/dist/vue-form-wizard.min.css';

@@ -8,7 +8,7 @@
                 <div class="col-10">
                     <div class="row">
                         <div class="col-12">
-                            <h1 class="brand-color">CONTACT US</h1>
+                            <h1 class="brand-color poppinfont">CONTACT US</h1>
                         </div>
                         <div class="col-6 mt-20">
                             <div class="form-group">
@@ -33,8 +33,8 @@
                                     <input type="checkbox" class="form-control brand-border cust_checked" id="conatct_acceptterms">
                                 </div>
                                 <div class="col-7 text-left">
-                                    <p><label for="conatct_acceptterms">I give permission to contact me</label></p>
-                                    <p>Company would like to stay in touch to provide you with marketting related
+                                    <p class="poppinfont font-weight-normal"><label for="conatct_acceptterms">I give permission to contact me</label></p>
+                                    <p class="poppinfont font-weight-normal">Company would like to stay in touch to provide you with marketting related
                                         content. By ticking you agree to consent to recieve educational, company and
                                         promotional information from COMPANY and accept COmpany's privacy policy.
                                     </p>
@@ -42,7 +42,7 @@
                                 <div class="col-1"></div>
                             </div>
                             <div class="row">
-                                <div class="col-12 text-center"><button type="button" class="btn btn-outline-primary brand-color brand-btn">Submit</button></div>
+                                <div class="col-12 text-center"><button type="button" class="btn btn-outline-primary brand-color brand-btn poppinfont">Submit</button></div>
                             </div>
                         </div>
                     </div>
