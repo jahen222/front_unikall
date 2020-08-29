@@ -21,7 +21,7 @@
                     <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('blog')">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
+                    <a v-b-modal="'my-booking'" class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
                 </li>
             </ul>
         </div>
@@ -41,8 +41,10 @@ export default {
     computed: {},
     methods: {
         gotoPage(tag) {
-            var anchor = document.querySelector('#' + tag);
-            window.scrollTo(anchor.offsetLeft, (anchor.offsetTop - 150));
+            if (tag != 'contact') {
+                var anchor = document.querySelector('#' + tag);
+                window.scrollTo(anchor.offsetLeft, (anchor.offsetTop - 150));
+            }
             return false;
         }
     },
@@ -62,6 +64,28 @@ export default {
 .sfooter p {
     font-family: 'poppinsregular' !important;
     font-weight: normal;
+    font-size: .85rem;
+    line-height: 1.3rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.8rem;
+    font-family: "poppinsregular", sans-serif;
+    font-weight: normal;
+}
+
+.text-black {
+    color: #000000 !important;
+}
+
+.modal-header {
+    padding: .5rem !important;
+    background: none !important;
+}
+
+.modal-dialog {
+    max-width: 90%;
 }
 
 .font-weight-normal {
