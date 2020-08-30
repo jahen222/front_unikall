@@ -5,25 +5,23 @@
         <div class="row">
             <div class="col-1"></div>
             <div class="col-4 text-left">
-                <h1 class="brand-color poppinfont">Title</h1>
-                <p class="poppinfont font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, suscipit, rerum quos facilis
-                    repellat
-                    architecto commodi officia atque nemo facere eum non illo voluptatem quae delectus odit vel
-                    itaque amet.
+                <h1 class="brand-color poppinfont">{{business.name}}</h1>
+                <p class="poppinfont font-weight-normal">{{business.description}}
                 </p>
                 <p><button type="button" class="btn btn-outline-primary brand-color brand-btn poppinfont">Primary</button></p>
             </div>
             <div class="col-2"></div>
             <div class="col-4">
-                <div class="row">
-                    <div class="col-4"><img class="img-fluid d-block" src="../../assets/unikall/images/templates/barbar_p1.jpg" alt=""></div>
-                    <div class="col-4"><img class="img-fluid d-block" src="../../assets/unikall/images/templates/barbar_p2.jpg" alt=""></div>
-                    <div class="col-4"><img class="img-fluid d-block" src="../../assets/unikall/images/templates/barbar_p3.jpg" alt=""></div>
+                <div v-if="business.work_images.length > 0" class="row">
+                    <div class="col-4" v-for="(image_item, index) in business.work_images" :key="image_item.formats.thumbnail.url">
+                        <img v-bind:class="[index > 2 ? 'mt-3' : '' , '']" v-if="image_item.formats.thumbnail.url" class="img-fluid d-block" :src="api_url + image_item.formats.thumbnail.url" alt="">
+                        <img v-bind:class="[index > 2 ? 'mt-3' : '' , '']" v-if="!image_item.formats.thumbnail.url" class="img-fluid d-block" :src="'http://placehold.it/200x200&text=image%201'" alt="">
+                    </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-4"><img class="img-fluid d-block" src="../../assets/unikall/images/templates/barbar_p4.jpg" alt=""></div>
-                    <div class="col-4"><img class="img-fluid d-block" src="../../assets/unikall/images/templates/barbar_p5.jpg" alt=""></div>
-                    <div class="col-4"><img class="img-fluid d-block" src="../../assets/unikall/images/templates/barbar_p6.jpg" alt=""></div>
+                <div v-if="business.work_images.length == 0" class="row">
+                    <div class="col-4" v-for="(image_item, index) in 6" :key="image_item">
+                        <img v-bind:class="[index > 2 ? 'mt-3' : '' , '']" class="img-fluid d-block" :src="'http://placehold.it/200x200&text=image%20' + (index + 1)" alt="">
+                    </div>
                 </div>
             </div>
             <div class="col-1"></div>
@@ -34,6 +32,13 @@
 
 <script>
 export default {
-    name: "ServiceDescription"
+    name: "ServiceDescription",
+    props: ['business'],
+    data() {
+        return {
+            api_url: process.env.VUE_APP_STRAPI_API_URL,
+            userdata: this.business,
+        };
+    },
 };
 </script>

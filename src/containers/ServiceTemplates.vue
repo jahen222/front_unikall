@@ -3,9 +3,9 @@
     <InConstruction />
 </div>
 <div v-else>
-    <ServiceHeader />
-    <ServiceSlider />
-    <ServiceDescription />
+    <ServiceHeader v-bind:business="business" />
+    <ServiceSlider v-bind:business="business" />
+    <ServiceDescription v-bind:business="business" />
     <ServiceTestimonial />
     <ServiceInformation />
     <ServiceGallery />
@@ -49,11 +49,38 @@ export default {
         return {
             configs: [0],
             api_url: process.env.VUE_APP_STRAPI_API_URL,
+            user_id: this.$route.query.id,
         };
     },
     apollo: {
-        configs: gql `
-      query getInitConfig($where: JSON = { name: "init" }) {
+        business: {
+            query: gql `
+                query businesses($id: ID!) {
+                    business(id: $id) {
+                        id
+                        name
+                        tagline
+                        description
+                        address
+                        user {
+                            username
+                        }
+                        logo {
+                            formats 
+                        }
+                        work_images {
+                            formats
+                        }
+                    }
+                }
+            `,
+            variables() {
+                return {
+                    id: this.user_id,
+                };
+            },
+        },
+        configs: gql `query getInitConfig($where: JSON = { name: "init" }) {
         configs(where: $where) {
           id
           name
@@ -61,7 +88,8 @@ export default {
         }
       }
     `,
-    },
+
+    }
 };
 </script>
 
