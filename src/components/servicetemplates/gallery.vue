@@ -6,71 +6,36 @@
             <div class="col-md-12 text-center">
                 <h2 class="brand-color poppinfont"><i>&ldquo;Gallery View&rdquo;</i></h2>
                 <p class="text-white poppinfont font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <div id="gallaryCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- <ol class="carousel-indicators">
-                            <li data-target="#gallaryCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#gallaryCarousel" data-slide-to="1"></li>
-                        </ol> -->
-                    <!-- Carousel items -->
-                    <div class="carousel-inner">
-
-                        <div class="carousel-item active">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <a href="#">
-                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                    </a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="#">
-                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                    </a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="#">
-                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                    </a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="#">
-                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                    </a>
-                                </div>
+                <b-carousel id="carousel-1" v-model="slide" :interval="4000" controls indicators @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
+                    <!-- Text slides with image -->
+                    <b-carousel-slide>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                </a>
                             </div>
-                            <!--.row-->
-                        </div>
-                        <!--.item-->
-
-                        <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <a href="#">
-                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                    </a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="#">
-                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                    </a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="#">
-                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                    </a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="#">
-                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                    </a>
-                                </div>
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                </a>
                             </div>
-                            <!--.row-->
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                </a>
+                            </div>
                         </div>
-                        <!--.item-->
+                        <!--.row-->
+                    </b-carousel-slide>
 
-                    </div>
-                    <!--.carousel-inner-->
-                </div>
+                </b-carousel>
+
                 <p class="mt-20"><button type="button" class="btn btn-outline-primary brand-color brand-btn mt-20 poppinfont">View All</button></p>
             </div>
         </div>
@@ -80,6 +45,31 @@
 
 <script>
 export default {
-    name: "ServiceGallery"
+    name: "ServiceGallery",
+    props: ['images'],
+    data() {
+        return {
+            api_url: process.env.VUE_APP_STRAPI_API_URL,
+            slide: 0,
+            sliding: null
+        };
+    },
+    methods: {
+        onSlideStart() {
+            this.sliding = true
+        },
+        onSlideEnd() {
+            this.sliding = false
+        }
+    }
 };
 </script>
+
+<style>
+.carousel-caption {
+    position: relative !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+}
+</style>

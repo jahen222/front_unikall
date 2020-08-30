@@ -6,9 +6,9 @@
     <ServiceHeader v-bind:business="business" />
     <ServiceSlider v-bind:business="business" />
     <ServiceDescription v-bind:business="business" />
-    <ServiceTestimonial />
+    <ServiceTestimonial v-bind:testimonial="business.testimonial" />
     <ServiceInformation />
-    <ServiceGallery />
+    <ServiceGallery v-bind:images="business.work_images" />
     <ServiceVisitUs />
     <ServiceContactUs />
     <ServiceBlog />
@@ -70,6 +70,16 @@ export default {
                         }
                         work_images {
                             formats
+                        }
+                        testimonial {
+                            id
+                            title
+                            description
+                            sender
+                            updated_at
+                            sender_image {
+                                formats
+                            }
                         }
                     }
                 }
