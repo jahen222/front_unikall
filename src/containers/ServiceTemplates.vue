@@ -6,12 +6,12 @@
     <ServiceHeader v-bind:business="business" />
     <ServiceSlider v-bind:business="business" />
     <ServiceDescription v-bind:business="business" />
-    <ServiceTestimonial v-bind:testimonial="business.testimonial" />
+    <ServiceTestimonial v-bind:testimonial="business.testimonials" />
     <ServiceInformation />
     <ServiceGallery v-bind:images="business.work_images" />
-    <ServiceVisitUs />
+    <ServiceVisitUs v-bind:address="business.address" v-bind:email="business.email" v-bind:phone="business.phone" />
     <ServiceContactUs />
-    <ServiceBlog />
+    <ServiceBlog v-bind:blogs="business.blogs" />
     <ServiceFooter />
 </div>
 </template>
@@ -62,6 +62,8 @@ export default {
                         tagline
                         description
                         address
+                        email
+                        phone
                         user {
                             username
                         }
@@ -71,13 +73,20 @@ export default {
                         work_images {
                             formats
                         }
-                        testimonial {
+                        testimonials {
                             id
                             title
                             description
                             sender
                             updated_at
                             sender_image {
+                                formats
+                            }
+                        }
+                        blogs {
+                            title
+                            description
+                            image {
                                 formats
                             }
                         }
