@@ -5,7 +5,7 @@
         <b-carousel id="carousel-1" v-model="slide" :interval="4000" controls indicators @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
             <!-- Text slides with image -->
             <b-carousel-slide v-for="(item,index) in blogs" :key="index">
-                <div class="row">
+                <div class="row text-left">
                     <div class="col-md-2"></div>
                     <div class="col-md-3">
                         <img class="d-block w-100" :src="api_url + item.image.formats.small.url" alt="Image">
