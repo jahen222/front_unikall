@@ -11,7 +11,8 @@
                             <div class="col-sm-12">
                                 <h2 class="brand-color poppinfont"><i>"{{item.title}}"</i></h2>
                                 <p class="text-white poppinfont font-weight-normal">&ldquo;{{item.description}}.&rdquo;</p>
-                                <img class="mt-3" style="border-radius: 50%;width:70px" :src="api_url + item.sender_image.formats.thumbnail.url" alt="Avatar">
+                                <img v-if="item.sender_image.formats" class="mt-3" style="border-radius: 50%;width:70px" :src="api_url + item.sender_image.formats.thumbnail.url" alt="Avatar">
+                                <img v-if="!item.sender_image.formats" class="mt-3" style="border-radius: 50%;width:70px" src="http://placehold.it/200x200" alt="Avatar">
                                 <p class="mt-3"><small class="brand-color poppinfont"><strong style="text-transform:uppercase;">{{item.sender}}</strong></small></p>
                             </div>
                         </div>
@@ -35,3 +36,9 @@ export default {
     },
 };
 </script>
+
+<style>
+.carousel-caption {
+    width: 100%;
+}
+</style>

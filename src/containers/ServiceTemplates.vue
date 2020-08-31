@@ -3,15 +3,15 @@
     <InConstruction />
 </div>
 <div v-else>
-    <ServiceHeader v-bind:business="business" />
+    <ServiceHeader v-bind:businessName="business ? business.name : 'Business Title'" />
     <ServiceSlider v-bind:business="business" />
-    <ServiceDescription v-bind:business="business" />
-    <ServiceTestimonial v-bind:testimonial="business.testimonials" />
+    <ServiceDescription v-bind:name="business ? business.name : 'Business Title'" v-bind:description="business ? business.description : 'Business Description goes here...'" v-bind:work_images="business ? business.work_images : ''" />
+    <ServiceTestimonial v-bind:testimonial="business && business.testimonials.length > 0 ? business.testimonials : testimonial_sample" />
     <ServiceInformation />
-    <ServiceGallery v-bind:images="business.work_images" />
-    <ServiceVisitUs v-bind:address="business.address" v-bind:email="business.email" v-bind:phone="business.phone" />
+    <ServiceGallery v-bind:images="business && business.work_images.length > 0 ? business.work_images : []" />
+    <ServiceVisitUs v-bind:address="business ? business.address : 'your address goes here..'" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
     <ServiceContactUs />
-    <ServiceBlog v-bind:blogs="business.blogs" />
+    <ServiceBlog v-bind:blogs="business && business.blogs.length > 0 ? business.blogs : []" />
     <ServiceFooter />
 </div>
 </template>
@@ -50,6 +50,13 @@ export default {
             configs: [0],
             api_url: process.env.VUE_APP_STRAPI_API_URL,
             user_id: this.$route.query.id,
+            work_image: [],
+            testimonial_sample: [{
+                "title": "Your Title",
+                "description": "Description goes here... Description goes here... Description goes here...",
+                "sender": "Unikall",
+                "sender_image": ""
+            }]
         };
     },
     apollo: {
