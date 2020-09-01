@@ -8,19 +8,19 @@
                 <h1 class="brand-color">VISIT US</h1>
                 <div class="mt-20">
                     <i class="fa fa-map-marker brand-color" aria-hidden="true"></i>
-                    <span>123 street, main st, san fransisco</span>
+                    <span class="poppinfont font-weight-normal">{{address}}</span>
                 </div>
                 <div>
                     <i class="fa fa-envelope brand-color" aria-hidden="true"></i>
-                    <span>testemail@server.com</span>
+                    <span calss="poppinfont font-weight-normal">{{email}}</span>
                 </div>
                 <div>
                     <i class="fa fa-phone-square brand-color" aria-hidden="true"></i>
-                    <span>123 123 1234</span>
+                    <span class="poppinfont font-weight-normal">{{phone}}</span>
                 </div>
                 <div>
                     <i class="fa fa-phone-square brand-color" aria-hidden="true"></i>
-                    <span>1234 123 123</span>
+                    <span class="poppinfont font-weight-normal">{{phone}}</span>
                 </div>
             </div>
             <div class="col-6 m-auto">
@@ -35,6 +35,12 @@
 
 <script>
 export default {
-    name: "ServiceVisitUs"
+    name: "ServiceVisitUs",
+    props: ['address', 'email', 'phone'],
+    data() {
+        return {
+            api_url: process.env.VUE_APP_STRAPI_API_URL
+        };
+    },
 };
 </script>

@@ -1,12 +1,12 @@
 <template>
 <!-- Footer section -->
-<section class="py-5" style="background-color: #232323;">
+<section class="py-5 sfooter" style="background-color: #232323;">
     <div class="container-fluid text-left">
         <div class="row pl-2 pr-2 text-white font-12">
             <div class="col-9">
                 <div class="row">
                     <div class="col-2">
-                        <p>CONTACT US</p>
+                        <p><b>CONTACT US</b></p>
                         <p class="mt-20">+123 123 1234</p>
                         <p>test@server1.com</p>
                         <p>Find a store</p>

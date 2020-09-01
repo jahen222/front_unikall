@@ -7,8 +7,8 @@
             <div class="col-10" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col-6 text-center  m-auto">
-                        <h1 class=" brand-color h1v2">Ehsan here</h1>
-                        <p class="mt-20">Helo this a test text. Helo this a test text. Helo this a test text. Helo
+                        <h1 class=" brand-color h1v2 poppinfont">Ehsan here</h1>
+                        <p class="mt-20 poppinfont font-weight-normal">Helo this a test text. Helo this a test text. Helo this a test text. Helo
                             this a test text</p>
                     </div>
                     <div class="col-6 text-center p-0">
@@ -19,14 +19,14 @@
                         <img src="../../assets/unikall/images/templates/barbar_p8.jpg" style="width:100%" />
                     </div>
                     <div class="col-6 text-center  m-auto">
-                        <h1 class=" brand-color h1v2">Ehsan here</h1>
-                        <p class="mt-20">Helo this a test text. Helo this a test text. Helo this a test text. Helo
+                        <h1 class=" brand-color h1v2 poppinfont">Ehsan here</h1>
+                        <p class="mt-20 poppinfont font-weight-normal">Helo this a test text. Helo this a test text. Helo this a test text. Helo
                             this a test text</p>
                     </div>
 
                     <div class="col-6 text-center  m-auto">
-                        <h1 class=" brand-color h1v2">Ehsan here</h1>
-                        <p class="mt-20">Helo this a test text. Helo this a test text. Helo this a test text. Helo
+                        <h1 class=" brand-color h1v2 poppinfont">Ehsan here</h1>
+                        <p class="mt-20 poppinfont font-weight-normal">Helo this a test text. Helo this a test text. Helo this a test text. Helo
                             this a test text</p>
                     </div>
                     <div class="col-6 text-center p-0">

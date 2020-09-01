@@ -2,26 +2,26 @@
 <!-- Navigation -->
 <nav id="home" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand poppinfont" href="#">{{businessName}}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('home')">Home</a>
+                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('home')">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('about')">About</a>
+                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('about')">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('service')">Services</a>
+                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('service')">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('blog')">Blog</a>
+                    <a class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('blog')">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
+                    <a v-b-modal="'my-booking'" class="nav-link poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
                 </li>
             </ul>
         </div>
@@ -33,6 +33,7 @@
 export default {
     name: "ServiceHeader",
     components: {},
+    props: ['businessName'],
     data() {
         return {
             api_url: process.env.VUE_APP_STRAPI_API_URL
@@ -41,8 +42,10 @@ export default {
     computed: {},
     methods: {
         gotoPage(tag) {
-            var anchor = document.querySelector('#' + tag);
-            window.scrollTo(anchor.offsetLeft, (anchor.offsetTop - 150));
+            if (tag != 'contact') {
+                var anchor = document.querySelector('#' + tag);
+                window.scrollTo(anchor.offsetLeft, (anchor.offsetTop - 150));
+            }
             return false;
         }
     },
@@ -53,6 +56,41 @@ export default {
 <style>
 :root {
     --brandColor: #EDBC61;
+}
+
+.poppinfont {
+    font-family: 'poppinsregular' !important;
+}
+
+.sfooter p {
+    font-family: 'poppinsregular' !important;
+    font-weight: normal;
+    font-size: .85rem;
+    line-height: 1.3rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.8rem;
+    font-family: "poppinsregular", sans-serif;
+    font-weight: normal;
+}
+
+.text-black {
+    color: #000000 !important;
+}
+
+.modal-header {
+    padding: .5rem !important;
+    background: none !important;
+}
+
+.modal-dialog {
+    max-width: 90%;
+}
+
+.font-weight-normal {
+    font-weight: normal !important;
 }
 
 .bg-image-full {

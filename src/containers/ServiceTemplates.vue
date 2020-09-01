@@ -3,15 +3,15 @@
     <InConstruction />
 </div>
 <div v-else>
-    <ServiceHeader />
-    <ServiceSlider />
-    <ServiceDescription />
-    <ServiceTestimonial />
+    <ServiceHeader v-bind:businessName="business ? business.name : 'Business Title'" />
+    <ServiceSlider v-bind:business="business" />
+    <ServiceDescription v-bind:name="business ? business.name : 'Business Title'" v-bind:description="business ? business.description : 'Business Description goes here...'" v-bind:work_images="business ? business.work_images : ''" />
+    <ServiceTestimonial v-bind:testimonial="business && business.testimonials.length > 0 ? business.testimonials : testimonial_sample" />
     <ServiceInformation />
-    <ServiceGallery />
-    <ServiceVisitUs />
+    <ServiceGallery v-bind:images="business && business.work_images.length > 0 ? business.work_images : []" />
+    <ServiceVisitUs v-bind:address="business ? business.address : 'your address goes here..'" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
     <ServiceContactUs />
-    <ServiceBlog />
+    <ServiceBlog v-bind:blogs="business && business.blogs.length > 0 ? business.blogs : []" />
     <ServiceFooter />
 </div>
 </template>
@@ -49,11 +49,64 @@ export default {
         return {
             configs: [0],
             api_url: process.env.VUE_APP_STRAPI_API_URL,
+            user_id: this.$route.query.id,
+            work_image: [],
+            testimonial_sample: [{
+                "title": "Your Title",
+                "description": "Description goes here... Description goes here... Description goes here...",
+                "sender": "Unikall",
+                "sender_image": ""
+            }]
         };
     },
     apollo: {
-        configs: gql `
-      query getInitConfig($where: JSON = { name: "init" }) {
+        business: {
+            query: gql `
+                query businesses($id: ID!) {
+                    business(id: $id) {
+                        id
+                        name
+                        tagline
+                        description
+                        address
+                        email
+                        phone
+                        user {
+                            username
+                        }
+                        logo {
+                            formats 
+                        }
+                        work_images {
+                            formats
+                        }
+                        testimonials {
+                            id
+                            title
+                            description
+                            sender
+                            updated_at
+                            sender_image {
+                                formats
+                            }
+                        }
+                        blogs {
+                            title
+                            description
+                            image {
+                                formats
+                            }
+                        }
+                    }
+                }
+            `,
+            variables() {
+                return {
+                    id: this.user_id,
+                };
+            },
+        },
+        configs: gql `query getInitConfig($where: JSON = { name: "init" }) {
         configs(where: $where) {
           id
           name
@@ -61,7 +114,8 @@ export default {
         }
       }
     `,
-    },
+
+    }
 };
 </script>
 
