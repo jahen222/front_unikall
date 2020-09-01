@@ -152,9 +152,11 @@
                               <label for="exampleInputPassword1">Upload Logo</label>
                               <input
                                 type="file"
+                                accept="image/*"
                                 class="form-control fl-input-form"
                                 aria-describedby="emailHelp"
                                 @change="onFileChange"
+                                name="logo"
                               />
                             </div>
                           </div>
@@ -162,7 +164,7 @@
                             <div class="form-group">
                               <label for="exampleInputPassword1">Preview</label>
                               <div id="preview">
-                                <img v-if="register_logo" :src="register_logo" />
+                                <img v-if="register_logo_preview" :src="register_logo_preview" />
                               </div>
                             </div>
                           </div>
@@ -429,6 +431,7 @@ import store from "../../store";
 import Cookies from "js-cookie";
 import axios from "axios";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
+//import POST_BUSINESS from "./mutations/POST_BUSINESS";
 
 export default {
   name: "Header",
@@ -445,6 +448,7 @@ export default {
       register_errors: [],
       register_business_name: null,
       register_logo: null,
+      register_logo_preview: null,
       register_tagline: null,
       register_description: null,
       register_address: null,
@@ -482,9 +486,8 @@ export default {
           this.showLoginSuccess({
             message: "Welcome " + response.data.user.username,
           });
-          this.setUser(response.data.user);
+          this.setUser(response.data);
           this.$router.go();
-          //this.$router.push("/").catch(() => {});
         })
         .catch((error) => {
           this.showLoginError({
@@ -501,12 +504,53 @@ export default {
           password: this.register_password,
         })
         .then((response) => {
-          // is here mutation
           this.showRegisterSuccess({
             message: "Welcome " + response.data.user.username,
           });
-          this.setUser(response.data.user);
-          this.$router.push("/").catch(() => {});
+          this.setUser(response.data);
+          // business data
+          const request = new XMLHttpRequest();
+          const formData = new FormData();
+          const business_name = this.register_business_name;
+          const register_tagline = this.register_tagline;
+          const register_logo = this.register_logo;
+          const register_description = this.register_description;
+          const register_address = this.register_address;
+          const user_id = response.data.user.id;
+          const data = {};
+          data["name"] = business_name;
+          data["tagline"] = register_tagline;
+          data["description"] = register_description;
+          data["address"] = register_address;
+          data["user"] = user_id;
+          formData.append("files.logo", register_logo, "logo");
+          console.log("logo: ", register_logo);
+
+          const register_work_images = this.register_work_images;
+          for (let i = 0; i < register_work_images.length; i++) {
+            //console.log("file: ", JSON.stringify(register_work_images[i].path));
+            const dataURI = register_work_images[i].path;
+            var byteString = atob(dataURI.split(",")[1]);
+            var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+            for (var j = 0; j < byteString.length; j++) {
+              ia[j] = byteString.charCodeAt(j);
+            }
+            var blob = new Blob([ab], { type: mimeString });
+            console.log("blod: ", blob);
+            formData.append(`files.work_images[${i}]`, blob, register_work_images[i].name);
+          }
+
+          formData.append("data", JSON.stringify(data));
+          request.open("POST", this.api_url + "/businesses");
+          request.setRequestHeader(
+            "Authorization",
+            "Bearer " + localStorage.getItem("jwt")
+          );
+          request.send(formData);
+
+          //this.$router.go();
         })
         .catch((error) => {
           this.showRegisterError({
@@ -518,8 +562,8 @@ export default {
       this.logout();
     },
     onFileChange(e) {
-      const file = e.target.files[0];
-      this.register_logo = URL.createObjectURL(file);
+      this.register_logo = e.target.files[0];
+      this.register_logo_preview = URL.createObjectURL(this.register_logo);
     },
     checkRegisterForm: function () {
       this.errors = [];
