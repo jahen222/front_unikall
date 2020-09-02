@@ -678,12 +678,12 @@ a:visited {
 }
 
 .main-nav__main-navigation .main-nav__navigation-box>li+li {
-	margin-left: 60px;
+	margin-left: 30px;
 }
 
 .main-nav__main-navigation .main-nav__navigation-box>li>a {
 	font-size: 16px;
-	font-weight: 800;
+	font-weight: 100;
 	color: #fff;
 	display: block;
 	-webkit-transition: 500ms;
