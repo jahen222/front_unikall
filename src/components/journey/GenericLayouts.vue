@@ -60,7 +60,7 @@
                     <form>
                         <form-wizard @on-complete="onComplete" color="#343a40" title subtitle>
                             <tab-content title="Layout details" icon="fab fa-font-awesome" class="text-center" v-if="item.mockup && item.mockup.url">
-                                <img :src="api_url + item.mockup.url" alt />
+                                <img :src="api_url + item.mockup.url" style="height:400px" alt />
                             </tab-content>
                             <tab-content title="Layout details" icon="fab fa-font-awesome" class="text-center" v-else>
                                 <img src="../../assets/unikall/images/default.jpg" alt />
@@ -78,8 +78,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Business Name</label>
-                                                        <input type="text" class="form-control" aria-describedby="emailHelp" />
+                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Business Name" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,7 +92,7 @@
                                                 <div class="col-8">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Upload Logo</label>
-                                                        <input type="file" class="form-control fl-input-form" aria-describedby="emailHelp" />
+                                                        <input v-bind:style="{ 'background-image': 'url(' + logo_url + ')' }" type="file" @change="onLogoFileChange" class="form-control fl-input-form imgpreview" aria-describedby="emailHelp" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,8 +107,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Tagline Title</label>
-                                                        <input type="text" class="form-control" aria-describedby="emailHelp" />
+                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Tagline Title" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,8 +120,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">You Work</label>
-                                                        <input type="text" class="form-control" aria-describedby="emailHelp" />
+                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Your Work" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,7 +135,6 @@
                                                 <div class="col-8">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Photos of your work</label>
-                                                        <input type="text" class="form-control" aria-describedby="emailHelp" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -153,12 +149,12 @@
                                                             <div class="col-8">
                                                                 <p class="fl-micro-text">
                                                                     Connect with your customers, using photos! Ensure the item
-                                                                    is properly visible from multiple angles. Upload MIN 3 and
-                                                                    MAX 6 photos (jpg, .gif, .png.)
+                                                                    is properly visible from multiple angles. <b>Upload MIN 3 and
+                                                                        MAX 6 photos (jpg, .gif, .png.)</b>
                                                                 </p>
                                                                 <p class="fl-micro-text">
-                                                                    *If you want to upload more photos, please upgrade your
-                                                                    plan*I
+                                                                    *If you want to upload more photos, please <b>upgrade your
+                                                                        plan*</b>
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -231,8 +227,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Add Location</label>
-                                                        <input type="text" class="form-control" aria-describedby="emailHelp" />
+                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Add Location" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -242,8 +237,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Contact Name</label>
-                                                        <input type="text" class="form-control" aria-describedby="emailHelp" />
+                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Contact Me" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -253,8 +247,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Phone Number</label>
-                                                        <input type="text" class="form-control" aria-describedby="emailHelp" />
+                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Phone Number" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -264,8 +257,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Email</label>
-                                                        <input type="text" class="form-control" aria-describedby="emailHelp" />
+                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Email" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -275,8 +267,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Password</label>
-                                                        <input type="text" class="form-control" aria-describedby="emailHelp" />
+                                                        <input type="password" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Password" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -304,6 +295,7 @@ export default {
     data() {
         return {
             api_url: process.env.VUE_APP_STRAPI_API_URL,
+            logo_url: ""
         };
     },
     apollo: {},
@@ -314,6 +306,10 @@ export default {
         onComplete: function () {
             alert("Yay. Done!");
         },
+        onLogoFileChange(e) {
+            const file = e.target.files[0];
+            this.logo_url = URL.createObjectURL(file);
+        }
     },
 };
 </script>
@@ -389,8 +385,40 @@ export default {
     font-size: 12px;
     line-height: 25px;
 }
+
+.special-input {
+    border: 0px !important;
+    border-bottom: #000000 solid 1px !important;
+}
 </style><style scoped>
 .block-title h3 {
     font-size: 40px !important;
+}
+
+label {
+    color: #000000;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #000000;
+    opacity: 1;
+    font-size: 18px;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #000000;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #000000;
+}
+
+.imgpreview {
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 </style>

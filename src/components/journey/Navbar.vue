@@ -69,4 +69,8 @@ export default {
     min-height: 1px;
     padding: 0rem;
 }
+
+.card-header {
+    background: #ffffff;
+}
 </style>
