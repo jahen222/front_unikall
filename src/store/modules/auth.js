@@ -12,9 +12,16 @@ const mutations = {
         state.user = data.user;
         state.jwt = data.jwt;
         localStorage.setItem('jwt', data.jwt);
-        localStorage.setItem('user', data.user);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        data.user.business = null;
         Cookies.set('user', data.user);
         Cookies.set('jwt', data.jwt);
+    },
+    updateUser(state, data) {
+        state.user = data;
+        localStorage.setItem('user', JSON.stringify(data));
+        data.business = null;
+        Cookies.set('user', data);
     },
     logout(state) {
         state.user = null;

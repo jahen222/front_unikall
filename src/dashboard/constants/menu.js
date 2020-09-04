@@ -60,7 +60,7 @@ const data = [
     {
       icon: "simple-icon-layers",
       label: "Layout",
-      to: "/dashboard/app/business/business"
+      to: "/dashboard/app/business/layout"
     }]
   },
   {

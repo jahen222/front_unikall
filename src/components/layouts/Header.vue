@@ -491,7 +491,7 @@ export default {
         })
         .catch((error) => {
           this.showLoginError({
-            message: error.response.data.message[0].messages[0].message,
+            message: error.message,
           });
         });
     },
@@ -538,8 +538,8 @@ export default {
               ia[j] = byteString.charCodeAt(j);
             }
             var blob = new Blob([ab], { type: mimeString });
-            console.log("blod: ", blob);
-            formData.append(`files.work_images[${i}]`, blob, register_work_images[i].name);
+            //console.log("blod: ", blob);
+            formData.append(`files.work_images`, blob, register_work_images[i].name);
           }
 
           formData.append("data", JSON.stringify(data));
@@ -550,7 +550,7 @@ export default {
           );
           request.send(formData);
 
-          //this.$router.go();
+          this.$router.go();
         })
         .catch((error) => {
           this.showRegisterError({

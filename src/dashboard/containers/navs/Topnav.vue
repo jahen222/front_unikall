@@ -139,7 +139,8 @@
           <template slot="button-content">
             <span class="name mr-1">{{currentUser.title}}</span>
             <span>
-              <img :alt="currentUser.title" :src="currentUser.img" />
+              <img v-if="avatar_preview" :alt="currentUser.title" :src="avatar_preview" />
+              <img v-else :alt="currentUser.title" :src="currentUser.img" />
             </span>
           </template>
           <b-dropdown-item>Account</b-dropdown-item>
@@ -169,6 +170,8 @@ import {
   themeSelectedColorStorageKey,
 } from "../../constants/config";
 import { getDirection, setDirection } from "../../utils";
+import Cookies from "js-cookie";
+
 export default {
   components: {
     "menu-icon": MenuIcon,
@@ -187,7 +190,15 @@ export default {
       buyUrl,
       notifications,
       isDarkActive: false,
+      avatar_preview: null,
     };
+  },
+  mounted() {
+    this.user = JSON.parse(Cookies.get("user"));
+    if (this.user.avatar.url) {
+      this.avatar_preview =
+        process.env.VUE_APP_STRAPI_API_URL + this.user.avatar.url;
+    }
   },
   methods: {
     ...mapMutations(["changeSideMenuStatus", "changeSideMenuForMobile"]),
