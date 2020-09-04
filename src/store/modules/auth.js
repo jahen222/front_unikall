@@ -14,6 +14,7 @@ const mutations = {
         localStorage.setItem('jwt', data.jwt);
         localStorage.setItem('user', JSON.stringify(data.user));
         data.user.business = null;
+        data.user.layout = null;
         Cookies.set('user', data.user);
         Cookies.set('jwt', data.jwt);
     },
@@ -21,6 +22,7 @@ const mutations = {
         state.user = data;
         localStorage.setItem('user', JSON.stringify(data));
         data.business = null;
+        data.layout = null;
         Cookies.set('user', data);
     },
     logout(state) {

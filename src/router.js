@@ -101,6 +101,11 @@ const routes = [
                     path: "orders",
                     component: () =>
                         import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/business/Orders")
+                },
+                {
+                    path: "layout",
+                    component: () =>
+                        import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/business/Layout")
                 }]
             },
             {
@@ -126,8 +131,8 @@ const routes = [
         }]
     },
     {
-        path: "/service-templates/beauty-and-fashion",
-        components: require("./containers/ServiceTemplates.vue")
+        path: "/site/:id",
+        components: require("./containers/Selector.vue")
     },
     {
         path: "*",

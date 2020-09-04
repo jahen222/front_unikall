@@ -121,7 +121,6 @@ import { mapMutations } from "vuex";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
 import Cookies from "js-cookie";
 import axios from "axios";
-import strapi from "../../../../utils/strapi";
 
 export default {
   components: {
@@ -182,9 +181,6 @@ export default {
           message: error.message,
         });
       });
-
-    var prueba = await strapi.getEntry("businesses", this.business.id);
-    console.log(prueba);
   },
   methods: {
     ...mapMutations({
