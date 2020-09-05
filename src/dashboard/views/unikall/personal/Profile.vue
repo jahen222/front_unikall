@@ -12,7 +12,7 @@
     </b-row>
     <b-row>
       <b-colxx xxs="12">
-        <b-card class="mb-4" :title="$t('User Imformation')">
+        <b-card class="mb-4" :title="$t('User Information')">
           <b-form @submit.prevent="checkUserInfoForm">
             <b-row>
               <b-colxx sm="6">

@@ -48,6 +48,11 @@ const data = [
       to: "/dashboard/app/business/business"
     },
     {
+      icon: "simple-icon-layers",
+      label: "Layout",
+      to: "/dashboard/app/business/layout"
+    },
+    {
       icon: "simple-icon-credit-card",
       label: "Orders",
       to: "/dashboard/app/business/orders"
@@ -56,11 +61,6 @@ const data = [
       icon: "iconsminds-speach-bubble",
       label: "menu.chat",
       to: "/dashboard/app/business/chat"
-    },
-    {
-      icon: "simple-icon-layers",
-      label: "Layout",
-      to: "/dashboard/app/business/layout"
     }]
   },
   {

@@ -20,6 +20,11 @@
                   <b-form-select v-model="layout" :options="layoutOptions" plain />
                 </b-form-group>
               </b-colxx>
+              <b-colxx sm="6">
+                <b-form-group :label="$t('Link')">
+                  <a :href="link">{{link}}</a>
+                </b-form-group>
+              </b-colxx>
             </b-row>
             <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
           </b-form>
@@ -42,11 +47,13 @@ export default {
       layouts: [],
       layoutOptions: [],
       layout: null,
+      link: null,
     };
   },
   async mounted() {
     this.user = JSON.parse(Cookies.get("user"));
     var layout = JSON.parse(localStorage.getItem("user")).layout;
+    this.link = "http://localhost:8080/site/" + this.user.id;
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
     };
