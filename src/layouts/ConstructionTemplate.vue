@@ -9,9 +9,10 @@
     <ServiceProjectsData />
     <ServiceInformation v-bind:services="business ? business.business_services : []" />
     <ServiceGallery v-bind:images="business && business.work_images.length > 0 ? business.work_images : []" />
+    <ServiceAlies v-bind:alies="business && business.ally && business.ally.logo && business.ally.logo.length > 0 ? business.ally.logo : []" />
     <ServiceVisitUs v-bind:address="business ? business.address : 'your address goes here..'" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
     <ServiceContactUs />
-    <ServiceBlog v-bind:blogs="business && business.blogs.length > 0 ? business.blogs : []" />
+    <ServiceBlog v-bind:businessName="business ? business.name : 'Business Title'" v-bind:blogs="business && business.blogs.length > 0 ? business.blogs : []" />
     <ServiceFooter />
 </div>
 </template>
@@ -25,6 +26,7 @@ import ServiceDescription from "@/components/templates/construction/description.
 import ServiceProjectsData from "@/components/templates/construction/projectsdata.vue";
 import ServiceInformation from "@/components/templates/construction/information.vue";
 import ServiceGallery from "@/components/templates/construction/gallery.vue";
+import ServiceAlies from "@/components/templates/construction/alies.vue";
 import ServiceVisitUs from "@/components/templates/construction/visitus.vue";
 import ServiceContactUs from "@/components/templates/construction/contactus.vue";
 import ServiceBlog from "@/components/templates/construction/blog.vue";
@@ -40,6 +42,7 @@ export default {
         ServiceProjectsData,
         ServiceInformation,
         ServiceGallery,
+        ServiceAlies,
         ServiceVisitUs,
         ServiceContactUs,
         ServiceBlog,

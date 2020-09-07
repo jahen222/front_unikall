@@ -1,6 +1,6 @@
 <template>
 <!-- Projects section -->
-<section class="py-5" style="background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)),url('/assets/unikall/images/templates/barbar_p4.jpg')">
+<section class="py-5" style="background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)),url('/assets/unikall/images/templates/barbar_p2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-md-3 text-center">

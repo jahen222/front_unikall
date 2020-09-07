@@ -1,12 +1,12 @@
 <template>
 <!-- Gallery section -->
-<section class="py-5" style="background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)),url('../../../../assets/unikall/images/templates/const_p1.jpg')">
+<section class="py-5">
     <div class="container">
         <div class="row gallary">
             <div class="col-md-12 text-center">
-                <h1 class="capital text-white poppinfont">OUR <span class="brand-color poppinfont">PROJECTS</span></h1>
+                <h1 class="capital poppinfont">ALLIES AND <span class="brand-color poppinfont">COMPANIES</span></h1>
                 <div class="row">
-                    <div class="col-md-3 mt-3" v-for="(item,index) in images" :key="index">
+                    <div class="col-md-3 mt-3" v-for="(item,index) in alies" :key="index">
                         <a href="#">
                             <img v-if="item.url" :src="api_url + item.url" alt="Image" style="max-width:100%;">
                             <img v-if="!item.url" src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
@@ -22,8 +22,8 @@
 
 <script>
 export default {
-    name: "ServiceGallery",
-    props: ['images'],
+    name: "ServiceAlies",
+    props: ['alies'],
     data() {
         return {
             api_url: process.env.VUE_APP_STRAPI_API_URL,
