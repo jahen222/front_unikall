@@ -19,19 +19,19 @@
 <script>
 import gql from "graphql-tag";
 import ServiceHeader from "@/components/layouts/ServiceHeader.vue";
-import ServiceSlider from "@/components/servicetemplates/slider.vue";
-import ServiceDescription from "@/components/servicetemplates/description.vue";
-import ServiceTestimonial from "@/components/servicetemplates/testimonial.vue";
-import ServiceInformation from "@/components/servicetemplates/information.vue";
-import ServiceGallery from "@/components/servicetemplates/gallery.vue";
-import ServiceVisitUs from "@/components/servicetemplates/visitus.vue";
-import ServiceContactUs from "@/components/servicetemplates/contactus.vue";
-import ServiceBlog from "@/components/servicetemplates/blog.vue";
+import ServiceSlider from "@/components/beautyandfashion/slider.vue";
+import ServiceDescription from "@/components/beautyandfashion/description.vue";
+import ServiceTestimonial from "@/components/beautyandfashion/testimonial.vue";
+import ServiceInformation from "@/components/beautyandfashion/information.vue";
+import ServiceGallery from "@/components/beautyandfashion/gallery.vue";
+import ServiceVisitUs from "@/components/beautyandfashion/visitus.vue";
+import ServiceContactUs from "@/components/beautyandfashion/contactus.vue";
+import ServiceBlog from "@/components/beautyandfashion/blog.vue";
 import ServiceFooter from "@/components/layouts/ServiceFooter.vue";
 import InConstruction from "@/containers/InConstruction.vue";
 
 export default {
-    name: "ServiceTemplates",
+    name: "BeautyandFashionTemplate",
     components: {
         ServiceHeader,
         ServiceSlider,

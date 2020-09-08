@@ -72,13 +72,13 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <p class="fl-micro-text">
-                                                        How you wish your customers knows the name
+                                                        How you wish your customers know the name
                                                         of your brand
                                                     </p>
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Business Name" />
+                                                        <input type="text" name="businessname" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Business Name" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@
                                                 <div class="col-8">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Upload Logo</label>
-                                                        <input v-bind:style="{ 'background-image': 'url(' + logo_url + ')' }" type="file" @change="onLogoFileChange" class="form-control fl-input-form imgpreview" aria-describedby="emailHelp" />
+                                                        <input name="logo" v-bind:style="{ 'background-image': 'url(' + logo_url + ')' }" type="file" @change="onLogoFileChange" class="form-control fl-input-form imgpreview" aria-describedby="emailHelp" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Tagline Title" />
+                                                        <input name="tagtitle" type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Tagline Title" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,7 +120,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Your Work" />
+                                                        <input name="yourwork" type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Your Work" />
                                                     </div>
                                                 </div>
                                             </div>
