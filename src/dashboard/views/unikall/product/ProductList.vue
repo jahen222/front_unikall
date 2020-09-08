@@ -45,20 +45,24 @@ import axios from "axios";
 import { apiUrl } from "../../../constants/config";
 import ListPageHeading from "../../../containers/pages/ListPageHeading";
 import ListPageListing from "../../../containers/pages/ListPageListing";
+import Cookies from "js-cookie";
+//import gql from "graphql-tag";
 
 export default {
   components: {
     "list-page-heading": ListPageHeading,
-    "list-page-listing": ListPageListing
+    "list-page-listing": ListPageListing,
   },
   data() {
     return {
+      user: null,
+      business: null,
       isLoad: false,
       apiBase: apiUrl + "/cakes/fordatatable",
       displayMode: "thumb",
       sort: {
         column: "title",
-        label: "Product Name"
+        label: "Product Name",
       },
       page: 1,
       perPage: 4,
@@ -68,30 +72,53 @@ export default {
       total: 0,
       lastPage: 0,
       items: [],
-      selectedItems: []
+      selectedItems: [],
     };
   },
+  mounted() {
+    this.user = JSON.parse(Cookies.get("user"));
+    this.business = JSON.parse(localStorage.getItem("user")).business;
+    this.loadItems();
+  },
   methods: {
-    loadItems() {
-      this.isLoad = false;
+    async loadItems() {
+      const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
+      };
 
-      axios
-        .get(this.apiUrl)
-        .then(response => {
-          return response.data;
-        })
-        .then(res => {
-          this.total = res.total;
-          this.from = res.from;
-          this.to = res.to;
-          this.items = res.data;
-          this.perPage = res.per_page;
-          this.selectedItems = [];
-          this.lastPage = res.last_page;
+      await axios
+        .get(
+          process.env.VUE_APP_STRAPI_API_URL +
+            "/businesses/" +
+            this.business.id,
+          config
+        )
+        .then((response) => {
+          var data = response.data;
+          var products = data.products;
+          for (let index = 0; index < products.length; index++) {
+            const element = products[index];
+            this.items[index] = {
+              id: element.id,
+              title: element.name,
+              description: element.description,
+              stock: element.quantity,
+              date: element.created_at,
+              category: element.product_subcategory,
+              status: element.status ? "ON HOLD" : "PROCESSED",
+              statusColor: element.status ? "secondary" : "primary",
+              img: process.env.VUE_APP_STRAPI_API_URL + element.photos[0].url,
+            };
+          }
+          this.total = products.length;
           this.isLoad = true;
+        })
+        .catch((error) => {
+          this.showError({
+            message: error.message,
+          });
         });
     },
-
     changeDisplayMode(displayType) {
       this.displayMode = displayType;
     },
@@ -111,7 +138,7 @@ export default {
       if (this.selectedItems.length >= this.items.length) {
         if (isToggle) this.selectedItems = [];
       } else {
-        this.selectedItems = this.items.map(x => x.id);
+        this.selectedItems = this.items.map((x) => x.id);
       }
     },
     keymap(event) {
@@ -146,13 +173,13 @@ export default {
           Math.max(start, end) + 1
         );
         this.selectedItems.push(
-          ...itemsForToggle.map(item => {
+          ...itemsForToggle.map((item) => {
             return item.id;
           })
         );
       } else {
         if (this.selectedItems.includes(itemId)) {
-          this.selectedItems = this.selectedItems.filter(x => x !== itemId);
+          this.selectedItems = this.selectedItems.filter((x) => x !== itemId);
         } else this.selectedItems.push(itemId);
       }
     },
@@ -169,7 +196,7 @@ export default {
     },
     changePage(pageNum) {
       this.page = pageNum;
-    }
+    },
   },
   computed: {
     isSelectedAll() {
@@ -183,7 +210,7 @@ export default {
     },
     apiUrl() {
       return `${this.apiBase}?sort=${this.sort.column}&page=${this.page}&per_page=${this.perPage}&search=${this.search}`;
-    }
+    },
   },
   watch: {
     search() {
@@ -191,10 +218,19 @@ export default {
     },
     apiUrl() {
       this.loadItems();
-    }
+    },
   },
-  mounted() {
-    this.loadItems();
-  }
+  notifications: {
+    showError: {
+      title: "Failed",
+      message: "Failed",
+      type: "error",
+    },
+    showSuccess: {
+      title: "Success",
+      message: "Success",
+      type: "success",
+    },
+  },
 };
 </script>

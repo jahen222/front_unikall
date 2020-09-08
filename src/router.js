@@ -110,7 +110,7 @@ const routes = [
             },
             {
                 path: "products",
-                component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/product/ThumbList"),
+                component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/product/ProductList"),
             },
             {
                 path: "payment",
