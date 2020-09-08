@@ -1,24 +1,20 @@
 <template>
 <!-- Blog section -->
-<section id="blog" class="py-5" style="background-color: #1A1A1A;">
-    <div class="container-fluid blog">
-        <b-carousel id="carousel-1" v-model="slide" :interval="4000" controls indicators @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
-            <!-- Text slides with image -->
-            <b-carousel-slide v-for="(item,index) in blogs" :key="index">
-                <div class="row text-left">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-3">
+<section class="py-5">
+    <div class="container">
+        <div class="row gallary">
+            <div class="col-md-12 text-center">
+                <h1 class="capital poppinfont">OUR <span class="brand-color poppinfont">BLOG</span></h1>
+                <div class="row">
+                    <div class="col-4 mt-3" v-for="(item,index) in blogs" :key="index">
                         <img class="d-block w-100" :src="api_url + item.image.formats.small.url" alt="Image">
+                        <h1>{{item.title}}</h1>
+                        <button v-on:click="openblogpopup(item.description)" type="button" class="btn btn-outline-primary brand-btn text-white poppinfont mt-2 d-block">READ MORE</button>
                     </div>
-                    <div class="col-md-5 m-auto">
-                        <h1 class="brand-color poppinfont">{{item.title}}</h1>
-                        <p class="text-white poppinfont font-weight-normal">{{item.description}}</p>
-                        <p class="text-white text-right poppinfont">MORE...</p>
-                    </div>
-                    <div class="col-md-2"></div>
                 </div>
-            </b-carousel-slide>
-        </b-carousel>
+                <!--.row-->
+            </div>
+        </div>
     </div>
 </section>
 </template>
@@ -31,7 +27,8 @@ export default {
         return {
             api_url: process.env.VUE_APP_STRAPI_API_URL,
             slide: 0,
-            sliding: null
+            sliding: null,
+            blogdesc: "",
         }
     },
     methods: {
@@ -40,6 +37,13 @@ export default {
         },
         onSlideEnd() {
             this.sliding = false
+        },
+        openblogpopup: function (desc) {
+            this.blogdesc = desc;
+            console.log(desc);
+        },
+        closeblogpopup: function (dec) {
+            this.blogdesc = dec;
         }
     }
 };
