@@ -12,104 +12,128 @@
     </b-row>
     <b-row>
       <b-colxx xxs="12">
-        <b-card class="mb-4" :title="$t('Business Imformation')">
-          <b-form @submit.prevent="checkBusinessInfoForm">
-            <b-row>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Business Name')">
-                  <b-form-input type="text" v-model="gridForm.name" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Company Email')">
-                  <b-form-input type="email" v-model="gridForm.email" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Tagline Title')">
-                  <b-form-input type="text" v-model="gridForm.tagline" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Your work')">
-                  <b-form-input type="text" v-model="gridForm.description" />
-                </b-form-group>
-              </b-colxx>
-            </b-row>
-            <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
-          </b-form>
+        <b-card class="mb-4" :title="$t('Business Imformation')" no-body>
+          <b-card-body>
+            <h4>
+              Business Imformation
+              <a @click="helpBusinessInfoForm">
+                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+              </a>
+            </h4>
+            <b-form @submit.prevent="checkBusinessInfoForm">
+              <b-row>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Business Name')">
+                    <b-form-input type="text" v-model="gridForm.name" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Company Email')">
+                    <b-form-input type="email" v-model="gridForm.email" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Tagline Title')">
+                    <b-form-input type="text" v-model="gridForm.tagline" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Your work')">
+                    <b-form-input type="text" v-model="gridForm.description" />
+                  </b-form-group>
+                </b-colxx>
+              </b-row>
+              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+            </b-form>
+          </b-card-body>
         </b-card>
       </b-colxx>
     </b-row>
     <b-row>
       <b-colxx xxs="12">
-        <b-card class="mb-4" :title="$t('Company Address')">
-          <b-form @submit.prevent="checkCompanyAddressForm">
-            <b-row>
-              <b-colxx sm="3">
-                <b-form-group :label="$t('Country')">
-                  <b-form-input type="text" v-model="gridForm.country" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="3">
-                <b-form-group :label="$t('forms.state')">
-                  <b-form-input type="text" v-model="gridForm.state" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="3">
-                <b-form-group :label="$t('forms.city')">
-                  <b-form-input type="text" v-model="gridForm.city" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="3">
-                <b-form-group :label="$t('forms.zip')">
-                  <b-form-input type="number" v-model="gridForm.zip"></b-form-input>
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="12">
-                <b-form-group :label="$t('Address 1')">
-                  <b-form-input type="text" v-model="gridForm.address1"></b-form-input>
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="12">
-                <b-form-group :label="$t('forms.address2')">
-                  <b-form-input type="text" v-model="gridForm.address2"></b-form-input>
-                </b-form-group>
-              </b-colxx>
-            </b-row>
-            <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
-          </b-form>
+        <b-card class="mb-4" :title="$t('Company Address')" no-body>
+          <b-card-body>
+            <h4>
+              Company Address
+              <a @click="helpCompanyAddressForm">
+                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+              </a>
+            </h4>
+            <b-form @submit.prevent="checkCompanyAddressForm">
+              <b-row>
+                <b-colxx sm="3">
+                  <b-form-group :label="$t('Country')">
+                    <b-form-input type="text" v-model="gridForm.country" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="3">
+                  <b-form-group :label="$t('forms.state')">
+                    <b-form-input type="text" v-model="gridForm.state" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="3">
+                  <b-form-group :label="$t('forms.city')">
+                    <b-form-input type="text" v-model="gridForm.city" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="3">
+                  <b-form-group :label="$t('forms.zip')">
+                    <b-form-input type="number" v-model="gridForm.zip"></b-form-input>
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="12">
+                  <b-form-group :label="$t('Address 1')">
+                    <b-form-input type="text" v-model="gridForm.address1"></b-form-input>
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="12">
+                  <b-form-group :label="$t('forms.address2')">
+                    <b-form-input type="text" v-model="gridForm.address2"></b-form-input>
+                  </b-form-group>
+                </b-colxx>
+              </b-row>
+              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+            </b-form>
+          </b-card-body>
         </b-card>
       </b-colxx>
     </b-row>
     <b-row>
       <b-colxx xxs="12">
-        <b-card class="mb-4" :title="$t('Logo')">
-          <b-form @submit.prevent="checkLogoForm">
-            <b-row>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Upload')">
-                  <vue-upload-multiple-image
-                    @upload-success="uploadLogoSuccess"
-                    @before-remove="beforeLogoRemove"
-                    @edit-image="editLogoImage"
-                    dragText="Click to upload file"
-                    browseText
-                    maxImage="1"
-                    primaryText="Primary"
-                    markIsPrimaryText="Mark as Primary"
-                    popupText="This image will be displayed as default"
-                  ></vue-upload-multiple-image>
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Actual')">
-                  <img v-if="logo_preview" :src="logo_preview" width="200px" />
-                </b-form-group>
-              </b-colxx>
-            </b-row>
-            <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
-          </b-form>
+        <b-card class="mb-4" :title="$t('Logo')" no-body>
+          <b-card-body>
+            <h4>
+              Logo
+              <a @click="helpLogoForm">
+                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+              </a>
+            </h4>
+            <b-form @submit.prevent="checkLogoForm">
+              <b-row>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Upload')">
+                    <vue-upload-multiple-image
+                      @upload-success="uploadLogoSuccess"
+                      @before-remove="beforeLogoRemove"
+                      @edit-image="editLogoImage"
+                      dragText="Click to upload file"
+                      browseText
+                      maxImage="1"
+                      primaryText="Primary"
+                      markIsPrimaryText="Mark as Primary"
+                      popupText="This image will be displayed as default"
+                    ></vue-upload-multiple-image>
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Actual')">
+                    <img v-if="logo_preview" :src="logo_preview" width="200px" />
+                  </b-form-group>
+                </b-colxx>
+              </b-row>
+              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+            </b-form>
+          </b-card-body>
         </b-card>
       </b-colxx>
     </b-row>
@@ -378,6 +402,19 @@ export default {
     editLogoImage: function (formData, index, fileList) {
       this.gridForm.logo = fileList;
     },
+    helpBusinessInfoForm: function () {
+      this.showInfo({
+        message: "Here you can enter and change your business information",
+      });
+    },
+    helpCompanyAddressForm: function () {
+      this.showInfo({ message: "Here you can change your company address" });
+    },
+    helpLogoForm: function () {
+      this.showInfo({
+        message: "Here you can change your business logo or business image",
+      });
+    },
   },
   notifications: {
     showError: {
@@ -389,6 +426,11 @@ export default {
       title: "Success",
       message: "Success",
       type: "success",
+    },
+    showInfo: {
+      title: "Information",
+      message: "Success",
+      type: "info",
     },
   },
 };

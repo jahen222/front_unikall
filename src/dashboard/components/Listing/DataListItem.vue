@@ -42,7 +42,7 @@ export default {
       await axios
         .get(
           process.env.VUE_APP_STRAPI_API_URL +
-            "/product-subcategries/" +
+            "/product-subcategories/" +
             this.data.category
         )
         .then((response) => {
