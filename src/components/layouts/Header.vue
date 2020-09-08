@@ -147,25 +147,20 @@
                               business logo (jpg, png)
                             </p>
                           </div>
-                          <div class="col-4">
+                          <div class="col-8">
                             <div class="form-group">
                               <label for="exampleInputPassword1">Upload Logo</label>
-                              <input
-                                type="file"
-                                accept="image/*"
-                                class="form-control fl-input-form"
-                                aria-describedby="emailHelp"
-                                @change="onFileChange"
-                                name="logo"
-                              />
-                            </div>
-                          </div>
-                          <div class="col-4">
-                            <div class="form-group">
-                              <label for="exampleInputPassword1">Preview</label>
-                              <div id="preview">
-                                <img v-if="register_logo_preview" :src="register_logo_preview" />
-                              </div>
+                              <vue-upload-multiple-image
+                                @upload-success="uploadWorkImagesSuccess"
+                                @before-remove="beforeWorkImagesRemove"
+                                @edit-image="editWorkImagesImage"
+                                dragText="Click to upload file"
+                                browseText
+                                maxImage="1"
+                                primaryText="Primary"
+                                markIsPrimaryText="Mark as Primary"
+                                popupText="This image will be displayed as default"
+                              ></vue-upload-multiple-image>
                             </div>
                           </div>
                         </div>
@@ -214,96 +209,24 @@
                     </div>
                   </div>
                 </tab-content>
-                <tab-content title="Additional Info">
+                <tab-content title="Layout Info">
                   <div class="container">
                     <div class="row">
                       <div class="col-12">
                         <div class="row">
-                          <div class="col-4">
-                            <p class="fl-micro-text">
-                              Show your customers a visual example of your
-                              work done, so, expose those ones options you
-                              are most prod of!
-                            </p>
-                          </div>
-                          <div class="col-8">
-                            <div class="form-group">
-                              <label for="exampleInputEmail1">Photos of your work</label>
-                              <input type="text" class="form-control" aria-describedby="emailHelp" />
-                            </div>
-                          </div>
+                          <b-form-select
+                            v-model="register_layout"
+                            :options="layoutOptions"
+                            plain
+                            @input="setSelected"
+                          />
                         </div>
+                      </div>
+                    </div>
+                    <div v-if="layout_preview" class="row">
+                      <div class="col-12">
                         <div class="row">
-                          <div class="col-4"></div>
-                          <div class="col-8">
-                            <div class="form-group">
-                              <div class="row">
-                                <div class="col-4">
-                                  <div
-                                    id="my-strictly-unique-vue-upload-multiple-image"
-                                    style="display: flex;"
-                                  >
-                                    <vue-upload-multiple-image
-                                      @upload-success="uploadWorkImagesSuccess"
-                                      @before-remove="beforeWorkImagesRemove"
-                                      @edit-image="editWorkImagesImage"
-                                      dragText="Click to upload file"
-                                      browseText
-                                      maxImage="6"
-                                      primaryText="Primary"
-                                      markIsPrimaryText="Mark as Primary"
-                                      popupText="This image will be displayed as default"
-                                    ></vue-upload-multiple-image>
-                                  </div>
-                                </div>
-                                <div class="col-8">
-                                  <p class="fl-micro-text">
-                                    Connect with your customers, using photos! Ensure the item
-                                    is properly visible from multiple angles. Upload MIN 3 and
-                                    MAX 6 photos (jpg, .gif, .png.)
-                                  </p>
-                                  <p class="fl-micro-text">
-                                    *If you want to upload more photos, please upgrade your
-                                    plan*I
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-4">
-                            <p class="fl-micro-text">
-                              Write the name of the products or services,
-                              features it includes and price for each one
-                            </p>
-                          </div>
-                          <div class="col-8">
-                            <div class="form-group">
-                              <div class="row">
-                                <div class="col-4">
-                                  <div class="row">
-                                    <div class="col-4">
-                                      <h3>Price</h3>
-                                    </div>
-                                    <div class="col-8">
-                                      <button type="submit" class="fl-btn-set-images-form2">Add Item</button>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-8">
-                                  <p class="fl-micro-text">
-                                    Upload MAX 3 products or services prices. Please
-                                    select if the price is fixed or negotiable, as applicable
-                                  </p>
-                                </div>
-                                <p class="fl-micro-text">
-                                  *If you want to write more than 3 products or services prices,
-                                  please upgrade your plan*
-                                </p>
-                              </div>
-                            </div>
-                          </div>
+                          <img :src="layout_preview" width="100%" />
                         </div>
                       </div>
                     </div>
@@ -458,7 +381,23 @@ export default {
       register_password: null,
       register_confirm_password: null,
       register_work_images: [],
+      layoutOptions: [],
+      register_layout: null,
+      aux_layout: [],
+      layout_preview: null,
     };
+  },
+  async mounted() {
+    await axios
+      .get(process.env.VUE_APP_STRAPI_API_URL + "/layouts/")
+      .then((response) => {
+        var options = response.data;
+        this.aux_layout = options;
+        for (let index = 0; index < options.length; index++) {
+          this.layoutOptions.push(options[index].name);
+        }
+      });
+    //console.log(this.layoutOptions);
   },
   computed: {
     username() {
@@ -474,6 +413,7 @@ export default {
   methods: {
     ...mapMutations({
       setUser: "setUser",
+      updateUser: "updateUser",
       logout: "logout",
     }),
     async handleSubmitLogin() {
@@ -496,12 +436,21 @@ export default {
         });
     },
     async handleSubmitRegister() {
+      var layout_id = null;
+      for (let index = 0; index < this.aux_layout.length; index++) {
+        const element = this.aux_layout[index];
+        if (element.name == this.register_layout) {
+          layout_id = element.id;
+        }
+      }
+
       await axios
         .post(this.api_url + "/auth/local/register", {
           username: this.register_username,
           email: this.register_email,
           phone: this.register_phone,
           password: this.register_password,
+          layout: layout_id,
         })
         .then((response) => {
           this.showRegisterSuccess({
@@ -513,18 +462,19 @@ export default {
           const formData = new FormData();
           const business_name = this.register_business_name;
           const register_tagline = this.register_tagline;
-          const register_logo = this.register_logo;
+          //const register_logo = this.register_logo;
           const register_description = this.register_description;
           const register_address = this.register_address;
           const user_id = response.data.user.id;
+
           const data = {};
           data["name"] = business_name;
           data["tagline"] = register_tagline;
           data["description"] = register_description;
           data["address"] = register_address;
           data["user"] = user_id;
-          formData.append("files.logo", register_logo, "logo");
-          console.log("logo: ", register_logo);
+          //formData.append("files.logo", register_logo, "logo");
+          //console.log("logo: ", register_logo);
 
           const register_work_images = this.register_work_images;
           for (let i = 0; i < register_work_images.length; i++) {
@@ -539,7 +489,7 @@ export default {
             }
             var blob = new Blob([ab], { type: mimeString });
             //console.log("blod: ", blob);
-            formData.append(`files.work_images`, blob, register_work_images[i].name);
+            formData.append(`files.logo`, blob, register_work_images[i].name);
           }
 
           formData.append("data", JSON.stringify(data));
@@ -548,9 +498,19 @@ export default {
             "Authorization",
             "Bearer " + localStorage.getItem("jwt")
           );
-          request.send(formData);
 
-          this.$router.go();
+          request.onreadystatechange = () => {
+            if (request.readyState == 4) {
+              if (request.status == 200) {
+                var user = JSON.parse(localStorage.getItem("user"));
+                user.business = JSON.parse(request.response);
+                this.updateUser(user);
+                this.$router.go();
+              }
+            }
+          };
+
+          request.send(formData);
         })
         .catch((error) => {
           this.showRegisterError({
@@ -570,9 +530,6 @@ export default {
 
       if (!this.register_business_name) {
         this.errors.push(" The business name is required.");
-      }
-      if (!this.register_logo) {
-        this.errors.push(" The logo is required.");
       }
       if (!this.register_tagline) {
         this.errors.push(" The tagline is required.");
@@ -595,8 +552,8 @@ export default {
       if (this.register_password != this.register_confirm_password) {
         this.errors.push(" The password and confirm password must match.");
       }
-      if (this.register_work_images.length < 3) {
-        this.errors.push(" Must be at least 3 work images.");
+      if (this.register_work_images.length < 1) {
+        this.errors.push(" The logo is required.");
       }
       //if (this.register_logo.length < 1) {
       //  this.errors.push(" The logo is required.");
@@ -616,15 +573,18 @@ export default {
     editWorkImagesImage: function (formData, index, fileList) {
       this.register_work_images = fileList;
     },
-    /*uploadLogoSuccess: function (formData, index, fileList) {
-      this.register_logo = fileList;
+    setSelected () {
+      var layout_url = null;
+      
+      for (let index = 0; index < this.aux_layout.length; index++) {
+        const element = this.aux_layout[index];
+        if (element.name == this.register_layout) {
+          layout_url = element.mockup.url;
+        }
+      }
+
+      this.layout_preview = process.env.VUE_APP_STRAPI_API_URL+layout_url;
     },
-    beforeLogoRemove: function (index, done, fileList) {
-      this.register_logo = fileList;
-    },
-    editLogoImage: function (formData, index, fileList) {
-      this.register_logo = fileList;
-    },*/
   },
   notifications: {
     showLoginError: {

@@ -1,5 +1,5 @@
 <template>
-  <b-card :title="$t('dashboards.sales')">
+  <b-card :title="$t('Visits')">
     <div class="dashboard-line-chart">
       <line-chart :data="lineChartData" shadow />
     </div>

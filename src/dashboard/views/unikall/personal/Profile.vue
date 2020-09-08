@@ -12,109 +12,133 @@
     </b-row>
     <b-row>
       <b-colxx xxs="12">
-        <b-card class="mb-4" :title="$t('User Information')">
-          <b-form @submit.prevent="checkUserInfoForm">
-            <b-row>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Username')">
-                  <b-form-input type="text" v-model="gridForm.username" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Fullname')">
-                  <b-form-input type="text" v-model="gridForm.fullname" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('forms.email')">
-                  <b-form-input type="email" v-model="gridForm.email" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Phone')">
-                  <b-form-input type="text" v-model="gridForm.phone" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="4">
-                <b-form-group :label="$t('Country')">
-                  <b-form-input type="text" v-model="gridForm.country" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="4">
-                <b-form-group :label="$t('forms.state')">
-                  <b-form-input type="text" v-model="gridForm.state" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="4">
-                <b-form-group :label="$t('forms.city')">
-                  <b-form-input type="text" v-model="gridForm.city" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="10">
-                <b-form-group :label="$t('forms.address')">
-                  <b-form-input type="text" v-model="gridForm.address"></b-form-input>
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="2">
-                <b-form-group :label="$t('forms.zip')">
-                  <b-form-input type="number" v-model="gridForm.zip"></b-form-input>
-                </b-form-group>
-              </b-colxx>
-            </b-row>
-            <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
-          </b-form>
+        <b-card class="mb-4" :title="$t('User Information')" no-body>
+          <b-card-body>
+            <h4>
+              User Information
+              <a @click="helpUserInfoForm">
+                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+              </a>
+            </h4>
+            <b-form @submit.prevent="checkUserInfoForm">
+              <b-row>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Username')">
+                    <b-form-input type="text" v-model="gridForm.username" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Fullname')">
+                    <b-form-input type="text" v-model="gridForm.fullname" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('forms.email')">
+                    <b-form-input type="email" v-model="gridForm.email" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Phone')">
+                    <b-form-input type="text" v-model="gridForm.phone" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="4">
+                  <b-form-group :label="$t('Country')">
+                    <b-form-input type="text" v-model="gridForm.country" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="4">
+                  <b-form-group :label="$t('forms.state')">
+                    <b-form-input type="text" v-model="gridForm.state" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="4">
+                  <b-form-group :label="$t('forms.city')">
+                    <b-form-input type="text" v-model="gridForm.city" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="10">
+                  <b-form-group :label="$t('forms.address')">
+                    <b-form-input type="text" v-model="gridForm.address"></b-form-input>
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="2">
+                  <b-form-group :label="$t('forms.zip')">
+                    <b-form-input type="number" v-model="gridForm.zip"></b-form-input>
+                  </b-form-group>
+                </b-colxx>
+              </b-row>
+              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+            </b-form>
+          </b-card-body>
         </b-card>
       </b-colxx>
     </b-row>
     <b-row>
       <b-colxx xxs="12">
-        <b-card class="mb-4" :title="$t('Change Password')">
-          <b-form @submit.prevent="checkPasswordForm">
-            <b-row>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('forms.password')">
-                  <b-form-input type="password" v-model="gridForm.password" />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Confirm Password')">
-                  <b-form-input type="password" v-model="gridForm.confirm_password" />
-                </b-form-group>
-              </b-colxx>
-            </b-row>
-            <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
-          </b-form>
+        <b-card class="mb-4" :title="$t('Change Password')" no-body>
+          <b-card-body>
+            <h4>
+              Change Password
+              <a @click="helpPasswordForm">
+                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+              </a>
+            </h4>
+            <b-form @submit.prevent="checkPasswordForm">
+              <b-row>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('forms.password')">
+                    <b-form-input type="password" v-model="gridForm.password" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Confirm Password')">
+                    <b-form-input type="password" v-model="gridForm.confirm_password" />
+                  </b-form-group>
+                </b-colxx>
+              </b-row>
+              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+            </b-form>
+          </b-card-body>
         </b-card>
       </b-colxx>
     </b-row>
     <b-row>
       <b-colxx xxs="12">
-        <b-card class="mb-4" :title="$t('Avatar')">
-          <b-form @submit.prevent="checkAvatarForm">
-            <b-row>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Upload')">
-                  <vue-upload-multiple-image
-                    @upload-success="uploadAvatarSuccess"
-                    @before-remove="beforeAvatarRemove"
-                    @edit-image="editAvatarImage"
-                    dragText="Click to upload file"
-                    browseText
-                    maxImage="1"
-                    primaryText="Primary"
-                    markIsPrimaryText="Mark as Primary"
-                    popupText="This image will be displayed as default"
-                  ></vue-upload-multiple-image>
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Actual')">
-                  <img v-if="avatar_preview" :src="avatar_preview" width="200px" />
-                </b-form-group>
-              </b-colxx>
-            </b-row>
-            <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
-          </b-form>
+        <b-card class="mb-4" :title="$t('Avatar')" no-body>
+          <b-card-body>
+            <h4>
+              Avatar
+              <a @click="helpAvatarForm">
+                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+              </a>
+            </h4>
+            <b-form @submit.prevent="checkAvatarForm">
+              <b-row>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Upload')">
+                    <vue-upload-multiple-image
+                      @upload-success="uploadAvatarSuccess"
+                      @before-remove="beforeAvatarRemove"
+                      @edit-image="editAvatarImage"
+                      dragText="Click to upload file"
+                      browseText
+                      maxImage="1"
+                      primaryText="Primary"
+                      markIsPrimaryText="Mark as Primary"
+                      popupText="This image will be displayed as default"
+                    ></vue-upload-multiple-image>
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Actual')">
+                    <img v-if="avatar_preview" :src="avatar_preview" width="200px" />
+                  </b-form-group>
+                </b-colxx>
+              </b-row>
+              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+            </b-form>
+          </b-card-body>
         </b-card>
       </b-colxx>
     </b-row>
@@ -351,6 +375,17 @@ export default {
     editAvatarImage: function (formData, index, fileList) {
       this.gridForm.avatar = fileList;
     },
+    helpUserInfoForm: function () {
+      this.showInfo({
+        message: "Here you can enter and change your personal information",
+      });
+    },
+    helpPasswordForm: function () {
+      this.showInfo({ message: "Here you can change your personal password" });
+    },
+    helpAvatarForm: function () {
+      this.showInfo({ message: "Here you can change your avatar or profile image" });
+    },
   },
   notifications: {
     showError: {
@@ -362,6 +397,11 @@ export default {
       title: "Success",
       message: "Success",
       type: "success",
+    },
+    showInfo: {
+      title: "Information",
+      message: "Success",
+      type: "info",
     },
   },
 };

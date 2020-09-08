@@ -12,27 +12,35 @@
     </b-row>
     <b-row>
       <b-colxx xxs="12">
-        <b-card class="mb-4" :title="$t('Business Imformation')">
-          <b-form @submit.prevent="checkLayoutInfoForm">
-            <b-row>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Layout')">
-                  <b-form-select
-                    v-model="layout.name"
-                    :options="layoutOptions"
-                    plain
-                    @input="setSelected"
-                  />
-                </b-form-group>
-              </b-colxx>
-              <b-colxx sm="6">
-                <b-form-group :label="$t('Link')">
-                  <a :href="link">{{link}}</a>
-                </b-form-group>
-              </b-colxx>
-            </b-row>
-            <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
-          </b-form>
+        <b-card class="mb-4" :title="$t('Business Imformation')" no-body>
+          <b-card-body>
+            <h4>
+              Select Layout
+              <a @click="helpLayoutInfoForm">
+                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+              </a>
+            </h4>
+            <b-form @submit.prevent="checkLayoutInfoForm">
+              <b-row>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Layout')">
+                    <b-form-select
+                      v-model="layout.name"
+                      :options="layoutOptions"
+                      plain
+                      @input="setSelected"
+                    />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('Link')">
+                    <a :href="link">{{link}}</a>
+                  </b-form-group>
+                </b-colxx>
+              </b-row>
+              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+            </b-form>
+          </b-card-body>
         </b-card>
       </b-colxx>
     </b-row>
@@ -43,7 +51,7 @@
             <b-row>
               <b-colxx sm="12" style="tex">
                 <b-form-group>
-                  <img :src="preview" width="100%"/>
+                  <img :src="preview" width="100%" />
                 </b-form-group>
               </b-colxx>
             </b-row>
@@ -75,7 +83,7 @@ export default {
   async mounted() {
     this.user = JSON.parse(Cookies.get("user"));
     var layout = JSON.parse(localStorage.getItem("user")).layout;
-    this.link = "http://localhost:8080/site/" + this.user.id;
+    this.link = process.env.VUE_APP_URL + "/site/" + this.user.id;
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
     };
@@ -152,10 +160,16 @@ export default {
       for (let index = 0; index < this.complete_layouts.length; index++) {
         if (this.layout.name == this.complete_layouts[index].name) {
           preview =
-            process.env.VUE_APP_STRAPI_API_URL + this.complete_layouts[index].mockup.url;
+            process.env.VUE_APP_STRAPI_API_URL +
+            this.complete_layouts[index].mockup.url;
         }
       }
       this.preview = preview;
+    },
+    helpLayoutInfoForm: function () {
+      this.showInfo({
+        message: "Here you can change your template or or layout",
+      });
     },
   },
   notifications: {
@@ -168,6 +182,11 @@ export default {
       title: "Success",
       message: "Success",
       type: "success",
+    },
+    showInfo: {
+      title: "Information",
+      message: "Success",
+      type: "info",
     },
   },
 };
