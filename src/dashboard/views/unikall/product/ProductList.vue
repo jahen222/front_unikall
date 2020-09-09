@@ -43,8 +43,8 @@
 <script>
 import axios from "axios";
 import { apiUrl } from "../../../constants/config";
-import ListPageHeading from "../../../containers/pages/ListPageHeading";
-import ListPageListing from "../../../containers/pages/ListPageListing";
+import ListPageHeading from "./containers/pages/ListPageHeading";
+import ListPageListing from "./containers/pages/ListPageListing";
 import Cookies from "js-cookie";
 //import gql from "graphql-tag";
 

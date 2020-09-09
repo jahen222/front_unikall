@@ -32,6 +32,9 @@
           <li class="dropdown scrollToLink">
             <a href="#legal">Legal</a>
           </li>
+          <li v-if="user" class="dropdown scrollToLink">
+            <a href="#legal">Legal2</a>
+          </li>
           <li class="dropdown scrollToLink">
             <a href="#"></a>
           </li>

@@ -8,6 +8,7 @@
     <ServiceDescription v-bind:name="business ? business.name : 'Business Title'" v-bind:description="business ? business.description : 'Business Description goes here...'" v-bind:work_images="business ? business.work_images : ''" />
     <ServiceProjectsData />
     <ServiceInformation v-bind:services="business ? business.business_services : []" />
+    <ServiceProducts v-bind:businessName="business ? business.name : 'Business Title'" v-bind:products="business && business.products.length > 0 ? business.products : []" />
     <ServiceGallery v-bind:images="business && business.work_images.length > 0 ? business.work_images : []" />
     <ServiceAlies v-bind:alies="business && business.ally && business.ally.logo && business.ally.logo.length > 0 ? business.ally.logo : []" />
     <ServiceVisitUs v-bind:address="business ? business.address : 'your address goes here..'" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
@@ -25,6 +26,7 @@ import ServiceSlider from "@/components/templates/construction/slider.vue";
 import ServiceDescription from "@/components/templates/construction/description.vue";
 import ServiceProjectsData from "@/components/templates/construction/projectsdata.vue";
 import ServiceInformation from "@/components/templates/construction/information.vue";
+import ServiceProducts from "@/components/templates/construction/Products.vue";
 import ServiceGallery from "@/components/templates/construction/gallery.vue";
 import ServiceAlies from "@/components/templates/construction/alies.vue";
 import ServiceVisitUs from "@/components/templates/construction/visitus.vue";
@@ -41,6 +43,7 @@ export default {
         ServiceDescription,
         ServiceProjectsData,
         ServiceInformation,
+        ServiceProducts,
         ServiceGallery,
         ServiceAlies,
         ServiceVisitUs,

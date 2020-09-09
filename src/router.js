@@ -110,7 +110,18 @@ const routes = [
             },
             {
                 path: "products",
-                component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/product/ProductList"),
+                component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/product"),
+                redirect: "/dashboard/app/products/products",
+                children: [{
+                    path: "products",
+                    component: () =>
+                        import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/product/ProductList")
+                },
+                {
+                    path: "details/:id",
+                    component: () =>
+                        import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/product/Details")
+                }]
             },
             {
                 path: "payment",
