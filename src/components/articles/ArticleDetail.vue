@@ -14,7 +14,7 @@
                     <i class="far fa-clock"></i> {{article.published_at}}
                   </a>
                 </div>
-                <h3>Launch New Mobile App Marketing Pitfalls To Avoid</h3>
+                <h3>{{article.title}}</h3>
                 <p>{{article.content}}</p>
               </div>
               <div class="blog-details__meta">

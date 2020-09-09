@@ -3,7 +3,6 @@
     <Header />
     <section class="page-header">
       <div class="container">
-        <h2>{{article.title}}</h2>
         <ul class="list-unstyled thm-breadcrumb">
           <li>
             <a href="/">Home</a>

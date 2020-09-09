@@ -28,7 +28,6 @@
                 }"
               >&nbsp;</span>
             </label>
-            <b-dropdown-item>{{$t('Edit')}}</b-dropdown-item>
             <b-dropdown-item>{{$t('pages.delete')}}</b-dropdown-item>
           </b-dropdown>
         </b-button-group>

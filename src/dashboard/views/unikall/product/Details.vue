@@ -2,7 +2,7 @@
   <div>
     <b-row>
       <b-colxx xxs="12">
-        <h1>Magdalena Cake</h1>
+        <h1>{{item.name}}</h1>
         <div class="top-right-button-container">
           <b-dropdown
             id="ddown5"
@@ -19,7 +19,7 @@
       </b-colxx>
     </b-row>
     <b-row>
-      <b-colxx xxs="12" xl="12" class="col-center">
+      <b-colxx xxs="12" xl="8" class="col-left">
         <b-card class="mb-4" no-body>
           <b-card-body>
             <glide-component-thumbs
@@ -31,33 +31,7 @@
 
         <b-card class="mb-4" no-body>
           <b-tabs card no-fade>
-            <b-tab :title="$t('pages.details-title')" active>
-              <b-row>
-                <b-colxx sm="12">
-                  <b-card-text>
-                    <p class="font-weight-bold">Augue Vitae Commodo</p>
-                    <p>
-                      Vivamus ultricies augue vitae commodo condimentum. Nullamfaucibus eros eu mauris feugiat, eget consectetur tortor tempus. Sed volutpatmollis dui eget fringilla. Vestibulum blandit urna ut tellus lobortis tristique.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubiliaCurae; Pellentesque quis cursus mauris. Nam in ornare erat. Vestibulum convallisenim ac massa dapibus consectetur. Maecenas facilisis eros ac felis mattis, egetauctor sapien varius.
-                      <br />
-                      <br />Nulla non purus fermentum, pulvinar dui condimentum, malesuada nibh. Sed viverra quam urna, at condimentum ante viverra non. Mauris posuere erat sapien, a convallis libero lobortis sit amet. Suspendisse in orci tellus.
-                    </p>
-                    <br />
-                    <p class="font-weight-bold">Phasellus Efficitur</p>
-                    <p>
-                      Tellus a sem condimentum, vitae convallis sapien feugiat.Aenean non nibh nec nunc aliquam iaculis. Ut quis suscipit nunc. Duis at lectusa est aliquam venenatis vitae eget arcu. Sed egestas felis eget convallismaximus. Curabitur maximus, ligula vel sagittis iaculis, risus nisi tinciduntsem, ut ultricies libero nulla eu ligula. Nam ultricies mollis nulla, sedlaoreet leo convallis ac. Mauris nisl risus, tincidunt ac diam aliquet,convallis pellentesque nisi. Nam sit amet libero at odio malesuada ultricies avitae dolor. Cras in viverra felis, non consequat quam. Praesent a orci enim.Vivamus porttitor nisi at nisl egestas iaculis. Nullam commodo eget duisollicitudin sagittis. Duis id nibh mollis, hendrerit metus consectetur,ullamcorper risus. Morbi elementum ultrices nunc, quis porta nisi ornare sitamet.
-                      <br />
-                      <br />Etiam tincidunt orci in nisi aliquam placerat. Aliquam finibus in sem utvehicula. Morbi eget consectetur leo. Quisque consectetur lectus eros, sedsodales libero ornare cursus. Etiam elementum ut dolor eget hendrerit.Suspendisse eu lacus eu eros lacinia feugiat sit amet non purus.
-                      <br />
-                      <br />Pellentesque quis cursus mauris. Nam in ornare erat. Vestibulum convallis enim ac massa dapibus consectetur. Maecenas facilisis eros ac felis mattis, eget auctor sapien varius.
-                    </p>
-                    <br />
-                    <p class="font-weight-bold">Elementum Ultrices</p>
-                    <b-table borderless :items="tableItems" />
-                  </b-card-text>
-                </b-colxx>
-              </b-row>
-            </b-tab>
-            <b-tab :title="`${$t('pages.comments-title')} (19)`">
+            <b-tab :title="`${$t('pages.comments-title')} (19)`" active>
               <b-row>
                 <b-colxx sm="12">
                   <b-card-text>
@@ -66,7 +40,6 @@
                       :data="item"
                       :key="`comment_${index}`"
                     ></comment-with-likes>
-
                     <b-input-group class="comment-contaiener">
                       <b-form-input :placeholder="$t('pages.addComment')" />
                       <b-input-group-append>
@@ -96,6 +69,18 @@
           </b-tabs>
         </b-card>
       </b-colxx>
+      <b-colxx xxs="12" xl="4" class="col-right">
+        <b-card class="mb-4">
+          <p class="text-muted text-small mb-2">{{$t('Description')}}</p>
+          <p class="mb-3">{{item.description}}</p>
+          <p class="text-muted text-small mb-2">{{$t('Stock')}}</p>
+          <p class="mb-3">{{ item.quantity }}$</p>
+          <p class="text-muted text-small mb-2">{{$t('Price')}}</p>
+          <p class="mb-3">{{ item.price }}$</p>
+          <p class="text-muted text-small mb-2">{{$t('Status')}}</p>
+          <p class="mb-3">{{ item.status ? "ON HOLD" : "PROCESSED" }}</p>
+        </b-card>
+      </b-colxx>
     </b-row>
   </div>
 </template>
@@ -104,8 +89,9 @@
 import GlideComponentThumbs from "../../../components/Carousel/GlideComponentThumbs";
 import CommentWithLikes from "../../../containers/pages/CommentWithLikes";
 import QuestionAnswer from "../../../containers/pages/QuestionAnswer";
+import axios from "axios";
+import Cookies from "js-cookie";
 
-import { detailImages, detailThumbs } from "../../../data/carouselItems";
 import { commentWithLikesData } from "../../../data/comments";
 import { detailsQuestionsData } from "../../../data/questions";
 
@@ -118,44 +104,57 @@ export default {
   data() {
     return {
       routeParam: this.$route.params.id,
+      user: null,
+      business: null,
+      item: null,
       isLoad: false,
-      detailImages,
-      detailThumbs,
-      tableItems: [
-        {
-          id: 1,
-          first_name: "Mark",
-          last_name: "Otto",
-          username: "@mdo",
-        },
-        {
-          id: 2,
-          first_name: "Jacob",
-          last_name: "Thornton",
-          username: "@fat",
-        },
-        {
-          id: 3,
-          first_name: "Lary",
-          last_name: "the Bird",
-          username: "@twitter",
-        },
-      ],
+      detailImages: [],
+      detailThumbs: [],
       commentWithLikesData,
       detailsQuestionsData,
     };
   },
-  methods: {},
+  methods: {
+    async loadItem() {
+      await axios
+        .get(
+          process.env.VUE_APP_STRAPI_API_URL + "/products/" + this.routeParam
+        )
+        .then((response) => {
+          if (this.business.id != response.data.business.id) {
+            // if product does not belong to the business
+            this.$router.push("/");
+          } else {
+            this.item = response.data;
+
+            for (let index = 0; index < response.data.photos.length; index++) {
+              const element = response.data.photos[index];
+
+              this.detailImages.push({
+                id: index,
+                img: process.env.VUE_APP_STRAPI_API_URL + element.url,
+              });
+
+              this.detailThumbs.push({
+                id: index,
+                img: process.env.VUE_APP_STRAPI_API_URL + element.url,
+              });
+
+              console.log("aqui: ", this.item);
+            }
+          }
+
+          console.log("aqui: ", this.item);
+        });
+    },
+  },
   mounted() {
     setTimeout(() => {
       this.isLoad = true;
     }, 50);
-
-
-    
-
-
-
+    this.user = JSON.parse(Cookies.get("user"));
+    this.business = JSON.parse(localStorage.getItem("user")).business;
+    this.loadItem();
   },
 };
 </script>
