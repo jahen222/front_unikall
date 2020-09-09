@@ -11,10 +11,10 @@
     <ServiceProducts v-bind:businessName="business ? business.name : 'Business Title'" v-bind:products="business && business.products.length > 0 ? business.products : []" />
     <ServiceGallery v-bind:images="business && business.work_images.length > 0 ? business.work_images : []" />
     <ServiceAlies v-bind:alies="business && business.ally && business.ally.logo && business.ally.logo.length > 0 ? business.ally.logo : []" />
-    <ServiceVisitUs v-bind:address="business ? business.address : 'your address goes here..'" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
+    <ServiceVisitUs v-bind:businessName="business ? business.name : 'Business Title'" v-bind:address="business ? business.address : 'your address goes here..'" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
     <ServiceContactUs />
-    <ServiceBlog v-bind:businessName="business ? business.name : 'Business Title'" v-bind:blogs="business && business.blogs.length > 0 ? business.blogs : []" />
-    <ServiceFooter />
+    <ServiceBlog v-bind:blogs="business && business.blogs.length > 0 ? business.blogs : []" />
+    <ConstructionFooter v-bind:logo="business && business.logo ? business.logo : null" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
 </div>
 </template>
 
@@ -32,7 +32,7 @@ import ServiceAlies from "@/components/templates/construction/alies.vue";
 import ServiceVisitUs from "@/components/templates/construction/visitus.vue";
 import ServiceContactUs from "@/components/templates/construction/contactus.vue";
 import ServiceBlog from "@/components/templates/construction/blog.vue";
-import ServiceFooter from "@/components/layouts/ServiceFooter.vue";
+import ConstructionFooter from "@/components/layouts/ConstructionFooter.vue";
 import InConstruction from "@/containers/InConstruction.vue";
 
 export default {
@@ -49,7 +49,7 @@ export default {
         ServiceVisitUs,
         ServiceContactUs,
         ServiceBlog,
-        ServiceFooter,
+        ConstructionFooter,
         InConstruction,
     },
     props: ['businessid'],
