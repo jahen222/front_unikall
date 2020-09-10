@@ -86,23 +86,24 @@ export default {
       });
   },
   metaInfo() {
-    
-    console.log("metaimage: ",this.metaimage);
+    console.log("metaimage: ", this.metaimage);
 
     return {
       title: this.metatitle,
       titleTemplate: "%s | Unikall",
       meta: [
-        // Twitter Card
-        { name: "twitter:card", content: "summary" },
-        { name: "twitter:title", content: this.metatitle },
-        { name: "twitter:description", content: this.metadescription },
-        // image must be an absolute path
-        { name: "twitter:image", content: this.metaimage },
         // Facebook OpenGraph
+        { name: "title", content: this.metatitle },
+        { name: "description", content: this.metadescription },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "keywords", content: "Blog, Unikall, Ecommerce, Services" },
         { property: "og:title", content: this.metatitle },
         { property: "og:site_name", content: "Unikall" },
-        { property: "og:type", content: "website" },
+        {
+          property: "og:url",
+          content: process.env.VUE_APP_URL + "/article/" + this.article_id,
+        },
+        { property: "og:type", content: "video.movie" },
         { property: "og:image", content: this.metaimage },
         { property: "og:description", content: this.metadescription },
       ],
