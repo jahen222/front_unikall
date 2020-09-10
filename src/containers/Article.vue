@@ -21,7 +21,7 @@
         </div>
       </div>
     </section>
-    <ArticleDetail :article="article"></ArticleDetail>
+    <ArticleDetail :article_id="routeParam"></ArticleDetail>
     <Footer />
   </div>
 </template>
