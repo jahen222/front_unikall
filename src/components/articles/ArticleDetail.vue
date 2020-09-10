@@ -78,13 +78,17 @@ export default {
           '<img style="margin-left: auto;margin-right: auto; display: block;"'
         );
 
-        //console.log(JSON.stringify(this.image));
         this.metatitle = response.data.title;
         this.metadescription = response.data.content.substring(0, 45);
-        this.metaimage = process.env.VUE_APP_STRAPI_API_URL + response.data.image.formats.small.url;
+        this.metaimage =
+          process.env.VUE_APP_STRAPI_API_URL +
+          response.data.image.formats.small.url;
       });
   },
   metaInfo() {
+    
+    console.log("metaimage: ",this.metaimage);
+
     return {
       title: this.metatitle,
       titleTemplate: "%s | Unikall",
@@ -94,7 +98,7 @@ export default {
         { name: "twitter:title", content: this.metatitle },
         { name: "twitter:description", content: this.metadescription },
         // image must be an absolute path
-        { name: "twitter:image", content: this.metaimage},
+        { name: "twitter:image", content: this.metaimage },
         // Facebook OpenGraph
         { property: "og:title", content: this.metatitle },
         { property: "og:site_name", content: "Unikall" },
