@@ -3,17 +3,22 @@
     <Header />
     <section class="page-header">
       <div class="container">
-        <ul class="list-unstyled thm-breadcrumb">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/articles">Blog</a>
-          </li>
-          <li>
-            <span>Blog Details</span>
-          </li>
-        </ul>
+        <div class="col-8">
+          <h2>{{article.title}}</h2>
+        </div>
+        <div class="col-4">
+          <ul class="list-unstyled thm-breadcrumb">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/articles">Blog</a>
+            </li>
+            <li>
+              <span>Blog Details</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
     <ArticleDetail :article="article"></ArticleDetail>
@@ -68,12 +73,12 @@ export default {
 
 <style scoped>
 .page-header {
-    background-color: var(--thm-black);
-    background-image: url("../assets/unikall/images/banner-fondo.jpg");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    background-size: cover;
-    padding-bottom: 84px;
-    padding-top: 186px;
+  background-color: var(--thm-black);
+  background-image: url("../assets/unikall/images/banner-fondo.jpg");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: cover;
+  padding-bottom: 84px;
+  padding-top: 186px;
 }
 </style>

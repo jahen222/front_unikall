@@ -51,6 +51,10 @@ import VueLineClamp from 'vue-line-clamp'
 import VueScrollTo from 'vue-scrollto'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+// marked lenguaje
+import marked from 'marked';
+// metadata
+import VueMeta from 'vue-meta';
 
 // definitions
 const apolloProvider = new VueApollo({
@@ -120,6 +124,7 @@ Vue.component('piaf-breadcrumb', Breadcrumb);
 Vue.component('b-refresh-button', RefreshButton);
 Vue.component('b-colxx', Colxx);
 Vue.component('vue-perfect-scrollbar', vuePerfectScrollbar);
+Vue.use(VueMeta);
 
 firebase.initializeApp(firebaseConfig);
 Vue.config.productionTip = false;
@@ -129,5 +134,6 @@ export default new Vue({
   store,
   router,
   apolloProvider,
+  marked,
   render: h => h(App)
 }).$mount("#app");
