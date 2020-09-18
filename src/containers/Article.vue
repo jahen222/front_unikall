@@ -3,10 +3,13 @@
     <Header />
     <section class="page-header">
       <div class="container">
-        <div class="col-8">
+        <div class="col-8 img-fluid1 d-none d-sm-block d-md-block d-lg-block">
           <h2>{{article.title}}</h2>
         </div>
-        <div class="col-4">
+        <div class="col-8 img-fluid2 d-block d-sm-none mobilein">
+          <h6>{{article.title}}</h6>
+        </div>
+        <div class="col-4 img-fluid1 d-none d-sm-block d-md-block d-lg-block">
           <ul class="list-unstyled thm-breadcrumb">
             <li>
               <a href="/">Home</a>
@@ -80,5 +83,11 @@ export default {
   background-size: cover;
   padding-bottom: 84px;
   padding-top: 186px;
+}
+.page-header h6 {
+  color: #fff;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
 }
 </style>
