@@ -95,7 +95,8 @@ export default {
         )
         .then((response) => {
           var data = response.data;
-          var posts = data.blogs;
+          //console.log("lo que llega del server",data);
+          var posts = data.business_services;
           for (let index = 0; index < posts.length; index++) {
             const element = posts[index];
 

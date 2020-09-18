@@ -139,6 +139,21 @@ const routes = [
                 }]
             },
             {
+                path: "service",
+                component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/service"),
+                redirect: "/dashboard/app/service/service",
+                children: [{
+                    path: "service",
+                    component: () =>
+                        import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/service/ServiceList")
+                },
+                {
+                    path: "details/:id",
+                    component: () =>
+                        import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/service/Details")
+                }]
+            },
+            {
                 path: "payment",
                 component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/payment/Payment"),
             },

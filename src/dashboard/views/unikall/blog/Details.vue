@@ -2,19 +2,7 @@
   <div>
     <b-row>
       <b-colxx xxs="12">
-        <h1>{{item.name}}</h1>
-        <div class="top-right-button-container">
-          <b-dropdown
-            id="ddown5"
-            :text="$t('pages.actions')"
-            variant="outline-primary"
-            class="top-right-button top-right-button-single"
-            no-fade="true"
-          >
-            <b-dropdown-item>{{ $t('Edit') }}</b-dropdown-item>
-            <b-dropdown-item>{{ $t('pages.delete') }}</b-dropdown-item>
-          </b-dropdown>
-        </div>
+        <h1>{{item.title}}</h1>
         <div class="separator mb-5"></div>
       </b-colxx>
     </b-row>
@@ -73,12 +61,6 @@
         <b-card class="mb-4">
           <p class="text-muted text-small mb-2">{{$t('Description')}}</p>
           <p class="mb-3">{{item.description}}</p>
-          <p class="text-muted text-small mb-2">{{$t('Stock')}}</p>
-          <p class="mb-3">{{ item.quantity }}$</p>
-          <p class="text-muted text-small mb-2">{{$t('Price')}}</p>
-          <p class="mb-3">{{ item.price }}$</p>
-          <p class="text-muted text-small mb-2">{{$t('Status')}}</p>
-          <p class="mb-3">{{ item.status ? "ON HOLD" : "PROCESSED" }}</p>
         </b-card>
       </b-colxx>
     </b-row>
@@ -118,7 +100,7 @@ export default {
     async loadItem() {
       await axios
         .get(
-          process.env.VUE_APP_STRAPI_API_URL + "/products/" + this.routeParam
+          process.env.VUE_APP_STRAPI_API_URL + "/blogs/" + this.routeParam
         )
         .then((response) => {
           if (this.business.id != response.data.business.id) {
@@ -126,9 +108,13 @@ export default {
             this.$router.push("/");
           } else {
             this.item = response.data;
-
-            for (let index = 0; index < response.data.photos.length; index++) {
-              const element = response.data.photos[index];
+            console.log(response.data.image.url);
+            this.detailImages.push({
+                id: 1,
+                img: process.env.VUE_APP_STRAPI_API_URL + response.data.image.url,
+              });
+            /*for (let index = 0; index < response.data.photos.length; index++) {
+              const element = response.data.image[index];
 
               this.detailImages.push({
                 id: index,
@@ -139,12 +125,8 @@ export default {
                 id: index,
                 img: process.env.VUE_APP_STRAPI_API_URL + element.url,
               });
-
-              //console.log("aqui: ", this.item);
-            }
+            }*/
           }
-
-          //console.log("aqui: ", this.item);
         });
     },
   },
