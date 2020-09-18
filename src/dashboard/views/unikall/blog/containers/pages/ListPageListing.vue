@@ -6,7 +6,6 @@
           :key="item.id"
           :data="item"
           :selected-items="selectedItems"
-          :categories="categories"
           @toggle-item="toggleItem"
           v-contextmenu:contextmenu
         />
@@ -56,7 +55,6 @@
 </template>
 <script>
 import ThumbListItem from "../../components/Listing/ThumbListItem";
-import axios from "axios";
 
 export default {
   components: {
@@ -83,28 +81,6 @@ export default {
     linkGen(pageNum) {
       return "#page-" + pageNum;
     },
-    async loadCategories() {
-      await axios
-        .get(process.env.VUE_APP_STRAPI_API_URL + "/product-categories")
-        .then((response) => {
-          var cat_object = response.data;
-          for (let index = 0; index < cat_object.length; index++) {
-            this.categories[index] = {
-              label: cat_object[index].name,
-              value: cat_object[index].id,
-              subcategories: cat_object[index].product_subcategories,
-            };
-          }
-        })
-        .catch((error) => {
-          this.showError({
-            message: error.message,
-          });
-        });
-    },
-  },
-  mounted() {
-    this.loadCategories();
   },
 };
 </script>

@@ -103,7 +103,7 @@ export default {
           property: "og:url",
           content: process.env.VUE_APP_URL + "/article/" + this.article_id,
         },
-        { property: "og:type", content: "video.movie" },
+        { property: "og:type", content: "article" },
         { property: "og:image", content: this.metaimage },
         { property: "og:description", content: this.metadescription },
       ],

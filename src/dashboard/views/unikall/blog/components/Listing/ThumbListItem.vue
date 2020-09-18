@@ -14,24 +14,19 @@
         <router-link :to="`/dashboard/app/products/details/${data.id}`" class="w-40 w-sm-100">
           <p class="list-item-heading mb-0 truncate">{{data.title}}</p>
         </router-link>
-        <p class="mb-0 text-muted text-small w-15 w-sm-100">{{subcategory}}</p>
-        <p class="mb-0 text-muted text-small w-15 w-sm-100">{{data.date}}</p>
-        <div class="w-15 w-sm-100">
-          <b-badge pill :variant="data.statusColor">{{ data.status }}</b-badge>
-        </div>
+        <p class="mb-0 text-muted text-small w-15 w-sm-100">{{data.description}}</p>
       </div>
       <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
         <b-button v-b-modal="'modaledit'+data.id" class="top-right-button">{{ $t('Edit') }}</b-button> /
         <b-button v-b-modal="'modaldeleted'+data.id" variant="danger" class="top-right-button">{{ $t('Deleted') }}</b-button> 
       </div>
     </div>
-    <edit-modal :categories="categories" :statuses="statuses" :product="data"></edit-modal>
-    <deleted-modal :product="data"></deleted-modal>
+    <edit-modal :post="data"></edit-modal>
+    <deleted-modal :post="data"></deleted-modal>
   </b-card>
 </template>
 
 <script>
-import axios from "axios";
 import EditModal from "../../containers/pages/EditModal";
 import DeletedModal from "../../containers/pages/DeletedModal";
 
@@ -41,41 +36,7 @@ export default {
     "edit-modal": EditModal,
     "deleted-modal": DeletedModal,
   },
-  data() {
-    return {
-      subcategory: null,
-      statuses: [
-        {
-          text: "ON HOLD",
-          value: 0,
-        },
-        {
-          text: "PROCESSED",
-          value: 1,
-        },
-      ],
-    };
-  },
-  mounted() {
-    this.loadItems();
-  },
   methods: {
-    async loadItems() {
-      await axios
-        .get(
-          process.env.VUE_APP_STRAPI_API_URL +
-            "/product-subcategories/" +
-            this.data.category
-        )
-        .then((response) => {
-          this.subcategory = response.data.name;
-        })
-        .catch((error) => {
-          this.showError({
-            message: error.message,
-          });
-        });
-    },
     toggleItem(event, itemId) {
       this.$emit("toggle-item", event, itemId);
     },

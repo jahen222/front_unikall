@@ -8,29 +8,6 @@
           variant="primary"
           class="top-right-button"
         >{{ $t('pages.add-new') }}</b-button>
-        <b-button-group>
-          <b-dropdown split right @click="selectAll(true)" class="check-button" variant="primary">
-            <label
-              class="custom-control custom-checkbox pl-4 mb-0 d-inline-block"
-              slot="button-content"
-            >
-              <input
-                class="custom-control-input"
-                type="checkbox"
-                :checked="isSelectedAll"
-                v-shortkey="{select: ['ctrl','a'], undo: ['ctrl','d']}"
-                @shortkey="keymap"
-              />
-              <span
-                :class="{
-                'custom-control-label' :true,
-                'indeterminate' : isAnyItemSelected
-                }"
-              >&nbsp;</span>
-            </label>
-            <b-dropdown-item>{{$t('pages.delete')}}</b-dropdown-item>
-          </b-dropdown>
-        </b-button-group>
       </div>
       <add-new-modal :categories="categories" :statuses="statuses"></add-new-modal>
       <div class="separator mb-5" />
