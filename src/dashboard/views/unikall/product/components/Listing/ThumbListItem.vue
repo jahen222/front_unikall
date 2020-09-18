@@ -21,20 +21,39 @@
         </div>
       </div>
       <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
-        <b-form-checkbox :checked="selectedItems.includes(data.id)" class="itemCheck mb-0" />
+        <b-button v-b-modal="'modaledit'+data.id" class="top-right-button">{{ $t('Edit') }}</b-button> /
+        <b-button v-b-modal="'modaldeleted'+data.id" variant="danger" class="top-right-button">{{ $t('Deleted') }}</b-button> 
       </div>
     </div>
+    <edit-modal :categories="categories" :statuses="statuses" :product="data"></edit-modal>
+    <deleted-modal :product="data"></deleted-modal>
   </b-card>
 </template>
 
 <script>
 import axios from "axios";
+import EditModal from "../../containers/pages/EditModal";
+import DeletedModal from "../../containers/pages/DeletedModal";
 
 export default {
-  props: ["data", "selectedItems"],
+  props: ["data", "selectedItems", "categories"],
+  components: {
+    "edit-modal": EditModal,
+    "deleted-modal": DeletedModal,
+  },
   data() {
     return {
       subcategory: null,
+      statuses: [
+        {
+          text: "ON HOLD",
+          value: 0,
+        },
+        {
+          text: "PROCESSED",
+          value: 1,
+        },
+      ],
     };
   },
   mounted() {

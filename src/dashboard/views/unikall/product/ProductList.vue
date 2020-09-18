@@ -102,6 +102,7 @@ export default {
               id: element.id,
               title: element.name,
               description: element.description,
+              price: element.price,
               stock: element.quantity,
               date: element.created_at,
               category: element.product_subcategory,
