@@ -27,8 +27,8 @@ const data = [
     },
     {
       icon: "simple-icon-share",
-      label: "menu.social",
-      to: "/dashboard/app/personal/social"
+      label: "Blog",
+      to: "/dashboard/app/blog"
     },
     {
       icon: "simple-icon-link",

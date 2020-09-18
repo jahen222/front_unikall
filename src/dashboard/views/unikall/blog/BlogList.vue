@@ -95,24 +95,24 @@ export default {
         )
         .then((response) => {
           var data = response.data;
-          var products = data.products;
+          console.log("lo que llega del server",data);
+          var posts = data.blogs;
+          for (let index = 0; index < posts.length; index++) {
+            const element = posts[index];
 
-          for (let index = 0; index < products.length; index++) {
-            const element = products[index];
+            var image = "";
+            if (element.image) {
+              image = element.image.formats.thumbnail.url
+            }
+
             this.items[index] = {
               id: element.id,
-              title: element.name,
+              title: element.title,
               description: element.description,
-              price: element.price,
-              stock: element.quantity,
-              date: element.created_at,
-              category: element.product_subcategory,
-              status: element.status ? "ON HOLD" : "PROCESSED",
-              statusColor: element.status ? "secondary" : "primary",
-              img: process.env.VUE_APP_STRAPI_API_URL + element.photos[0].formats.thumbnail.url,
+              img: process.env.VUE_APP_STRAPI_API_URL + image,
             };
           }
-          this.total = products.length;
+          this.total = posts.length;
           this.isLoad = true;
         })
         .catch((error) => {

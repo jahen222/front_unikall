@@ -99,7 +99,7 @@ export default {
       data["business"] = this.business.id;
 
       const product_photos = this.newItem.photos;
-      console.log(product_photos);
+      //console.log(product_photos);
       for (let i = 0; i < product_photos.length; i++) {
         const dataURI = product_photos[i].path;
         var byteString = atob(dataURI.split(",")[1]);
@@ -228,11 +228,11 @@ export default {
         )
         .then((response) => {
           const item = response.data;
-          console.log("lo que voy a buscar: ", this.product.id, " ", this.categories);
+          /*console.log("lo que voy a buscar: ", this.product.id, " ", this.categories);
           console.log(
             "reactividad de la categoria encontrada: ",
             JSON.stringify(this.categories)
-          );
+          );*/
 
           this.newItem = {
             name: item.name,

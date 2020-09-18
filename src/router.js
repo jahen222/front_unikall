@@ -124,6 +124,21 @@ const routes = [
                 }]
             },
             {
+                path: "blog",
+                component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/blog"),
+                redirect: "/dashboard/app/blog/blog",
+                children: [{
+                    path: "blog",
+                    component: () =>
+                        import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/blog/BlogList")
+                },
+                {
+                    path: "details/:id",
+                    component: () =>
+                        import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/blog/Details")
+                }]
+            },
+            {
                 path: "payment",
                 component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/payment/Payment"),
             },
