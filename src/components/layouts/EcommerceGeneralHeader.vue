@@ -31,7 +31,7 @@
 
 <script>
 export default {
-    name: "ConstructionHeader",
+    name: "EcommerceGeneralHeader",
     components: {},
     props: ['businessName'],
     data() {
@@ -53,9 +53,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 :root {
-    --brandConstructionColorMenu: #F02B29;
+    --brandConstructionColorMenu: #FFFFFF;
     --brandConstructionColor: #E94D1A;
     --brandConstructionColorBody: #E94D1A;
     --brandConstructionbtnColor: #E94D1A;
@@ -132,8 +132,7 @@ h1 {
 }
 
 .menu {
-    background-color: rgba(242, 242, 242, .3) !important;
-    border-bottom: var(--brandConstructionbtnColor) solid 5px;
+    background-color: rgba(0, 0, 0, .3) !important;
 }
 
 .brand-color-body {

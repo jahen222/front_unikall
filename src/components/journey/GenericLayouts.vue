@@ -59,6 +59,7 @@
                     </template>
                     <form>
                         <form-wizard @on-complete="onComplete" color="#343a40" title subtitle>
+                            <input type="hidden" layout="item.id" />
                             <tab-content title="Layout details" icon="fab fa-font-awesome" class="text-center" v-if="item.mockup && item.mockup.url">
                                 <img :src="api_url + item.mockup.url" style="height:400px" alt />
                             </tab-content>
@@ -78,7 +79,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="businessname" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Business Name" />
+                                                        <input type="text" name="name" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Business Name" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,7 +93,7 @@
                                                 <div class="col-8">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Upload Logo</label>
-                                                        <input name="logo" v-bind:style="{ 'background-image': 'url(' + logo_url + ')' }" type="file" @change="onLogoFileChange" class="form-control fl-input-form imgpreview" aria-describedby="emailHelp" />
+                                                        <input name="logo" v-bind:style="{ 'background-image': 'url(' + logo_url + ')' }" type="file" ref="logo" @change="onLogoFileChange" class="form-control fl-input-form imgpreview" aria-describedby="emailHelp" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,7 +108,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <input name="tagtitle" type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Tagline Title" />
+                                                        <input name="tagline" type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Tagline Title" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,7 +121,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <input name="yourwork" type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Your Work" />
+                                                        <input name="description" type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Your Work" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,18 +161,18 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-4">
+                                                                <input name="work_images" multiple type="file" class="form-control fl-input-form" aria-describedby="emailHelp" />
+                                                            </div>
+                                                            <!-- <div class="col-4">
                                                                 <input type="file" class="form-control fl-input-form" aria-describedby="emailHelp" />
                                                             </div>
                                                             <div class="col-4">
                                                                 <input type="file" class="form-control fl-input-form" aria-describedby="emailHelp" />
-                                                            </div>
-                                                            <div class="col-4">
-                                                                <input type="file" class="form-control fl-input-form" aria-describedby="emailHelp" />
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                         <br />
                                                         <div class="row">
-                                                            <div class="col-4">
+                                                            <!-- <div class="col-4">
                                                                 <input type="file" class="form-control fl-input-form" aria-describedby="emailHelp" />
                                                             </div>
                                                             <div class="col-4">
@@ -179,7 +180,7 @@
                                                             </div>
                                                             <div class="col-4">
                                                                 <input type="file" class="form-control fl-input-form" aria-describedby="emailHelp" />
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -227,17 +228,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Add Location" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <p class="fl-micro-text">Name helps buyers to trust you</p>
-                                                </div>
-                                                <div class="col-8">
-                                                    <div class="form-group">
-                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Contact Me" />
+                                                        <input name="address1" type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Add Location" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -247,7 +238,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Phone Number" />
+                                                        <input name="phone" type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Phone Number" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -257,7 +248,7 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="form-group">
-                                                        <input type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Email" />
+                                                        <input name="email" type="text" style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;" class="form-control" placeholder="Email" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -295,7 +286,9 @@ export default {
     data() {
         return {
             api_url: process.env.VUE_APP_STRAPI_API_URL,
-            logo_url: ""
+            logo_url: "",
+            logo_file: "",
+            work_files: ""
         };
     },
     apollo: {},
@@ -309,6 +302,7 @@ export default {
         onLogoFileChange(e) {
             const file = e.target.files[0];
             this.logo_url = URL.createObjectURL(file);
+            this.logo_file = this.$refs.file.files[0];
         }
     },
 };

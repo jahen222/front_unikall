@@ -10,6 +10,10 @@
     <div v-if="layout == 'Construction'">
         <ConstructionTemplate v-bind:businessid="user && user.business ? user.business.id : null" />
     </div>
+    <div v-if="layout == 'ecommerce generic'">
+        <EcommerceGenericTemplate v-bind:businessid="user && user.business ? user.business.id : null" />
+    </div>
+
 </div>
 </template>
 
@@ -17,6 +21,7 @@
 import axios from "axios";
 import BeautyandFashionTemplate from "../layouts/BeautyandFashionTemplate";
 import ConstructionTemplate from "../layouts/ConstructionTemplate";
+import EcommerceGenericTemplate from "../layouts/EcommerceGenericTemplate";
 import ConstructionPage from "./InConstruction";
 
 export default {
@@ -25,6 +30,7 @@ export default {
         ConstructionPage,
         BeautyandFashionTemplate,
         ConstructionTemplate,
+        EcommerceGenericTemplate,
     },
     data() {
         return {

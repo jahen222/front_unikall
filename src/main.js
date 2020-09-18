@@ -22,6 +22,10 @@ import './assets/fonts/poppins/popin-stylesheet.css';
 // wizard
 import VueFormWizard from 'vue-form-wizard';
 import 'vue-form-wizard/dist/vue-form-wizard.min.css';
+
+//validator
+import Vuelidate from "vuelidate";
+
 // cookies
 import Cookies from "js-cookie";
 // stores
@@ -100,6 +104,7 @@ Vue.use(VueApollo);
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 Vue.use(VueFormWizard);
+Vue.use(Vuelidate);
 Vue.use(VueLazyload)
 Vue.use(VueNotifications, options)
 
