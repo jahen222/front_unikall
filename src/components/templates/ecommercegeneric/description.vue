@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    name: "ServiceDescription",
+    name: "EcommerceDescription",
     props: ['description', 'name', 'work_images'],
     data() {
         return {

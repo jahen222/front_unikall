@@ -4,16 +4,16 @@
 </div>
 <div v-else>
     <EcommerceGeneralHeader v-bind:businessName="business ? business.name : 'Business Title'" />
-    <ServiceSlider v-bind:businessbanner="business && business.top_banners && business.top_banners.length > 0 ? business.top_banners : []" />
-    <ServiceDescription v-bind:name="business ? business.name : 'Business Title'" v-bind:description="business ? business.description : 'Business Description goes here...'" v-bind:work_images="business ? business.work_images : ''" />
+    <EcommerceSlider v-bind:businessbanner="business && business.top_banners && business.top_banners.length > 0 ? business.top_banners : []" />
+    <EcommerceDescription v-bind:name="business ? business.name : 'Business Title'" v-bind:description="business ? business.description : 'Business Description goes here...'" v-bind:work_images="business ? business.work_images : ''" />
     <EcommerceCollections v-bind:images="business && business.work_images.length > 0 ? business.work_images : []" />
+    <EcommerceFeaturedProducts v-bind:products="business && business.products.length > 0 ? business.products.filter(x=>x.featured).reverse() : []" />
     <ServiceProjectsData />
     <ServiceInformation v-bind:services="business ? business.business_services : []" />
     <ServiceProducts v-bind:businessName="business ? business.name : 'Business Title'" v-bind:products="business && business.products.length > 0 ? business.products : []" />
     <ServiceAlies v-bind:alies="business && business.ally && business.ally.logo && business.ally.logo.length > 0 ? business.ally.logo : []" />
     <ServiceVisitUs v-bind:businessName="business ? business.name : 'Business Title'" v-bind:address="business ? business.address : 'your address goes here..'" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
     <ServiceContactUs />
-    <ServiceBlog v-bind:blogs="business && business.blogs.length > 0 ? business.blogs : []" />
     <ConstructionFooter v-bind:logo="business && business.logo ? business.logo : null" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
 </div>
 </template>
@@ -22,16 +22,17 @@
 import axios from "axios";
 import gql from "graphql-tag";
 import EcommerceGeneralHeader from "@/components/layouts/EcommerceGeneralHeader.vue";
-import ServiceSlider from "@/components/templates/ecommercegeneric/slider.vue";
-import ServiceDescription from "@/components/templates/ecommercegeneric/description.vue";
+import EcommerceSlider from "@/components/templates/ecommercegeneric/slider.vue";
+import EcommerceDescription from "@/components/templates/ecommercegeneric/description.vue";
+import EcommerceCollections from "@/components/templates/ecommercegeneric/collections.vue";
+import EcommerceFeaturedProducts from "@/components/templates/ecommercegeneric/featuredproducts.vue";
+
 import ServiceProjectsData from "@/components/templates/ecommercegeneric/projectsdata.vue";
 import ServiceInformation from "@/components/templates/ecommercegeneric/information.vue";
 import ServiceProducts from "@/components/templates/ecommercegeneric/Products.vue";
-import EcommerceCollections from "@/components/templates/ecommercegeneric/collections.vue";
 import ServiceAlies from "@/components/templates/ecommercegeneric/alies.vue";
 import ServiceVisitUs from "@/components/templates/ecommercegeneric/visitus.vue";
 import ServiceContactUs from "@/components/templates/ecommercegeneric/contactus.vue";
-import ServiceBlog from "@/components/templates/ecommercegeneric/blog.vue";
 import ConstructionFooter from "@/components/layouts/ConstructionFooter.vue";
 import InConstruction from "@/containers/InConstruction.vue";
 
@@ -39,16 +40,16 @@ export default {
     name: "EcommerceGenericTemplate",
     components: {
         EcommerceGeneralHeader,
-        ServiceSlider,
-        ServiceDescription,
+        EcommerceSlider,
+        EcommerceDescription,
+        EcommerceCollections,
+        EcommerceFeaturedProducts,
         ServiceProjectsData,
         ServiceInformation,
         ServiceProducts,
-        EcommerceCollections,
         ServiceAlies,
         ServiceVisitUs,
         ServiceContactUs,
-        ServiceBlog,
         ConstructionFooter,
         InConstruction,
     },
