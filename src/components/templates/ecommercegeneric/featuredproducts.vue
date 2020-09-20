@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    name: "ServiceBlog",
+    name: "EcommerceFeaturedProducts",
     props: ['products'],
     data() {
         return {

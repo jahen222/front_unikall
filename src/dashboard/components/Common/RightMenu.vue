@@ -49,7 +49,7 @@ export default {
             this.menu = menu
             document.body.appendChild(menu)
           })
-        };
+        }
       }
     },
     showPop (showPop) {
@@ -60,7 +60,7 @@ export default {
       } else {
         resetOncontextmenu()
         this.$emit('close')
-      };
+      }
     }
   },
   computed: {

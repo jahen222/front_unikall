@@ -176,6 +176,20 @@ const routes = [
         components: require("./containers/Selector.vue")
     },
     {
+        path: "/shop/:id",
+        components: require("./components/templates/ecommerce/index"),
+        redirect: "/home",
+        children: [
+        {   path: '', component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/home") },
+        {
+            path: "product/:pid",
+            component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/productdetail")
+        },{
+            path: "checkout",
+            component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/checkout")
+        }]
+    },
+    {
         path: "*",
         component: () => import(/* webpackChunkName: "error" */ "./dashboard/views/Error")
     }

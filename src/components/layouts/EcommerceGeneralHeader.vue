@@ -23,6 +23,35 @@
                 <li class="nav-item">
                     <a v-b-modal="'my-booking'" class="nav-link brand-color-menu poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
                 </li>
+                <li class="nav-item">
+                    <div class="position-relative d-inline-block">
+                        <b-dropdown variant="empty" size="sm" right toggle-class="header-icon notificationButton" menu-class="position-absolute mt-3 notificationDropdown" no-caret>
+                            <template slot="button-content">
+                                <i class="simple-icon-basket text-white" style="font-size:2rem" />
+                                <span class="count text-white">{{cartCount}}</span>
+                            </template>
+                            <vue-perfect-scrollbar :settings="{ suppressScrollX: true, wheelPropagation: false }">
+                                <div v-if="cart.length > 0" class="d-flex">
+                                    <div class="row flex-row mb-3 pb-3 border-bottom" v-for="(item,index) in cart" :key="item.id">
+                                        <div class="col-7">
+                                            <img :src="api_url + item.photos[0].url" :alt="item.name" class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle" />
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="font-weight-medium mb-1">{{item.name}}</p>
+                                            <p class="text-muted mb-0 text-small">{{item.price}}</p>
+                                        </div>
+                                        <div class="col-1" @click="removeItem(index)">X</div>
+                                    </div>
+                                    <div class="row flex-row mb-3 pb-3 border-bottom">
+                                        <router-link to="../checkout">Proceed to Checkout</router-link>
+                                    </div>
+                                </div>
+                                <div v-else class="text-dangour">Cart is empty</div>
+                            </vue-perfect-scrollbar>
+                        </b-dropdown>
+                    </div>
+
+                </li>
             </ul>
         </div>
     </div>
@@ -39,14 +68,36 @@ export default {
             api_url: process.env.VUE_APP_STRAPI_API_URL
         };
     },
-    computed: {},
+    computed: {
+        cartCount() {
+            return this.$store.getters.CartItems.length;
+        },
+        cart() {
+            return this.$store.getters.CartItems;
+        }
+    },
     methods: {
+        removeItem(index) {
+            return this.$store.dispatch("removeCartItem", index);
+        },
         gotoPage(tag) {
             if (tag != 'contact') {
                 var anchor = document.querySelector('#' + tag);
                 window.scrollTo(anchor.offsetLeft, (anchor.offsetTop - 150));
             }
             return false;
+        },
+        showList() {
+            var modal = document.getElementById("carpopup");
+            var btn = document.getElementById("show");
+            btn.onclick = function () {
+                modal.style.display = "block";
+            };
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
         }
     },
     notifications: {},
@@ -59,6 +110,10 @@ export default {
     --brandConstructionColor: #E94D1A;
     --brandConstructionColorBody: #E94D1A;
     --brandConstructionbtnColor: #E94D1A;
+}
+
+.hidden-item {
+    display: none;
 }
 
 .bg-image-full {
@@ -160,11 +215,15 @@ h1 {
 }
 
 .p-0 {
-    padding: 0 !important;
+    padding: 0px !important;
 }
 
 .mt-20 {
-    margin-top: 20 !important;
+    margin-top: 20px !important;
+}
+
+.mt-60 {
+    margin-top: 60px !important;
 }
 
 .gallary .carousel-indicators {

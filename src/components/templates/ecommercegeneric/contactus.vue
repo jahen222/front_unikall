@@ -56,7 +56,7 @@ import {
 } from "vuelidate/lib/validators";
 import Datepicker from 'vuejs-datepicker';
 export default {
-    name: "ServiceContactUs",
+    name: "EcommerceContactUs",
     components: {
         Datepicker
     },
