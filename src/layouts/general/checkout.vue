@@ -52,7 +52,7 @@
                             </router-link>
                         </div>
                         <div class="form-group col-6 text-right">
-                            <button @click="addToCart(product)" type="button" class="btn btn-outline-secondary text-black poppinfont"><b class="text-black">PROCEED</b></button>
+                            <button type="submit" class="btn btn-outline-secondary text-black poppinfont"><b class="text-black">PROCEED</b></button>
                         </div>
                     </div>
                 </form>
