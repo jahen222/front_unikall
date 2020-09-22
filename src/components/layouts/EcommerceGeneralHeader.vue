@@ -42,8 +42,10 @@
                                         </div>
                                         <div class="col-1" @click="removeItem(index)">X</div>
                                     </div>
-                                    <div class="row mb-3 pb-3 border-bottom">
-                                        <router-link to="../checkout">Proceed to Checkout</router-link>
+                                    <div class="row mb-3 pb-3">
+                                        <div class="col-12" style="position: absolute;bottom: 0;text-align: center;">
+                                            <router-link to="../checkout">Proceed to Checkout</router-link>
+                                        </div>
                                     </div>
                                 </div>
                                 <div v-else class="text-dangour">Cart is empty</div>

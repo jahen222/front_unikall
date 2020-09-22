@@ -9,8 +9,50 @@
                         <h1>Contact Information</h1>
                     </div>
                     <div class="form-row mt-2">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-12">
                             <input type=" text" class="form-control" :class="{ 'hasError': $v.form.phone.$error }" v-model="form.phone" id="phone" name="phone" placeholder="Phone / Email ">
+                        </div>
+                    </div>
+                    <div class="form-row mt-3">
+                        <h1>Shipping Information</h1>
+                    </div>
+                    <div class="form-row mt-2">
+                        <div class="form-group col-6">
+                            <input type=" text" class="form-control" :class="{ 'hasError': $v.form.fname.$error }" v-model="form.fname" id="fname" name="fname" placeholder="First Name ">
+                        </div>
+                        <div class="form-group col-6">
+                            <input type=" text" class="form-control" :class="{ 'hasError': $v.form.lname.$error }" v-model="form.lname" id="lname" name="lname" placeholder="LOast Name ">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <input type=" text" class="form-control" :class="{ 'hasError': $v.form.address.$error }" v-model="form.address" id="address" name="address" placeholder="Address ">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <input type=" text" class="form-control" :class="{ 'hasError': $v.form.city.$error }" v-model="form.city" id="city" name="city" placeholder="City ">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <input type=" text" class="form-control" :class="{ 'hasError': $v.form.country.$error }" v-model="form.country" id="country" name="country" placeholder="Country ">
+                        </div>
+                        <div class="form-group col-4">
+                            <input type=" text" class="form-control" :class="{ 'hasError': $v.form.province.$error }" v-model="form.province" id="province" name="province" placeholder="Province ">
+                        </div>
+                        <div class="form-group col-4">
+                            <input type=" text" class="form-control" :class="{ 'hasError': $v.form.postalcode.$error }" v-model="form.postalcode" id="postalcode" name="postalcode" placeholder="Postal Code ">
+                        </div>
+                    </div>
+                    <div class="form-row mt-3">
+                        <div class="form-group col-6 text-left text-black">
+                            <router-link :to="'/'"><span style="color:#000;text-decoration:underline;">
+                                    Continue Shopping</span>
+                            </router-link>
+                        </div>
+                        <div class="form-group col-6 text-right">
+                            <button @click="addToCart(product)" type="button" class="btn btn-outline-secondary text-black poppinfont"><b class="text-black">PROCEED</b></button>
                         </div>
                     </div>
                 </form>
@@ -43,6 +85,12 @@ export default {
             form: {
                 phone: "",
                 address: "",
+                fname: "",
+                lname: "",
+                city: "",
+                country: "",
+                province: "",
+                postalcode: "",
             }
         }
     },
@@ -52,6 +100,24 @@ export default {
                 required
             },
             address: {
+                required,
+            },
+            fname: {
+                required,
+            },
+            lname: {
+                required,
+            },
+            city: {
+                required,
+            },
+            country: {
+                required,
+            },
+            province: {
+                required,
+            },
+            postalcode: {
                 required,
             }
         }
@@ -70,7 +136,6 @@ export default {
                     this.selected_quantity = this.selected_quantity - 1;
                 }
             }
-
         },
         submit() {
             this.$v.form.$touch();
