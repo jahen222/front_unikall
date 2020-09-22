@@ -110,6 +110,7 @@
 import {
     required
 } from "vuelidate/lib/validators";
+import axios from "axios";
 export default {
     name: "EcommerceProductcheckout",
     data() {
@@ -163,27 +164,55 @@ export default {
             return this.$store.getters.CartItems;
         },
         subtotal() {
-            return this.$store.getters.CartItems.reduce(function (a, b) {
-                return (Number(a.price) * Number(a.quantity)) + (Number(b.price) * Number(b.quantity));
-            }, 0);
-        }
-    },
-    methods: {
-        updatequantity(direction) {
-            if (direction) {
-                this.selected_quantity = this.selected_quantity + 1;
-            } else {
-                if (this.selected_quantity > 1) {
-                    this.selected_quantity = this.selected_quantity - 1;
-                }
+            console.log(this.$store.getters.CartItems);
+            let sum = 0;
+            for (var items in this.cart) {
+                sum = sum + (Number(items.price) * Number(items.quantity))
+                console.log(items.price);
             }
+            return sum;
         },
-        submit() {
-            this.$v.form.$touch();
-            if (this.$v.form.$error) return
-            // to form submit after this
-            alert('Form submitted')
-            alert(this.form.phone)
+        methods: {
+            updatequantity(direction) {
+                if (direction) {
+                    this.selected_quantity = this.selected_quantity + 1;
+                } else {
+                    if (this.selected_quantity > 1) {
+                        this.selected_quantity = this.selected_quantity - 1;
+                    }
+                }
+            },
+            async submit() {
+                this.$v.form.$touch();
+                if (this.$v.form.$error) return
+                // to form submit after this
+                let order = {
+                    "contact_information": this.form.phone,
+                    "name": this.form.fname + this.form.lname,
+                    "shipping_address": this.form.address + ", " + this.form.city + ", " + this.form.country + ", " + this.form.postalcode,
+                    "total": this.subtotal - 0,
+                    "discount": 0,
+                    "subtotal": this.subtotal,
+                };
+
+                await axios
+                    .post(
+                        process.env.VUE_APP_STRAPI_API_URL + "/orders/",
+                        order, {}
+                    )
+                    .then((response) => {
+                        this.showSuccess({
+                            message: "Order information updated successfully",
+                        });
+                        console.log(response);
+                        this.$router.go();
+                    })
+                    .catch((error) => {
+                        this.showError({
+                            message: error.message,
+                        });
+                    });
+            }
         }
     }
 };
