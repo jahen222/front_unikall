@@ -124,6 +124,10 @@ export default {
     -o-background-size: cover;
 }
 
+.bold {
+    font-weight: bold !important
+}
+
 h1 {
     display: inline-block;
     padding-bottom: 5px;

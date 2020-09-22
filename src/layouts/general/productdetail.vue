@@ -20,12 +20,12 @@
                     <div class="col-12" style="font-size: 1rem;font-weight: normal;line-height: 2rem;">{{product.description}}</div>
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-4" style="cursor:pointer"><i class="simple-icon-plus" @click="updatequantity(true)" /> {{this.selected_quantity}} <i class="simple-icon-minus" @click="updatequantity(false)" /></div>
+                            <div class="col-4 m-auto" style="cursor:pointer"><i class="simple-icon-plus bold" @click="updatequantity(true)" /> <span style="font-size: 16px;padding: 0px 13px 0px 13px;position: relative;bottom: 2px;">{{this.selected_quantity}}</span> <i class="simple-icon-minus bold" @click="updatequantity(false)" /></div>
                             <div class="col-4">
-                                <button v-b-modal="'product-details'" @click="addToCart(product)" type="button" class="btn btn-outline-secondary text-black poppinfont mt-2"><b>ADD TO CART</b></button>
+                                <button v-b-modal="'product-details'" @click="addToCart(product)" type="button" class="btn btn-outline-secondary text-black poppinfont mt-2"><b class="text-black">ADD TO CART</b></button>
                             </div>
                             <div class="col-4">
-                                <button v-b-modal="'product-details'" v-on:click="viewDetails(product)" type="button" class="btn btn-outline-secondary text-black poppinfont mt-2"><b>Buy Now</b></button>
+                                <button v-b-modal="'product-details'" v-on:click="viewDetails(product)" type="button" class="btn btn-outline-secondary text-black poppinfont mt-2"><b class="text-black">Buy Now</b></button>
                             </div>
                         </div>
                     </div>
