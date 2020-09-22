@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="col-7">
                                             <p class="font-weight-medium mb-1">{{item.name}}</p>
-                                            <p class="text-muted mb-0 text-small">{{item.price}}</p>
+                                            <p class="text-muted mb-0 text-small">${{item.price}}</p>
                                         </div>
                                         <div class="col-1" @click="removeItem(index)">X</div>
                                     </div>
