@@ -19,10 +19,10 @@
         <b-textarea v-model="newItem.description" :rows="2" :max-rows="2" />
       </b-form-group>
       <b-form-group :label="$t('Price')">
-        <b-form-input type="number" v-model="newItem.price" />
+        <b-form-input type="number" v-model="newItem.price" min="0" />
       </b-form-group>
       <b-form-group :label="$t('Quantity')">
-        <b-form-input type="number" v-model="newItem.quantity" />
+        <b-form-input type="number" v-model="newItem.quantity" min="0" />
       </b-form-group>
       <b-form-group :label="$t('Photos')">
         <vue-upload-multiple-image

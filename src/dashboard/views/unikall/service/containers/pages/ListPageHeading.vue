@@ -1,7 +1,12 @@
 <template>
   <b-row>
     <b-colxx xxs="12">
-      <h1>Services</h1>
+      <h1>
+        Services
+        <a @click="helpUserInfoForm">
+          <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+        </a>
+      </h1>
       <div class="top-right-button-container">
         <b-button
           v-b-modal.modalright
@@ -44,6 +49,14 @@ export default {
       pageSizes: [4, 8, 12],
     };
   },
+  methods: {
+    helpUserInfoForm: function () {
+      this.showInfo({
+        message:
+          "Services section, you can add, edit and delete services for your business page.",
+      });
+    },
+  },
   notifications: {
     showError: {
       title: "Failed",
@@ -54,6 +67,11 @@ export default {
       title: "Success",
       message: "Success",
       type: "success",
+    },
+    showInfo: {
+      title: "Information",
+      message: "Success",
+      type: "info",
     },
   },
 };

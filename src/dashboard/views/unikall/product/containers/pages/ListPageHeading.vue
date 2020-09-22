@@ -1,7 +1,12 @@
 <template>
   <b-row>
     <b-colxx xxs="12">
-      <h1>Products</h1>
+      <h1>
+        Products
+        <a @click="helpUserInfoForm">
+          <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+        </a>
+      </h1>
       <div class="top-right-button-container">
         <b-button
           v-b-modal.modalright
@@ -79,24 +84,30 @@ export default {
   },
   async mounted() {
     await axios
-      .get(
-        process.env.VUE_APP_STRAPI_API_URL + "/product-categories",
-      )
+      .get(process.env.VUE_APP_STRAPI_API_URL + "/product-categories")
       .then((response) => {
-          var cat_object = response.data;
-          for (let index = 0; index < cat_object.length; index++) {
-            this.categories[index] = {
-              label: cat_object[index].name,
-              value: cat_object[index].id,
-              subcategories: cat_object[index].product_subcategories
-            }   
-          }
+        var cat_object = response.data;
+        for (let index = 0; index < cat_object.length; index++) {
+          this.categories[index] = {
+            label: cat_object[index].name,
+            value: cat_object[index].id,
+            subcategories: cat_object[index].product_subcategories,
+          };
+        }
       })
       .catch((error) => {
         this.showError({
           message: error.message,
         });
       });
+  },
+  methods: {
+    helpUserInfoForm: function () {
+      this.showInfo({
+        message:
+          "Product section, you can add, edit and delete products for your business page.",
+      });
+    },
   },
   notifications: {
     showError: {
@@ -108,6 +119,11 @@ export default {
       title: "Success",
       message: "Success",
       type: "success",
+    },
+    showInfo: {
+      title: "Information",
+      message: "Success",
+      type: "info",
     },
   },
 };

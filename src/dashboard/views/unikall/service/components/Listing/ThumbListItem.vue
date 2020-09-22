@@ -14,7 +14,7 @@
         <router-link :to="`/dashboard/app/service/details/${data.id}`" class="w-40 w-sm-100">
           <p class="list-item-heading mb-0 truncate">{{data.title}}</p>
         </router-link>
-        <p class="mb-0 text-muted text-small w-15 w-sm-100">{{data.description}}</p>
+        <p class="mb-0 text-muted text-small w-15 w-sm-100">{{data.description.substring(0,50)}}</p>
       </div>
       <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
         <b-button v-b-modal="'modaledit'+data.id" class="top-right-button">{{ $t('Edit') }}</b-button> /

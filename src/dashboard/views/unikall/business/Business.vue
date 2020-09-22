@@ -404,15 +404,21 @@ export default {
     },
     helpBusinessInfoForm: function () {
       this.showInfo({
-        message: "Here you can enter and change your business information",
+        message:
+          "Fill in your company name and email, Tagline is one of the first things your visitors will see, just describe what you can do for they. Be clear and concise.",
       });
     },
     helpCompanyAddressForm: function () {
-      this.showInfo({ message: "Here you can change your company address" });
+      this.showInfo({
+        message:
+          "Providing your business information is important so that your customers know how to locate you. All fields are necessary",
+      });
     },
     helpLogoForm: function () {
       this.showInfo({
-        message: "Here you can change your business logo or business image",
+        message: `Upload your company logo so that your clients recognize your business
+                  try to use a good quality image in .jpg or .png format, and that is at least 500x500 pixels
+                  if you need more help uploading your logo.`,
       });
     },
   },
