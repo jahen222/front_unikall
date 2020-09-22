@@ -223,7 +223,7 @@ export default {
                     "order": orderid,
                     "product": this.cart[items].id
                 };
-                setTimeout(() => this.senditemrequest(_orderItem), 1000);
+                this.senditemrequest(_orderItem);
             }
         },
         async senditemrequest(_orderItem) {
