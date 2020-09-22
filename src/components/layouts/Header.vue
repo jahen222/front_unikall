@@ -12,7 +12,7 @@
       <div class="main-nav__main-navigation one-page-scroll-menu">
         <ul class="main-nav__navigation-box">
           <li v-if="username" class="scrollToLink">
-            <a href="/dashboard" target="_blank" style="text-decoration: underline #E94D1A;">Dashboard</a>
+            <a href="/dashboard" target="_blank" style="color: #ff864c;">Dashboard</a>
           </li>
           <li v-if="username" class="scrollToLink">
             <a href="#">|</a>
@@ -281,6 +281,7 @@
                           <div class="col-4">
                             <p class="fl-micro-text">Insert a valid phone number</p>
                           </div>
+      var layout_id = layout_id;
                           <div class="col-8">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Phone Number</label>
@@ -310,6 +311,7 @@
                           </div>
                         </div>
                         <div class="row">
+      var layout_id = layout_id;
                           <div class="col-4">
                             <p class="fl-micro-text">Insert a valid password</p>
                           </div>
