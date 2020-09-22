@@ -12,7 +12,7 @@
       <div class="main-nav__main-navigation one-page-scroll-menu">
         <ul class="main-nav__navigation-box">
           <li v-if="username" class="scrollToLink">
-            <a href="/dashboard" target="_blank">Dashboard</a>
+            <a href="/dashboard" target="_blank" style="text-decoration: underline #E94D1A;">Dashboard</a>
           </li>
           <li v-if="username" class="scrollToLink">
             <a href="#">|</a>

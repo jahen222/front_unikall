@@ -44,6 +44,47 @@
         </b-card>
       </b-colxx>
     </b-row>
+    <b-row v-if="business_card">
+      <b-colxx xxs="12">
+        <b-card class="mb-4" :title="$t('Bussines Card')">
+          <div class="centerLayout">
+            <b-row>
+              <b-colxx sm="12" style="tex">
+                <b-form-group>
+                  <img :src="business_card" width="50%" />
+                </b-form-group>
+              </b-colxx>
+              <b-colxx sm="6">
+                <b-form-group :label="$t('Address')">
+                  <b-form-input type="text" v-model="address" />
+                </b-form-group>
+              </b-colxx>
+              <b-colxx sm="6">
+                <b-form-group :label="$t('Web')">
+                  <b-form-input type="text" v-model="web" />
+                </b-form-group>
+              </b-colxx>
+              <b-colxx sm="6">
+                <b-form-group :label="$t('Email')">
+                  <b-form-input type="text" v-model="email" />
+                </b-form-group>
+              </b-colxx>
+              <b-colxx sm="6">
+                <b-form-group :label="$t('Phone')">
+                  <b-form-input type="text" v-model="phone"></b-form-input>
+                </b-form-group>
+              </b-colxx>
+              <b-colxx sm="12">
+                <b-form-group :label="$t('Logo')">
+                  <img v-if="logo_preview" :src="logo_preview" width="200px" />
+                </b-form-group>
+              </b-colxx>
+            </b-row>
+            <b-button type="submit" variant="primary" class="mt-4">{{ $t('Print') }}</b-button>
+          </div>
+        </b-card>
+      </b-colxx>
+    </b-row>
     <b-row v-if="preview">
       <b-colxx xxs="12">
         <b-card class="mb-4" :title="$t('Preview')">
@@ -75,18 +116,38 @@ export default {
       layouts: [],
       complete_layouts: [],
       layoutOptions: [],
-      layout: null,
+      layout: {
+        name: null,
+      },
       link: null,
       preview: null,
+      business_card: null,
+      address: null,
+      web: null,
+      email: null,
+      phone: null,
+      logo_preview: null,
     };
   },
   async mounted() {
     this.user = JSON.parse(Cookies.get("user"));
     var layout = JSON.parse(localStorage.getItem("user")).layout;
+    var business = JSON.parse(localStorage.getItem("user")).business;
+
     this.link = process.env.VUE_APP_URL + "/site/" + this.user.id;
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
     };
+
+    this.address = business.address1;
+    this.web = this.link;
+    this.email = this.user.email;
+    this.phone = this.user.phone;
+
+    if (business.logo != undefined) {
+      this.logo_preview =
+        process.env.VUE_APP_STRAPI_API_URL + business.logo.url;
+    }
 
     if (layout != null) {
       this.layout = layout;
@@ -157,14 +218,24 @@ export default {
     },
     setSelected() {
       var preview = null;
+      var business_card = null;
+
       for (let index = 0; index < this.complete_layouts.length; index++) {
         if (this.layout.name == this.complete_layouts[index].name) {
           preview =
             process.env.VUE_APP_STRAPI_API_URL +
             this.complete_layouts[index].mockup.url;
+
+          if (this.complete_layouts[index].card) {
+            business_card =
+              process.env.VUE_APP_STRAPI_API_URL +
+              this.complete_layouts[index].card.url;
+          }
         }
       }
+      console.log("aqui ", business_card);
       this.preview = preview;
+      this.business_card = business_card;
     },
     helpLayoutInfoForm: function () {
       this.showInfo({

@@ -30,11 +30,11 @@ const data = [
       label: "Blog",
       to: "/dashboard/app/blog"
     },
-    {
+    /*{
       icon: "simple-icon-link",
       label: "menu.portfolio",
       to: "/dashboard/app/personal/portfolio"
-    }]
+    }*/]
   },
   {
     id: "business",
