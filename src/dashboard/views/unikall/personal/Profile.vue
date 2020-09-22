@@ -377,7 +377,7 @@ export default {
     },
     helpUserInfoForm: function () {
       this.showInfo({
-        message: "Here you can enter and change your personal information",
+        message: "Please fill in all the fields of your personal information",
       });
     },
     helpPasswordForm: function () {

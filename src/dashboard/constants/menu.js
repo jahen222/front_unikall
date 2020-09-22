@@ -89,14 +89,13 @@ const data = [
     label: "Shipping",
     to: "/dashboard/app/shipping"
   },
-  {
+  /*{
     id: "guaranty",
     icon: "iconsminds-clock",
     //label: "menu.applications",
     label: "Guaranty",
     to: "/dashboard/app/guaranty"
-  },
-  {
+  },*/  {
     id: "sales",
     icon: "iconsminds-link-2",
     //label: "menu.applications",
