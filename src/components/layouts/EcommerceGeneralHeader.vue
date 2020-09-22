@@ -25,25 +25,27 @@
                 </li>
                 <li class="nav-item">
                     <div class="position-relative d-inline-block">
-                        <b-dropdown variant="empty" size="sm" right toggle-class="header-icon notificationButton" menu-class="position-absolute mt-3 notificationDropdown" no-caret>
+                        <b-dropdown variant="empty" size="sm" right toggle-class="header-icon notificationButton p-1" menu-class="position-absolute mt-3 notificationDropdown p-1" no-caret>
                             <template slot="button-content">
                                 <i class="simple-icon-basket text-white" style="font-size:2rem" />
                                 <span class="count text-white">{{cartCount}}</span>
                             </template>
                             <vue-perfect-scrollbar :settings="{ suppressScrollX: true, wheelPropagation: false }">
-                                <div v-if="cart.length > 0" class="d-flex">
-                                    <div class="row flex-row mb-3 pb-3 border-bottom" v-for="(item,index) in cart" :key="item.id">
-                                        <div class="col-7">
+                                <div v-if="cart.length > 0">
+                                    <div class="row mb-3 pb-3 border-bottom" v-for="(item,index) in cart" :key="item.id">
+                                        <div class="col-3">
                                             <img :src="api_url + item.photos[0].url" :alt="item.name" class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle" />
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-7">
                                             <p class="font-weight-medium mb-1">{{item.name}}</p>
-                                            <p class="text-muted mb-0 text-small">{{item.price}}</p>
+                                            <p class="text-muted mb-0 text-small">${{item.price}}</p>
                                         </div>
                                         <div class="col-1" @click="removeItem(index)">X</div>
                                     </div>
-                                    <div class="row flex-row mb-3 pb-3 border-bottom">
-                                        <router-link to="../checkout">Proceed to Checkout</router-link>
+                                    <div class="row mb-3 pb-3">
+                                        <div class="col-12" style="position: absolute;bottom: 0;text-align: center;">
+                                            <router-link to="../checkout">Proceed to Checkout</router-link>
+                                        </div>
                                     </div>
                                 </div>
                                 <div v-else class="text-dangour">Cart is empty</div>
@@ -122,6 +124,10 @@ export default {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+}
+
+.bold {
+    font-weight: bold !important
 }
 
 h1 {

@@ -10,7 +10,9 @@
                         <img class="d-block w-100" style="width:268px;height:268px;border:#ccc solid 1px;" :src="api_url + item.photos[0].url" alt="Image">
                         <div style="text-transform:capital">{{item.name}}</div>
                         <div style="font-weight:normal">${{item.price}}</div>
-                        <button v-on:click="openblogpopup(item.description)" type="button" class="btn btn-outline-secondary text-black poppinfont mt-2"><b>Buy Now</b></button>
+                        <router-link :to="'product/'+item.id">
+                            <button type="button" class="btn btn-outline-secondary text-black poppinfont mt-2"><b>Buy Now</b></button>
+                        </router-link>
                     </div>
                 </div>
                 <!--.row-->
