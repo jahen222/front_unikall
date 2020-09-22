@@ -2,9 +2,9 @@
 <!-- Product Details section -->
 <section class="py-5 bg-light">
     <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <form @submit.prevent="submit">
+        <form @submit.prevent="submit">
+            <div class="row">
+                <div class="col-6">
                     <div class="form-row">
                         <h1>Contact Information</h1>
                     </div>
@@ -55,18 +55,52 @@
                             <button type="submit" class="btn btn-outline-secondary text-black poppinfont"><b class="text-black">PROCEED</b></button>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="col-6">
-                <div class="row mt-2" v-for="(item,index) in cart" :key="index">
-                    <div class="col-4">
-                        <img style="width:100px;" :src="api_url + item.photos[0].url" :alt="item.name" />
+                </div>
+                <div class="col-6">
+                    <div class="row mt-2" v-for="(item,index) in cart" :key="index">
+                        <div class="col-2">
+                            <img style="width:100%;" :src="api_url + item.photos[0].url" :alt="item.name" />
+                            <span class="count1">{{item.quantity}}</span>
+                        </div>
+                        <div class="col-6 text-left m-auto">{{item.name}}</div>
+                        <div class="col-4 text-right m-auto">${{item.price}}</div>
                     </div>
-                    <div class="col-4">{{item.name}}</div>
-                    <div class="col-4">${{item.price}}</div>
+                    <div class="form-row mt-3 border-top"></div>
+                    <div class="form-row mt-2">
+                        <div class="form-group col-8">
+                            <input type=" text" class="form-control" :class="{ 'hasError': $v.form.city.$error }" v-model="form.city" id="city" name="city" placeholder="City ">
+                        </div>
+                        <div class="form-group col-4 text-right">
+                            <button type="button" class="btn btn-outline-secondary text-black poppinfont"><b class="text-black">APPLY</b></button>
+                        </div>
+                    </div>
+                    <div class="form-row mt-3 border-top"></div>
+                    <div class="form-row mt-2">
+                        <div class="form-group col-6 text-left">
+                            Sub Total
+                        </div>
+                        <div class="form-group col-6 text-right">
+                            ${{subtotal}}
+                        </div>
+                        <div class="form-group col-6 text-left">
+                            Shipping Cost
+                        </div>
+                        <div class="form-group col-6 text-right">
+                            Determine after wardsd
+                        </div>
+                    </div>
+                    <div class="form-row mt-3 border-top"></div>
+                    <div class="form-row mt-2">
+                        <div class="form-group col-6 text-left">
+                            Total
+                        </div>
+                        <div class="form-group col-6 text-right">
+                            ${{subtotal}}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </section>
 </template>
@@ -76,6 +110,7 @@
 import {
     required
 } from "vuelidate/lib/validators";
+import axios from "axios";
 export default {
     name: "EcommerceProductcheckout",
     data() {
@@ -91,6 +126,7 @@ export default {
                 country: "",
                 province: "",
                 postalcode: "",
+                coupon: "",
             }
         }
     },
@@ -119,36 +155,85 @@ export default {
             },
             postalcode: {
                 required,
-            }
+            },
+            coupon: {},
         }
     },
     computed: {
         cart() {
             return this.$store.getters.CartItems;
-        }
-    },
-    methods: {
-        updatequantity(direction) {
-            if (direction) {
-                this.selected_quantity = this.selected_quantity + 1;
-            } else {
-                if (this.selected_quantity > 1) {
-                    this.selected_quantity = this.selected_quantity - 1;
-                }
-            }
         },
-        submit() {
-            this.$v.form.$touch();
-            if (this.$v.form.$error) return
-            // to form submit after this
-            alert('Form submitted')
-            alert(this.form.phone)
+        subtotal() {
+            console.log(this.$store.getters.CartItems);
+            let sum = 0;
+            for (var items in this.cart) {
+                sum = sum + (Number(items.price) * Number(items.quantity))
+                console.log(items.price);
+            }
+            return sum;
+        },
+        methods: {
+            updatequantity(direction) {
+                if (direction) {
+                    this.selected_quantity = this.selected_quantity + 1;
+                } else {
+                    if (this.selected_quantity > 1) {
+                        this.selected_quantity = this.selected_quantity - 1;
+                    }
+                }
+            },
+            async submit() {
+                this.$v.form.$touch();
+                if (this.$v.form.$error) return
+                // to form submit after this
+                let order = {
+                    "contact_information": this.form.phone,
+                    "name": this.form.fname + this.form.lname,
+                    "shipping_address": this.form.address + ", " + this.form.city + ", " + this.form.country + ", " + this.form.postalcode,
+                    "total": this.subtotal - 0,
+                    "discount": 0,
+                    "subtotal": this.subtotal,
+                };
+
+                await axios
+                    .post(
+                        process.env.VUE_APP_STRAPI_API_URL + "/orders/",
+                        order, {}
+                    )
+                    .then((response) => {
+                        this.showSuccess({
+                            message: "Order information updated successfully",
+                        });
+                        console.log(response);
+                        this.$router.go();
+                    })
+                    .catch((error) => {
+                        this.showError({
+                            message: error.message,
+                        });
+                    });
+            }
         }
     }
 };
 </script>
 
 <style>
+.count1 {
+    font-size: 12px;
+    color: #000 !important;
+    background: #ccc;
+    border-radius: 10px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 18px;
+    top: -5px;
+    right: 5px;
+}
+
 .fixed-top {
     position: relative
 }
