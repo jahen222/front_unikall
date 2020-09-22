@@ -11,6 +11,12 @@
       </div>
       <div class="main-nav__main-navigation one-page-scroll-menu">
         <ul class="main-nav__navigation-box">
+          <li v-if="username" class="scrollToLink">
+            <a href="/dashboard" target="_blank">Dashboard</a>
+          </li>
+          <li v-if="username" class="scrollToLink">
+            <a href="#">|</a>
+          </li>
           <li class="scrollToLink">
             <a href="/">Home</a>
           </li>
@@ -32,9 +38,6 @@
           <li class="dropdown scrollToLink">
             <a href="#legal">Legal</a>
           </li>
-          <li v-if="user" class="dropdown scrollToLink">
-            <a href="#legal">Legal2</a>
-          </li>
           <li class="dropdown scrollToLink">
             <a href="#"></a>
           </li>
@@ -49,7 +52,7 @@
             </a>
             <ul>
               <li>
-                <a href="/dashboard">Dashboard</a>
+                <a href="/dashboard" target="_blank">Dashboard</a>
               </li>
               <li>
                 <a href="/" v-on:click="handleSubmitLogout">Logout</a>
@@ -576,9 +579,9 @@ export default {
     editWorkImagesImage: function (formData, index, fileList) {
       this.register_work_images = fileList;
     },
-    setSelected () {
+    setSelected() {
       var layout_url = null;
-      
+
       for (let index = 0; index < this.aux_layout.length; index++) {
         const element = this.aux_layout[index];
         if (element.name == this.register_layout) {
@@ -586,7 +589,7 @@ export default {
         }
       }
 
-      this.layout_preview = process.env.VUE_APP_STRAPI_API_URL+layout_url;
+      this.layout_preview = process.env.VUE_APP_STRAPI_API_URL + layout_url;
     },
   },
   notifications: {
