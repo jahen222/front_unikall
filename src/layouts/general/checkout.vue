@@ -201,19 +201,44 @@ export default {
                     order, {}
                 )
                 .then((response) => {
+                    this.additems(response.data.id);
                     this.showSuccess({
                         message: "Order information updated successfully",
                     });
-                    console.log(response);
-                    this.$router.go();
+
                 })
                 .catch((error) => {
                     this.showError({
                         message: error.message,
                     });
                 });
-        }
+        },
+        async additems(orderid) {
 
+            for (var items in this.cart) {
+                let _orderItem = {
+                    "name": this.cart[items].name,
+                    "price": this.cart[items].price,
+                    "quantity": this.cart[items].quantity,
+                    "order": orderid,
+                    "product": this.cart[items].id
+                };
+                this.senditemrequest(_orderItem);
+            }
+        },
+        async senditemrequest(_orderItem) {
+            await axios
+                .post(
+                    process.env.VUE_APP_STRAPI_API_URL + "/order-items/",
+                    _orderItem, {}
+                )
+                .then((response) => {
+                    this.showSuccess({
+                        message: "Order information updated successfully",
+                    });
+                    console.log(response.data)
+                });
+        }
     }
 };
 </script>
