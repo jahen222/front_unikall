@@ -164,55 +164,80 @@ export default {
             return this.$store.getters.CartItems;
         },
         subtotal() {
-            console.log(this.$store.getters.CartItems);
             let sum = 0;
             for (var items in this.cart) {
-                sum = sum + (Number(items.price) * Number(items.quantity))
-                console.log(items.price);
+                sum = sum + (Number(this.cart[items].price) * Number(this.cart[items].quantity))
+
             }
             return sum;
-        },
-        methods: {
-            updatequantity(direction) {
-                if (direction) {
-                    this.selected_quantity = this.selected_quantity + 1;
-                } else {
-                    if (this.selected_quantity > 1) {
-                        this.selected_quantity = this.selected_quantity - 1;
-                    }
+        }
+    },
+    methods: {
+        updatequantity(direction) {
+            if (direction) {
+                this.selected_quantity = this.selected_quantity + 1;
+            } else {
+                if (this.selected_quantity > 1) {
+                    this.selected_quantity = this.selected_quantity - 1;
                 }
-            },
-            async submit() {
-                this.$v.form.$touch();
-                if (this.$v.form.$error) return
-                // to form submit after this
-                let order = {
-                    "contact_information": this.form.phone,
-                    "name": this.form.fname + this.form.lname,
-                    "shipping_address": this.form.address + ", " + this.form.city + ", " + this.form.country + ", " + this.form.postalcode,
-                    "total": this.subtotal - 0,
-                    "discount": 0,
-                    "subtotal": this.subtotal,
-                };
-
-                await axios
-                    .post(
-                        process.env.VUE_APP_STRAPI_API_URL + "/orders/",
-                        order, {}
-                    )
-                    .then((response) => {
-                        this.showSuccess({
-                            message: "Order information updated successfully",
-                        });
-                        console.log(response);
-                        this.$router.go();
-                    })
-                    .catch((error) => {
-                        this.showError({
-                            message: error.message,
-                        });
-                    });
             }
+        },
+        async submit() {
+            this.$v.form.$touch();
+            if (this.$v.form.$error) return
+            // to form submit after this
+            let order = {
+                "contact_information": this.form.phone,
+                "name": this.form.fname + this.form.lname,
+                "shipping_address": this.form.address + ", " + this.form.city + ", " + this.form.country + ", " + this.form.postalcode,
+                "total": this.subtotal - 0,
+                "discount": 0,
+                "subtotal": this.subtotal,
+            };
+
+            await axios
+                .post(
+                    process.env.VUE_APP_STRAPI_API_URL + "/orders/",
+                    order, {}
+                )
+                .then((response) => {
+                    this.additems(response.data.id);
+                    this.showSuccess({
+                        message: "Order information updated successfully",
+                    });
+
+                })
+                .catch((error) => {
+                    this.showError({
+                        message: error.message,
+                    });
+                });
+        },
+        async additems(orderid) {
+
+            for (var items in this.cart) {
+                let _orderItem = {
+                    "name": this.cart[items].name,
+                    "price": this.cart[items].price,
+                    "quantity": this.cart[items].quantity,
+                    "order": orderid,
+                    "product": this.cart[items].id
+                };
+                this.senditemrequest(_orderItem);
+            }
+        },
+        async senditemrequest(_orderItem) {
+            await axios
+                .post(
+                    process.env.VUE_APP_STRAPI_API_URL + "/order-items/",
+                    _orderItem, {}
+                )
+                .then((response) => {
+                    this.showSuccess({
+                        message: "Order information updated successfully",
+                    });
+                    console.log(response.data)
+                });
         }
     }
 };
