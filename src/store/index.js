@@ -14,15 +14,20 @@ let cart = window.localStorage.getItem('CartItems');
 
 export default new Vuex.Store({
   state: {
-    CartItems: cart ? JSON.parse(cart) : []
+    CartItems: cart ? JSON.parse(cart) : [],
+    BusinessId: 0
   },
   getters: {
     CartItems: (state) => state.CartItems,
+    BusinessId: (state) => state.BusinessId,
   },
   mutations: {
     changeLang (state, payload) {
       app.$i18n.locale = payload
       localStorage.setItem('currentLanguage', payload)
+    },
+    SET_Business_Id(state,id){
+      state.BusinessId = id;
     },
     ADD_Cart_Item(state, item) {
       state.CartItems.push(item);
@@ -45,6 +50,9 @@ export default new Vuex.Store({
     removeCartItem(context, index) {
       context.commit("REMOVE_Cart_Item", index);
       this.commit('SAVE_Cart');
+    },
+    setbusinessid(context,id) {
+      context.commit("SET_Business_Id",id);
     }
   },
   modules: {
