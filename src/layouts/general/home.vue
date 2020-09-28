@@ -46,9 +46,6 @@ export default {
                 "sender_image": ""
             }]
         };
-    },
-    async mounted() {
-
     }
 };
 </script>

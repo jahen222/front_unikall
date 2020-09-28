@@ -34,6 +34,7 @@ export default {
         };
     },
     async mounted() {
+        this.$store.dispatch("setbusinessid", this.user_id);
         await axios
             .get(process.env.VUE_APP_STRAPI_API_URL + "/users/" + this.user_id)
             .then((response) => {

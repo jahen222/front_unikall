@@ -13,20 +13,25 @@
                     <div class="col-md-5 m-auto">
                         <h1 class="poppinfont" style="color:#000">{{item.title}}</h1>
                         <p style="color:#000" class="poppinfont font-weight-normal">{{item.description}}</p>
-                        <p style="color:#000" class="text-right poppinfont">MORE...</p>
+                        <p v-b-modal="'bd_'+item.id" style="color:#000;cursor:pointer;" class="text-right poppinfont">MORE...</p>
                     </div>
                     <div class="col-md-2"></div>
+                    <EcommerceBlogDetails v-bind:blog="item" />
                 </div>
             </b-carousel-slide>
         </b-carousel>
-    </div>
+    </div>    
 </section>
 </template>
 
 <script>
+import EcommerceBlogDetails from "@/components/templates/ecommercegeneric/blogdetails.vue";
 export default {
     name: "EcommerceBlog",
     props: ['blogs'],
+    components:{
+        EcommerceBlogDetails
+    },
     data() {
         return {
             api_url: process.env.VUE_APP_STRAPI_API_URL,

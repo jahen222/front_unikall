@@ -2,14 +2,14 @@
 <!-- Navigation -->
 <nav id="home" class=" menu navbar navbar-expand-lg navbar-dark bg-white fixed-top">
     <div class="container">
-        <a class="navbar-brand poppinfont brand-color-menu" href="#">{{businessName}}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <router-link class="navbar-brand poppinfont brand-color-menu" :to="'/shop/'+businessid">{{businessName}}</router-link>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link poppinfont brand-color-menu font-weight-normal" href="Javascript:;" v-on:click="gotoPage('home')">Home</a>
+                    <router-link class="nav-link poppinfont brand-color-menu font-weight-normal" :to="'/shop/'+businessid">Home</router-link>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link poppinfont brand-color-menu font-weight-normal" href="Javascript:;" v-on:click="gotoPage('about')">About</a>
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="row mb-3 pb-3">
                                         <div class="col-12" style="position: absolute;bottom: 0;text-align: center;">
-                                            <router-link to="../checkout">Proceed to Checkout</router-link>
+                                            <router-link :to="'/shop/'+businessid+'/checkout'">Proceed to Checkout</router-link>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,10 @@ export default {
         },
         cart() {
             return this.$store.getters.CartItems;
-        }
+        },
+        businessid() {
+            return this.$store.getters.BusinessId;
+        },
     },
     methods: {
         removeItem(index) {
