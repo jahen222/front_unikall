@@ -9,7 +9,7 @@
                             <i :class="item.icon"></i>
                             <strong>{{item.name}}</strong>
                         </template>
-                        <GenericLayouts v-bind:name="item.name ? item.name : 'Template Category'" v-bind:layouts="item.layouts ? item.layouts : []" />
+                        <GenericLayouts v-bind:name="item.name ? item.name : 'Template Category'" v-bind:layouts="item.layouts ? item.layouts : []" v-bind:subcategories="item.subcategories ? item.subcategories : []" />
                     </b-tab>
                 </b-tabs>
             </b-card>
