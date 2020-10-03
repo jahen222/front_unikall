@@ -1,6 +1,6 @@
 <template>
 <!-- Gallery section -->
-<section class="py-5" style="background-color:#1A1A1A;">
+<section id="service" class="py-5" style="background-color:#1A1A1A;">
     <div class="container">
         <div class="row gallary">
             <div class="col-md-12 text-center">
