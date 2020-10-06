@@ -3,15 +3,20 @@
 <section class="py-5 bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-2">
+            <div class="col-2" v-if="product && product.photos && product.photos.length > 0">
                 <div class="row" v-for="(item,index) in product.photos" :key="index">
                     <img v-on:click="updateImage(api_url + item.url)" class="d-block smImage mt-1" :src="api_url + item.url" alt="Small Image">
+                </div>
+            </div>
+            <div class="col-2" v-else>
+                <div class="row">
+                    <img class="d-block smImage mt-1" src="http://placehold.it/100x100" alt="Small Image">
                 </div>
             </div>
             <div class="col-5">
                 <img class="d-block w-100" :src="selected_image" alt="Image">
             </div>
-            <div class="col-5">
+            <div class="col-5" v-if="product">
                 <div class="row text-left">
                     <div class="col-12">
                         <h1>{{product.name}}</h1>

@@ -1,7 +1,7 @@
 <template>
 <!-- Header - set the background image for the header in the line below -->
 <header class="py-5 bg-image-full tex-left" v-bind:style="{ 'background-image': 'url(' + sliderimage + ')' }" style="text-allign:left;min-height:500px;position:relative">
-    <div class="sliderCaption tex-left" style="max-width:500px;">
+    <div class="sliderCaption tex-left" style="max-width:420px;text-align:left;">
         <h3 class="text-white poppinfont bold" style="font-size:3rem;">{{tagline}}</h3>
     </div>
 </header>
@@ -31,7 +31,7 @@ export default {
 <style scoped>
 .sliderCaption {
     position: absolute;
-    top: 40%;
-    left: 45%;
+    bottom: 30%;
+    left: 5%;
 }
 </style>
