@@ -10,7 +10,7 @@
     <div v-if="layout == 'Construction'">
         <ConstructionTemplate v-bind:businessid="user && user.business ? user.business.id : null" />
     </div>
-    <div v-if="layout == 'ecommerce generic'">
+    <div v-if="layout == 'Electronic Store'">
         <EcommerceGenericTemplate v-bind:businessid="user && user.business ? user.business.id : null" />
     </div>
 
@@ -21,7 +21,7 @@
 import axios from "axios";
 import BeautyandFashionTemplate from "../layouts/BeautyandFashionTemplate";
 import ConstructionTemplate from "../layouts/ConstructionTemplate";
-import EcommerceGenericTemplate from "../layouts/EcommerceGenericTemplate";
+import EcommerceGenericTemplate from "../layouts/e_commerce_2_electronic_store/containers/EcommerceGenericTemplate.vue";
 import ConstructionPage from "./InConstruction";
 
 export default {

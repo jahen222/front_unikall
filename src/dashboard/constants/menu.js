@@ -21,7 +21,7 @@ const data = [
     label: "Personal",
     to: "/dashboard/app/personal",
     subs: [{
-      icon: "simple-icon-user-following",
+      icon: "simple-icon-user",
       label: "menu.profile",
       to: "/dashboard/app/personal/profile"
     },
@@ -48,14 +48,14 @@ const data = [
       to: "/dashboard/app/business/business"
     },
     {
+      icon: "simple-icon-picture",
+      label: "Galery",
+      to: "/dashboard/app/galery"
+    },
+    {
       icon: "simple-icon-layers",
       label: "Layout",
       to: "/dashboard/app/business/layout"
-    },
-    {
-      icon: "iconsminds-affiliate",
-      label: "Services",
-      to: "/dashboard/app/service"
     },
     {
       icon: "simple-icon-credit-card",
@@ -72,8 +72,17 @@ const data = [
     id: "product",
     icon: "simple-icon-pin",
     //label: "menu.applications",
-    label: "Products",
-    to: "/dashboard/app/products"
+    label: "Products or Services",
+    subs: [{
+      icon: "iconsminds-box-close",
+      label: "Products",
+      to: "/dashboard/app/products"
+    },
+    {
+      icon: "iconsminds-affiliate",
+      label: "Services",
+      to: "/dashboard/app/service"
+    }]
   },
   {
     id: "payment",

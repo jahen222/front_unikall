@@ -2,13 +2,13 @@
   <b-row>
     <b-colxx xxs="12">
       <h1>
-        BLOG POSTS
+        Galery
         <a @click="helpUserInfoForm">
           <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
         </a>
       </h1>
 
-      <div class="top-right-button-container">
+      <div v-if="items.lenght < 5" class="top-right-button-container">
         <b-button
           v-b-modal.modalright
           variant="primary"
@@ -17,12 +17,13 @@
         >
       </div>
       <add-new-modal></add-new-modal>
+
       <h5>
-        Welcome to your Business Blog! Here you can create Blog posts to your
-        business and share this content through social media. *Attached you can
-        find an example of a Blog Post for you to have better guidance and start
-        sharing it
+        In this section you can add MAX 5 images or pictures to show your
+        business, products and services to your future clients (Max 2MB, JPG or
+        PNG)
       </h5>
+
       <div class="separator mb-5" />
     </b-colxx>
   </b-row>
@@ -50,6 +51,7 @@ export default {
     "to",
     "total",
     "perPage",
+    "items",
   ],
   data() {
     return {
@@ -61,7 +63,7 @@ export default {
     helpUserInfoForm: function () {
       this.showInfo({
         message:
-          "Blog section, you can add, edit and delete post for your business page.",
+          "Galery section, you can add, edit and delete images for your business page.",
       });
     },
   },

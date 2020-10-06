@@ -7,7 +7,7 @@
           <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
         </a>
       </h1>
-      <div class="top-right-button-container">
+      <div v-if="items.length < 5" class="top-right-button-container">
         <b-button
           v-b-modal.modalright
           variant="primary"
@@ -51,6 +51,7 @@ export default {
     "to",
     "total",
     "perPage",
+    "items"
   ],
   data() {
     return {

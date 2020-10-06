@@ -2,7 +2,7 @@
   <div>
     <b-row>
       <b-colxx xxs="12">
-        <h1>{{ item.title }}</h1>
+        <h1>{{item.title}}</h1>
         <div class="separator mb-5"></div>
       </b-colxx>
     </b-row>
@@ -11,25 +11,8 @@
         <b-card class="mb-4" no-body>
           <b-card-body>
             <glide-component-thumbs
-              :settingsImages="{
-                bound: true,
-                rewind: false,
-                focusAt: 0,
-                startAt: 0,
-                gap: 5,
-                perView: 1,
-                data: detailImages,
-              }"
-              :settingsThumbs="{
-                bbound: true,
-                rewind: false,
-                focusAt: 0,
-                startAt: 0,
-                gap: 10,
-                perView: 5,
-                data: detailThumbs,
-                breakpoints: { 576: { perView: 4 }, 420: { perView: 3 } },
-              }"
+              :settingsImages="{ bound: true, rewind: false, focusAt: 0, startAt: 0, gap: 5, perView: 1, data: detailImages}"
+              :settingsThumbs="{ bbound: true, rewind: false, focusAt: 0, startAt: 0, gap: 10, perView: 5, data: detailThumbs, breakpoints: { 576: { perView: 4 }, 420: { perView: 3 } } }"
             />
           </b-card-body>
         </b-card>
@@ -41,7 +24,7 @@
                 <b-colxx sm="12">
                   <b-card-text>
                     <comment-with-likes
-                      v-for="(item, index) in commentWithLikesData"
+                      v-for="(item,index) in commentWithLikesData"
                       :data="item"
                       :key="`comment_${index}`"
                     ></comment-with-likes>
@@ -49,9 +32,7 @@
                       <b-form-input :placeholder="$t('pages.addComment')" />
                       <b-input-group-append>
                         <b-button variant="primary">
-                          <span class="d-inline-block">{{
-                            $t("pages.send")
-                          }}</span>
+                          <span class="d-inline-block">{{$t('pages.send')}}</span>
                           <i class="simple-icon-arrow-right ml-2"></i>
                         </b-button>
                       </b-input-group-append>
@@ -65,7 +46,7 @@
                 <b-colxx sm="12">
                   <b-card-text>
                     <question-answer
-                      v-for="(item, index) in detailsQuestionsData"
+                      v-for="(item,index) in detailsQuestionsData"
                       :data="item"
                       :key="`question_${index}`"
                     ></question-answer>
@@ -78,8 +59,8 @@
       </b-colxx>
       <b-colxx xxs="12" xl="4" class="col-right">
         <b-card class="mb-4">
-          <p class="text-muted text-small mb-2">{{ $t("Description") }}</p>
-          <p class="mb-3">{{ item.description }}</p>
+          <p class="text-muted text-small mb-2">{{$t('Description')}}</p>
+          <p class="mb-3">{{item.description}}</p>
         </b-card>
       </b-colxx>
     </b-row>
@@ -119,9 +100,7 @@ export default {
     async loadItem() {
       await axios
         .get(
-          process.env.VUE_APP_STRAPI_API_URL +
-            "/business-services/" +
-            this.routeParam
+          process.env.VUE_APP_STRAPI_API_URL + "/blogs/" + this.routeParam
         )
         .then((response) => {
           if (this.business.id != response.data.business.id) {
@@ -130,11 +109,11 @@ export default {
           } else {
             this.item = response.data;
             console.log(response.data.image.url);
-            //this.detailImages.push({
-            //    id: 1,
-            //    img: process.env.VUE_APP_STRAPI_API_URL + response.data.image.url,
-            // });
-            for (let index = 0; index < response.data.image.length; index++) {
+            this.detailImages.push({
+                id: 1,
+                img: process.env.VUE_APP_STRAPI_API_URL + response.data.image.url,
+              });
+            /*for (let index = 0; index < response.data.photos.length; index++) {
               const element = response.data.image[index];
 
               this.detailImages.push({
@@ -146,7 +125,7 @@ export default {
                 id: index,
                 img: process.env.VUE_APP_STRAPI_API_URL + element.url,
               });
-            }
+            }*/
           }
         });
     },

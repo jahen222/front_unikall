@@ -22,6 +22,8 @@ export default {
                 return this.api_url + this.businessbanner[0].topbannerimage.url
             } else {
                 return "https://unsplash.it/1900/1080?image=1076";
+                //return process.env.VUE_APP_URL+"/";
+
             }
         }
     }

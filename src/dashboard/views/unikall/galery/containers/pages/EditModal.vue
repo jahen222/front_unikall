@@ -1,17 +1,11 @@
 <template>
   <b-modal
-    id="modalright"
-    ref="modalright"
-    :title="$t('pages.add-new-modal-title')"
+    :id="'modaledit'+post.id"
+    :ref="'modaledit'+post.id"
+    :title="$t('Edit Item')"
     modal-class="modal-right"
   >
     <b-form>
-      <b-form-group :label="$t('Service Title')">
-        <b-form-input type="text" v-model="newItem.title" />
-      </b-form-group>
-      <b-form-group :label="$t('pages.description')">
-        <b-textarea v-model="newItem.description" :rows="2" :max-rows="2" />
-      </b-form-group>
       <b-form-group :label="$t('Image')">
         <vue-upload-multiple-image
           @upload-success="uploadPhotosSuccess"
@@ -19,7 +13,7 @@
           @edit-image="editPhotosImage"
           dragText="Click to upload file"
           browseText
-          maxImage="3"
+          maxImage="1"
           primaryText="Primary"
           markIsPrimaryText="Mark as Primary"
           popupText="This image will be displayed as default"
@@ -43,38 +37,31 @@
 <script>
 import VueUploadMultipleImage from "vue-upload-multiple-image";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 export default {
   components: {
     VueUploadMultipleImage,
   },
-  props: ["categories", "statuses"],
+  props: ["post"],
   data() {
     return {
       user: null,
       business: null,
       browseText: "",
       newItem: {
-        title: "",
-        description: "",
         image: [],
       },
     };
-  },
-  mounted() {
-    this.user = JSON.parse(Cookies.get("user"));
-    this.business = JSON.parse(localStorage.getItem("user")).business;
   },
   methods: {
     addNewItem() {
       const request = new XMLHttpRequest();
       const formData = new FormData();
       const data = {};
-      data["title"] = this.newItem.title;
-      data["description"] = this.newItem.description;
-      data["business"] = this.business.id;
 
       const product_photos = this.newItem.image;
+      //console.log(product_photos);
       for (let i = 0; i < product_photos.length; i++) {
         const dataURI = product_photos[i].path;
         var byteString = atob(dataURI.split(",")[1]);
@@ -89,7 +76,10 @@ export default {
       }
 
       formData.append("data", JSON.stringify(data));
-      request.open("POST", process.env.VUE_APP_STRAPI_API_URL + "/business-services");
+      request.open(
+        "PUT",
+        process.env.VUE_APP_STRAPI_API_URL + "/galeries/" + this.post.id
+      );
       request.setRequestHeader(
         "Authorization",
         "Bearer " + localStorage.getItem("jwt")
@@ -98,10 +88,8 @@ export default {
       request.onreadystatechange = () => {
         if (request.readyState == 4) {
           if (request.status == 200) {
-            this.showSuccess({ message: "Service added successfully" });
+            this.showSuccess({ message: "Image updated successfully" });
             this.newItem = {
-              title: "",
-              description: "",
               image: [],
             };
             this.$router.go();
@@ -109,8 +97,6 @@ export default {
           } else {
             this.showError({ message: request.response.message });
             this.newItem = {
-              title: "",
-              description: "",
               image: [],
             };
           }
@@ -127,13 +113,6 @@ export default {
     },
     checkNewProductForm: function () {
       this.errors = [];
-
-      if (!this.newItem.title) {
-        this.errors.push(" The title is required.");
-      }
-      if (!this.newItem.description) {
-        this.errors.push(" The description is required.");
-      }
       if (this.newItem.image.length < 1) {
         this.errors.push(" Must be at least 1 photo.");
       }
@@ -152,6 +131,19 @@ export default {
     editPhotosImage: function (formData, index, fileList) {
       this.newItem.image = fileList;
     },
+    async loadItem() {
+      await axios
+        .get(
+          process.env.VUE_APP_STRAPI_API_URL + "/galeries/" + this.post.id
+        )
+        .then((response) => {
+          const item = response.data;
+          console.log(item);
+          this.newItem = {
+            image: [],
+          };
+        });
+    },
   },
   notifications: {
     showError: {
@@ -164,6 +156,11 @@ export default {
       message: "Success",
       type: "success",
     },
+  },
+  mounted() {
+    this.user = JSON.parse(Cookies.get("user"));
+    this.business = JSON.parse(localStorage.getItem("user")).business;
+    this.loadItem();
   },
 };
 </script>

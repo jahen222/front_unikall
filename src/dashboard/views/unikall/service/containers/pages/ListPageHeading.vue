@@ -7,14 +7,19 @@
           <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
         </a>
       </h1>
-      <div class="top-right-button-container">
+      <div v-if="items.length < 5" class="top-right-button-container">
         <b-button
           v-b-modal.modalright
           variant="primary"
           class="top-right-button"
-        >{{ $t('pages.add-new') }}</b-button>
+          >{{ $t("pages.add-new") }}</b-button
+        >
       </div>
       <add-new-modal></add-new-modal>
+      <h5>
+        Services section, you can add, edit and delete services for your
+        business page.
+      </h5>
       <div class="separator mb-5" />
     </b-colxx>
   </b-row>
@@ -42,6 +47,7 @@ export default {
     "to",
     "total",
     "perPage",
+    "items",
   ],
   data() {
     return {

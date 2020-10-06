@@ -4,11 +4,11 @@
 </div>
 <div v-else>
     <EcommerceGeneralHeader v-bind:businessName="business ? business.name : 'Business Title'" />
-    <EcommerceSlider v-bind:businessbanner="business && business.top_banners && business.top_banners.length > 0 ? business.top_banners : []" />
+    <EcommerceSlider v-bind:tagline="business.tagline" v-bind:businessbanner="business && business.top_banners && business.top_banners.length > 0 ? business.top_banners : []" />
     <EcommerceDescription v-bind:name="business ? business.name : 'Business Title'" v-bind:description="business ? business.description : 'Business Description goes here...'" v-bind:work_images="business ? business.work_images : ''" />
-    <EcommerceCollections v-bind:images="business && business.work_images.length > 0 ? business.work_images : []" />
+    <EcommerceCollections v-bind:images="business && business.galeries.length > 0 ? business.galeries : []" />
     <EcommerceFeaturedProducts v-bind:products="business && business.products.length > 0 ? business.products.filter(x=>x.featured).reverse() : []" />
-    <EcommerceProducts v-bind:products="business && business.products.length > 0 ? business.products.filter(x=>!x.featured).reverse() : []" />
+    <EcommerceProducts v-bind:businessId="business ? business.id : null" v-bind:products="business && business.products.length > 0 ? business.products.filter(x=>!x.featured).reverse() : []" />
     <EcommerceVisitUs v-bind:businessName="business ? business.name : 'Business Title'" v-bind:address="business ? business.address : 'your address goes here..'" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
     <EcommerceBlog v-bind:blogs="business && business.blogs.length > 0 ? business.blogs : []" />
     <EcommerceContactUs />
@@ -19,16 +19,16 @@
 <script>
 import axios from "axios";
 import gql from "graphql-tag";
-import EcommerceGeneralHeader from "@/components/layouts/EcommerceGeneralHeader.vue";
-import EcommerceSlider from "@/components/templates/ecommercegeneric/slider.vue";
-import EcommerceDescription from "@/components/templates/ecommercegeneric/description.vue";
-import EcommerceCollections from "@/components/templates/ecommercegeneric/collections.vue";
-import EcommerceFeaturedProducts from "@/components/templates/ecommercegeneric/featuredproducts.vue";
-import EcommerceProducts from "@/components/templates/ecommercegeneric/products.vue";
-import EcommerceVisitUs from "@/components/templates/ecommercegeneric/visitus.vue";
-import EcommerceBlog from "@/components/templates/ecommercegeneric/blog.vue";
-import EcommerceContactUs from "@/components/templates/ecommercegeneric/contactus.vue";
-import EcommerceGeneralFooter from "@/components/layouts/EcommerceGeneralFooter.vue";
+import EcommerceGeneralHeader from "../components/layouts/EcommerceGeneralHeader.vue";
+import EcommerceSlider from "../components/slider.vue";
+import EcommerceDescription from "../components/description.vue";
+import EcommerceCollections from "../components/collections.vue";
+import EcommerceFeaturedProducts from "../components/featuredproducts.vue";
+import EcommerceProducts from "../components/products.vue";
+import EcommerceVisitUs from "../components/visitus.vue";
+import EcommerceBlog from "../components/blog.vue";
+import EcommerceContactUs from "../components/contactus.vue";
+import EcommerceGeneralFooter from "../components/layouts/EcommerceGeneralFooter.vue";
 import InConstruction from "@/containers/InConstruction.vue";
 
 export default {
@@ -67,6 +67,7 @@ export default {
             .get(process.env.VUE_APP_STRAPI_API_URL + "/businesses/" + this.businessid)
             .then((response) => {
                 this.business = response.data;
+                console.log("risas", this.business );
             })
             .catch(() => {
                 this.layout = "notFound";
