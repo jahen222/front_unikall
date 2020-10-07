@@ -158,17 +158,45 @@
                                       </p>
                                     </div>
                                     <div class="col-8">
-                                      <div class="form-group">
+                                      <div
+                                        class="form-group"
+                                        v-if="pre_tagline"
+                                      >
                                         <v-select
                                           name="tagline"
                                           type="text"
                                           placeholder="Tagline Title"
-                                          :options="taglines"
+                                          :options="aux_tagline"
                                           v-model="register_tagline"
                                         />
                                       </div>
+
+                                      <div class="form-group" v-else>
+                                        <input
+                                          name="tagline"
+                                          type="text"
+                                          style="
+                                            border: 0px !important;
+                                            border-radius: 0 !important;
+                                            border-bottom: #000000 solid 1px !important;
+                                          "
+                                          class="form-control"
+                                          placeholder="Tagline Title"
+                                          v-model="register_tagline"
+                                        />
+                                      </div>
+                                      <div class="form-group">
+                                        <b-form-checkbox
+                                          id="checkbox-1"
+                                          v-model="check_tagline"
+                                          @change="changeTagline($event)"
+                                        >
+                                          write your own tagline
+                                        </b-form-checkbox>
+                                      </div>
                                     </div>
                                   </div>
+
                                   <div class="row">
                                     <div class="col-4">
                                       <p class="fl-micro-text">
@@ -352,7 +380,7 @@ import "vue-select/dist/vue-select.css";
 
 export default {
   name: "GenericLayouts",
-  props: ["name", "id", "layouts", "subcategories"],
+  props: ["name", "id", "layouts", "subcategories", "taglines"],
   components: {
     VueUploadMultipleImage,
     "v-select": vSelect,
@@ -376,45 +404,28 @@ export default {
       register_password: null,
       register_confirm_password: null,
       register_work_images: [],
-      taglines: [
-        "To learn a new skill from someone who already does it really well",
-        "Longing for news skills? Our approach makes learning easy",
-        "Professional teaching that provides a comprehensive education for new skills",
-        "Expert consultants who give honest and useful advice",
-        "Find the confidence to move forward in whatever you're after",
-        "Make decisions with ease after our work together",
-        "Trustworthy advice you can rely on",
-        "Host a memorable special occasion and let us handle all the details",
-        "Professional event planning to create the event of your dream, including decor, photos, music, food, and more",
-        "Need professional construction help with your next project? We have qualified professionals at affordable rates so you can get the job done!",
-        "Find & hire Plumbers, Architects, Electrical Technicians, Builders, Painters, Gardening/Landscaping and Moving Services",
-        "Feel good in a trendy wardrobe and beauty look to match",
-        "We stay on top of beauty trends to give you fresh looks and ideas for your next night out",
-        "We stay on top of wardrobe trends to help you stay stylish when choosing what to wear",
-        "We know all about sensitive makeup issues, that's why we use natural products while keeping you trendy",
-        "Take back free time with hired professionals for your household needs",
-        "We keep your home clean so you can enjoy your best moments, even if you're making a mess",
-        "Feel reassured that everything is handled when you hire professionals for your household needs",
-        "We provide a caring and nurturing atmosphere for your children to grow, learn, and play ",
-        "Enjoy peace of mind knowing your pets are in good hands while you're away",
-        "Great design, easy-to-use technology to fuel your business",
-        "When you need a web design that works for your company, and we have the professional experience to help",
-        "When you need professional graphics to showcase the solutions your business provides, we have experience and talents to help",
-        "Reach your audience and boost your sales with our professional help",
-        "We offer our professional expertise in >> SEO & SEM, Social Media & Email, Market & Customer Research, Networking, Telemarketing & Telesales << to meet your needs for growing your client base",
-        "Need more customers? Hire our professional help, our experience with >> SEO & SEM, Social Media & Email, Market & Customer Research, Networking, Telemarketing & Telesales << will drive your results",
-        "Buy what you need! It is very easy, fast, and safe.",
-        "Shop for excellent quality products from where you are! We bring the store to you",
-      ],
+      aux_tagline: [],
+      check_tagline: false,
+      pre_tagline: true,
     };
   },
-  apollo: {},
+  mounted() {
+    for (let index = 0; index < this.taglines.length; index++) {
+      const element = this.taglines[index];
+      this.aux_tagline[index] = element.text;
+    }
+  },
   methods: {
     ...mapMutations({
       setUser: "setUser",
       updateUser: "updateUser",
       logout: "logout",
     }),
+    changeTagline(event) {
+      this.register_tagline = null;
+      if (event == true) this.pre_tagline = false;
+      else this.pre_tagline = true;
+    },
     showModal(i) {
       this.$refs["modal" + i][0].show();
     },

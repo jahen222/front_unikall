@@ -140,6 +140,73 @@
                 title="Fill the information just in 3 steps"
                 subtitle="to get your Web Profile done!"
               >
+                <tab-content title="Select Layout">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-4">
+                            <p class="fl-micro-text">
+                              To select a template related to your business try
+                              our category system
+                            </p>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Category</label>
+                              <b-form-select
+                                :options="aux_categories"
+                                v-model="select_category"
+                                @input="selectCategory(select_category)"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4">
+                            <p class="fl-micro-text"></p>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1"
+                                >Sub Category</label
+                              >
+                              <b-form-select
+                                :options="aux_subcategories"
+                                v-model="select_subcategory"
+                                @input="selectSubCategory(select_subcategory)"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4">
+                            <p class="fl-micro-text"></p>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Layout</label>
+                              <b-form-select
+                                v-model="register_layout"
+                                :options="layoutOptions"
+                                @input="setSelected"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br />
+                    <div v-if="layout_preview" class="row">
+                      <div class="col-12">
+                        <div class="row">
+                          <img :src="layout_preview" width="100%" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </tab-content>
+
                 <tab-content title="Business details">
                   <div class="container">
                     <div class="row">
@@ -201,13 +268,32 @@
                             </p>
                           </div>
                           <div class="col-8">
-                            <div class="form-group">
+                            <div class="form-group" v-if="pre_tagline">
                               <b-form-group :label="$t('Tagline Title')">
                                 <v-select
                                   :options="taglines"
                                   v-model="register_tagline"
                                 />
                               </b-form-group>
+                            </div>
+                            <div class="form-group" v-else>
+                              <b-form-group :label="$t('Tagline Title')">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  aria-describedby="emailHelp"
+                                  v-model="register_tagline"
+                                />
+                              </b-form-group>
+                            </div>
+                            <div class="form-group">
+                              <b-form-checkbox
+                                id="checkbox-1"
+                                v-model="check_tagline"
+                                @change="changeTagline($event)"
+                              >
+                                write your own tagline
+                              </b-form-checkbox>
                             </div>
                           </div>
                         </div>
@@ -235,29 +321,7 @@
                     </div>
                   </div>
                 </tab-content>
-                <tab-content title="Layout Info">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="row">
-                          <b-form-select
-                            v-model="register_layout"
-                            :options="layoutOptions"
-                            plain
-                            @input="setSelected"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="layout_preview" class="row">
-                      <div class="col-12">
-                        <div class="row">
-                          <img :src="layout_preview" width="100%" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </tab-content>
+
                 <tab-content title="Personal details">
                   <div class="container">
                     <div class="row">
@@ -395,6 +459,7 @@ import VueUploadMultipleImage from "vue-upload-multiple-image";
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
 //import POST_BUSINESS from "./mutations/POST_BUSINESS";
+import gql from "graphql-tag";
 
 export default {
   name: "Header",
@@ -426,49 +491,57 @@ export default {
       register_layout: null,
       aux_layout: [],
       layout_preview: null,
-      taglines: [
-        "To learn a new skill from someone who already does it really well",
-        "Longing for news skills? Our approach makes learning easy",
-        "Professional teaching that provides a comprehensive education for new skills",
-        "Expert consultants who give honest and useful advice",
-        "Find the confidence to move forward in whatever you're after",
-        "Make decisions with ease after our work together",
-        "Trustworthy advice you can rely on",
-        "Host a memorable special occasion and let us handle all the details",
-        "Professional event planning to create the event of your dream, including decor, photos, music, food, and more",
-        "Need professional construction help with your next project? We have qualified professionals at affordable rates so you can get the job done!",
-        "Find & hire Plumbers, Architects, Electrical Technicians, Builders, Painters, Gardening/Landscaping and Moving Services",
-        "Feel good in a trendy wardrobe and beauty look to match",
-        "We stay on top of beauty trends to give you fresh looks and ideas for your next night out",
-        "We stay on top of wardrobe trends to help you stay stylish when choosing what to wear",
-        "We know all about sensitive makeup issues, that's why we use natural products while keeping you trendy",
-        "Take back free time with hired professionals for your household needs",
-        "We keep your home clean so you can enjoy your best moments, even if you're making a mess",
-        "Feel reassured that everything is handled when you hire professionals for your household needs",
-        "We provide a caring and nurturing atmosphere for your children to grow, learn, and play ",
-        "Enjoy peace of mind knowing your pets are in good hands while you're away",
-        "Great design, easy-to-use technology to fuel your business",
-        "When you need a web design that works for your company, and we have the professional experience to help",
-        "When you need professional graphics to showcase the solutions your business provides, we have experience and talents to help",
-        "Reach your audience and boost your sales with our professional help",
-        "We offer our professional expertise in >> SEO & SEM, Social Media & Email, Market & Customer Research, Networking, Telemarketing & Telesales << to meet your needs for growing your client base",
-        "Need more customers? Hire our professional help, our experience with >> SEO & SEM, Social Media & Email, Market & Customer Research, Networking, Telemarketing & Telesales << will drive your results",
-        "Buy what you need! It is very easy, fast, and safe.",
-        "Shop for excellent quality products from where you are! We bring the store to you",
-      ],
+      select_category: null,
+      aux_subcategories: null,
+      select_subcategory: null,
+      pre_tagline: true,
+      check_tagline: false,
     };
   },
   async mounted() {
     await axios
       .get(process.env.VUE_APP_STRAPI_API_URL + "/layouts/")
       .then((response) => {
-        var options = response.data;
-        this.aux_layout = options;
-        for (let index = 0; index < options.length; index++) {
-          this.layoutOptions.push(options[index].name);
-        }
+        this.aux_layout = response.data;
+        //console.log(this.aux_layout);
       });
-    //console.log(this.layoutOptions);
+  },
+  apollo: {
+    categories: gql`
+      query getCategories {
+        categories {
+          id
+          name
+          layouts {
+            id
+            name
+            preview {
+              url
+            }
+            mockup {
+              url
+            }
+          }
+          subcategories {
+            id
+            name
+            layouts {
+              id
+              name
+              preview {
+                url
+              }
+              mockup {
+                url
+              }
+            }
+          }
+          taglines {
+            text
+          }
+        }
+      }
+    `,
   },
   computed: {
     username() {
@@ -479,6 +552,35 @@ export default {
         return user.username;
       }
       return user;
+    },
+    aux_categories: function () {
+      var categories = [];
+
+      if (this.categories != null) {
+        for (let index = 0; index < this.categories.length; index++) {
+          const element = this.categories[index];
+          categories[index] = element.name;
+        }
+      }
+
+      return categories;
+    },
+    taglines: function () {
+      var taglines = [];
+
+      if (this.select_category != null) {
+        for (let index = 0; index < this.categories.length; index++) {
+          const element = this.categories[index];
+          if (element.name == this.select_category) {
+            for (let index2 = 0; index2 < element.taglines.length; index2++) {
+              const element2 = element.taglines[index2];
+              taglines.push(element2.text);
+            }
+          }
+        }
+      }
+
+      return taglines;
     },
   },
   methods: {
@@ -599,6 +701,9 @@ export default {
     checkRegisterForm: function () {
       this.errors = [];
 
+      if (!this.register_layout) {
+        this.errors.push(" The layout is required.");
+      }
       if (!this.register_business_name) {
         this.errors.push(" The business name is required.");
       }
@@ -644,6 +749,42 @@ export default {
     editWorkImagesImage: function (formData, index, fileList) {
       this.register_work_images = fileList;
     },
+    selectCategory(select_category) {
+      var subcategories = [];
+      this.layoutOptions = [];
+      this.layout_preview = null;
+      this.register_layout = null;
+
+      if (this.categories != null) {
+        for (let index = 0; index < this.categories.length; index++) {
+          const element = this.categories[index];
+          if (element.name == select_category) {
+            for (
+              let index2 = 0;
+              index2 < element.subcategories.length;
+              index2++
+            ) {
+              const element2 = element.subcategories[index2];
+              subcategories[index2] = element2.name;
+            }
+          }
+        }
+      }
+
+      this.aux_subcategories = subcategories;
+    },
+    selectSubCategory(select_subcategory) {
+      this.layoutOptions = [];
+      this.layout_preview = null;
+      this.register_layout = null;
+
+      for (let index = 0; index < this.aux_layout.length; index++) {
+        const element = this.aux_layout[index];
+        if (element.subcategory.name == select_subcategory) {
+          this.layoutOptions.push(this.aux_layout[index].name);
+        }
+      }
+    },
     setSelected() {
       var layout_url = null;
 
@@ -655,6 +796,11 @@ export default {
       }
 
       this.layout_preview = process.env.VUE_APP_STRAPI_API_URL + layout_url;
+    },
+    changeTagline(event) {
+      this.register_tagline = null;
+      if (event == true) this.pre_tagline = false;
+      else this.pre_tagline = true;
     },
   },
   notifications: {
