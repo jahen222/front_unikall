@@ -1,10 +1,10 @@
 <template>
   <!-- Product Details section -->
   <section class="py-5 bg-light">
-    <div class="container">
-      <form @submit.prevent="submit">
+    <div class="container">      
         <div class="row">
           <div class="col-6">
+            <form @submit.prevent="submit">
             <div class="form-row">
               <h1>Contact Information</h1>
             </div>
@@ -126,6 +126,7 @@
                 </button>
               </div>
             </div>
+            </form>
           </div>
           <div class="col-6">
             <div class="row mt-2" v-for="(item, index) in cart" :key="index">
@@ -142,11 +143,11 @@
             </div>
             <div class="form-row mt-3 border-top"></div>
             <div class="form-row mt-2">
+              <form @submit.prevent="applycoupon" style="width: 100%;display: inline-flex;">
               <div class="form-group col-8">
                 <input
                   type=" text"
                   class="form-control"
-                  :class="{ hasError: $v.form.city.$error }"
                   v-model="form.city"
                   id="city"
                   name="city"
@@ -155,12 +156,13 @@
               </div>
               <div class="form-group col-4 text-right">
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-outline-secondary text-black poppinfont"
                 >
                   <b class="text-black">APPLY</b>
                 </button>
               </div>
+              </form>
             </div>
             <div class="form-row mt-3 border-top"></div>
             <div class="form-row mt-2">
@@ -178,7 +180,7 @@
             </div>
           </div>
         </div>
-      </form>
+      
     </div>
   </section>
 </template>
@@ -202,8 +204,10 @@ export default {
         country: "",
         province: "",
         postalcode: "",
-        coupon: "",
       },
+      coupon: {
+        code: ""
+      }
     };
   },
   validations: {
@@ -232,7 +236,11 @@ export default {
       postalcode: {
         required,
       },
-      coupon: {},
+    },
+    coupon: {
+      code : {
+        required,
+      }
     },
   },
   computed: {
@@ -322,6 +330,23 @@ export default {
           console.log(response.data);
         });
     },
+    async applycoupon(){
+      this.$v.coupon.$touch();
+      if (this.$v.coupon.$error) return;      
+      
+      await axios
+        .post(
+          process.env.VUE_APP_STRAPI_API_URL + "/applycoupon/",
+          _orderItem,
+          {}
+        )
+        .then((response) => {
+          this.showSuccess({
+            message: "Order information updated successfully",
+          });
+          console.log(response.data);
+        });
+    }
   },
   notifications: {
     showError: {

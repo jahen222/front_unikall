@@ -61,7 +61,9 @@ export default {
         },
         addToCart(item) {
             this.$store.dispatch("addCartItem", item);
-
+            this.showSuccess({
+                message: "Item ("+item.name+") added to cart",
+          });
         },
         updatequantity(direction) {
             if (direction) {
@@ -84,7 +86,19 @@ export default {
             .catch(() => {
                 this.product = "notFound";
             });
-    }
+    },
+    notifications: {
+    showError: {
+      title: "Failed",
+      message: "Failed",
+      type: "error",
+    },
+    showSuccess: {
+      title: "Success",
+      message: "Success",
+      type: "success",
+    },
+  }
 };
 </script>
 

@@ -292,4 +292,9 @@ h1 {
 .poppinfont {
     font-family: 'poppinsregular' !important;
 }
+
+.mini-toastr__notification{
+    padding:10px !important;
+    width:auto !important;
+}
 </style>
