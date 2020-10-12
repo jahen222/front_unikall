@@ -4,8 +4,9 @@
       <b-colxx xxs="12">
         <h1>Business</h1>
         <h5>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-          aliquam erat volutpat.
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+          volutpat.
         </h5>
         <div class="separator mb-5"></div>
       </b-colxx>
@@ -17,7 +18,10 @@
             <h4>
               Business Imformation
               <a @click="helpBusinessInfoForm">
-                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+                <i
+                  class="iconsminds-speach-bubble-asking"
+                  style="color: #007bff"
+                />
               </a>
             </h4>
             <b-form @submit.prevent="checkBusinessInfoForm">
@@ -39,11 +43,28 @@
                 </b-colxx>
                 <b-colxx sm="6">
                   <b-form-group :label="$t('Your work')">
-                    <b-form-input type="text" v-model="gridForm.description" />
+                    <b-form-textarea
+                      id="textarea"
+                      v-model="gridForm.description"
+                      rows="3"
+                      max-rows="10"
+                    ></b-form-textarea>
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('latitude')">
+                    <b-form-input type="number" v-model="gridForm.latitude" />
+                  </b-form-group>
+                </b-colxx>
+                <b-colxx sm="6">
+                  <b-form-group :label="$t('longitude')">
+                    <b-form-input type="number" v-model="gridForm.longitude" />
                   </b-form-group>
                 </b-colxx>
               </b-row>
-              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+              <b-button type="submit" variant="primary" class="mt-4">{{
+                $t("Save")
+              }}</b-button>
             </b-form>
           </b-card-body>
         </b-card>
@@ -56,7 +77,10 @@
             <h4>
               Company Address
               <a @click="helpCompanyAddressForm">
-                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+                <i
+                  class="iconsminds-speach-bubble-asking"
+                  style="color: #007bff"
+                />
               </a>
             </h4>
             <b-form @submit.prevent="checkCompanyAddressForm">
@@ -78,21 +102,32 @@
                 </b-colxx>
                 <b-colxx sm="3">
                   <b-form-group :label="$t('forms.zip')">
-                    <b-form-input type="number" v-model="gridForm.zip"></b-form-input>
+                    <b-form-input
+                      type="number"
+                      v-model="gridForm.zip"
+                    ></b-form-input>
                   </b-form-group>
                 </b-colxx>
                 <b-colxx sm="12">
                   <b-form-group :label="$t('Address 1')">
-                    <b-form-input type="text" v-model="gridForm.address1"></b-form-input>
+                    <b-form-input
+                      type="text"
+                      v-model="gridForm.address1"
+                    ></b-form-input>
                   </b-form-group>
                 </b-colxx>
                 <b-colxx sm="12">
                   <b-form-group :label="$t('forms.address2')">
-                    <b-form-input type="text" v-model="gridForm.address2"></b-form-input>
+                    <b-form-input
+                      type="text"
+                      v-model="gridForm.address2"
+                    ></b-form-input>
                   </b-form-group>
                 </b-colxx>
               </b-row>
-              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+              <b-button type="submit" variant="primary" class="mt-4">{{
+                $t("Save")
+              }}</b-button>
             </b-form>
           </b-card-body>
         </b-card>
@@ -105,7 +140,10 @@
             <h4>
               Logo
               <a @click="helpLogoForm">
-                <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
+                <i
+                  class="iconsminds-speach-bubble-asking"
+                  style="color: #007bff"
+                />
               </a>
             </h4>
             <b-form @submit.prevent="checkLogoForm">
@@ -127,11 +165,17 @@
                 </b-colxx>
                 <b-colxx sm="6">
                   <b-form-group :label="$t('Actual')">
-                    <img v-if="logo_preview" :src="logo_preview" width="200px" />
+                    <img
+                      v-if="logo_preview"
+                      :src="logo_preview"
+                      width="200px"
+                    />
                   </b-form-group>
                 </b-colxx>
               </b-row>
-              <b-button type="submit" variant="primary" class="mt-4">{{ $t('Save') }}</b-button>
+              <b-button type="submit" variant="primary" class="mt-4">{{
+                $t("Save")
+              }}</b-button>
             </b-form>
           </b-card-body>
         </b-card>
@@ -167,6 +211,8 @@ export default {
         zip: null,
         logo: [],
         logo_preview: null,
+        longitude: null,
+        latitude: null,
       },
     };
   },
@@ -195,6 +241,9 @@ export default {
         this.gridForm.city = this.business.city;
         this.gridForm.state = this.business.state;
         this.gridForm.zip = this.business.zip;
+        this.gridForm.longitude = this.business.longitude;
+        this.gridForm.latitude = this.business.latitude;
+
         if (this.business.logo) {
           this.logo_preview =
             process.env.VUE_APP_STRAPI_API_URL + this.business.logo.url;
@@ -219,6 +268,8 @@ export default {
         tagline: this.gridForm.tagline,
         email: this.gridForm.email,
         description: this.gridForm.description,
+        latitude: this.gridForm.latitude,
+        longitude: this.gridForm.longitude,
       };
       await axios
         .put(

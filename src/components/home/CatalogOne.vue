@@ -3,7 +3,7 @@
     <img src="../../assets/oapee/images/shapes/blog-shape-1-1.png" class="blog-one__bg-shape-1" alt />
     <img src="../../assets/oapee/images/shapes/blog-shape-1-2.png" class="blog-one__bg-shape-2" alt />
     <div class="container">
-      <div class="block-title text-center">
+      <div class="block-title text-center" style="padding-top: 4%"> 
         <h3>Featured categories</h3>
       </div>
       <div class="row">
@@ -14,7 +14,7 @@
             </div>
             <div class="blog-one__content">
               <h3>
-                <a href="blog-details.html">E commerce</a>
+                <a href="/journey">E commerce</a>
               </h3>
             </div>
           </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="blog-one__content">
               <h3>
-                <a href="blog-details.html">Marketing & Sales</a>
+                <a href="/journey">Marketing & Sales</a>
               </h3>
             </div>
           </div>
@@ -38,7 +38,7 @@
             </div>
             <div class="blog-one__content">
               <h3>
-                <a href="blog-details.html">Lessons</a>
+                <a href="/journey">Lessons</a>
               </h3>
             </div>
           </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="blog-one__content">
               <h3>
-                <a href="blog-details.html">Household Services</a>
+                <a href="/journey">Household Services</a>
               </h3>
             </div>
           </div>
@@ -62,7 +62,7 @@
             </div>
             <div class="blog-one__content">
               <h3>
-                <a href="blog-details.html">Construction & Home Improvements</a>
+                <a href="/journey">Construction & Home Improvements</a>
               </h3>
             </div>
           </div>
@@ -74,7 +74,7 @@
             </div>
             <div class="blog-one__content">
               <h3>
-                <a href="blog-details.html">Events</a>
+                <a href="/journey">Events</a>
               </h3>
             </div>
           </div>

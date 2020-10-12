@@ -2,8 +2,7 @@
 <!-- Header - set the background image for the header in the line below -->
 <header class="py-5 bg-image-full tex-left" v-bind:style="{ 'background-image': 'url(' + sliderimage + ')' }" style="text-allign:left;min-height:500px;position:relative">
     <div class="sliderCaption tex-left" style="max-width:420px;text-align:left;">
-        <h3 class="text-white poppinfont bold" style="font-size:3rem;">Lorum Lipsum Lorum</h3>
-        <button type="button" class="btn btn-outline-primary brand-btn text-white poppinfont">Details</button>
+        <h3 class="text-white poppinfont bold" style="font-size:3rem;">{{tagline}}</h3>
     </div>
 </header>
 </template>
@@ -11,7 +10,7 @@
 <script>
 export default {
     name: "ServiceSlider",
-    props: ['businessbanner'],
+    props: ['businessbanner', 'tagline'],
     data() {
         return {
             api_url: process.env.VUE_APP_STRAPI_API_URL

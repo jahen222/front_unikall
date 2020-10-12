@@ -31,7 +31,7 @@
           @edit-image="editPhotosImage"
           dragText="Click to upload file"
           browseText
-          maxImage="6"
+          maxImage="3"
           primaryText="Primary"
           markIsPrimaryText="Mark as Primary"
           popupText="This image will be displayed as default"

@@ -3,7 +3,11 @@
     <div class="container-fluid">
       <div class="site-header-one__logo">
         <a href="/">
-          <img src="../../assets/unikall/images/unikall-logo-white.png" width="136" alt />
+          <img
+            src="../../assets/unikall/images/unikall-logo-white.png"
+            width="136"
+            alt
+          />
         </a>
         <span class="side-menu__toggler">
           <i class="fa fa-bars"></i>
@@ -12,7 +16,9 @@
       <div class="main-nav__main-navigation one-page-scroll-menu">
         <ul class="main-nav__navigation-box">
           <li v-if="username" class="scrollToLink">
-            <a href="/dashboard" target="_blank" style="color: #ff864c;">Dashboard</a>
+            <a href="/dashboard" target="_blank" style="color: #ff864c"
+              >Dashboard</a
+            >
           </li>
           <li v-if="username" class="scrollToLink">
             <a href="#">|</a>
@@ -44,7 +50,9 @@
         </ul>
       </div>
 
-      <div class="main-nav__main-navigation one-page-scroll-menu main-nav__right">
+      <div
+        class="main-nav__main-navigation one-page-scroll-menu main-nav__right"
+      >
         <ul class="main-nav__navigation-box">
           <li class="dropdown scrollToLink" v-if="username">
             <a href="#" class="thm-btn main-nav__btn">
@@ -73,9 +81,16 @@
             </ul>
             <b-modal id="login" hide-footer size="l" class="text-center">
               <template v-slot:modal-header="{ close }">
-                <b-button size="sm" variant="danger" @click="close()">Close</b-button>
+                <b-button size="sm" variant="danger" @click="close()"
+                  >Close</b-button
+                >
               </template>
-              <form-wizard @on-complete="handleSubmitLogin" color="#343a40" title subtitle>
+              <form-wizard
+                @on-complete="handleSubmitLogin"
+                color="#343a40"
+                title
+                subtitle
+              >
                 <tab-content title="Log-in">
                   <div class="container">
                     <div class="row">
@@ -114,7 +129,9 @@
             </b-modal>
             <b-modal id="regiter" hide-footer size="xl" class="text-center">
               <template v-slot:modal-header="{ close }">
-                <b-button size="sm" variant="danger" @click="close()">Close</b-button>
+                <b-button size="sm" variant="danger" @click="close()"
+                  >Close</b-button
+                >
               </template>
 
               <form-wizard
@@ -123,6 +140,73 @@
                 title="Fill the information just in 3 steps"
                 subtitle="to get your Web Profile done!"
               >
+                <tab-content title="Select Layout">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-4">
+                            <p class="fl-micro-text">
+                              To select a template related to your business try
+                              our category system
+                            </p>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Category</label>
+                              <b-form-select
+                                :options="aux_categories"
+                                v-model="select_category"
+                                @input="selectCategory(select_category)"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4">
+                            <p class="fl-micro-text"></p>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1"
+                                >Sub Category</label
+                              >
+                              <b-form-select
+                                :options="aux_subcategories"
+                                v-model="select_subcategory"
+                                @input="selectSubCategory(select_subcategory)"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4">
+                            <p class="fl-micro-text"></p>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Layout</label>
+                              <b-form-select
+                                v-model="register_layout"
+                                :options="layoutOptions"
+                                @input="setSelected"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br />
+                    <div v-if="layout_preview" class="row">
+                      <div class="col-12">
+                        <div class="row">
+                          <img :src="layout_preview" width="100%" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </tab-content>
+
                 <tab-content title="Business details">
                   <div class="container">
                     <div class="row">
@@ -130,13 +214,15 @@
                         <div class="row">
                           <div class="col-4">
                             <p class="fl-micro-text">
-                              How you wish your customers knows the name
-                              of your brand
+                              How you wish your customers knows the name of your
+                              brand
                             </p>
                           </div>
                           <div class="col-8">
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Business Name</label>
+                              <label for="exampleInputEmail1"
+                                >Business Name</label
+                              >
                               <input
                                 type="text"
                                 class="form-control"
@@ -155,7 +241,9 @@
                           </div>
                           <div class="col-8">
                             <div class="form-group">
-                              <label for="exampleInputPassword1">Upload Logo</label>
+                              <label for="exampleInputPassword1"
+                                >Upload Logo</label
+                              >
                               <vue-upload-multiple-image
                                 @upload-success="uploadWorkImagesSuccess"
                                 @before-remove="beforeWorkImagesRemove"
@@ -174,20 +262,38 @@
                           <div class="col-4">
                             <p class="fl-micro-text">
                               What Your Customer Wants : enter an attractive
-                              title, a good title encourages buyers to see you! If
-                              you want to use one of our suggested phrases
+                              title, a good title encourages buyers to see you!
+                              If you want to use one of our suggested phrases
                               just click here
                             </p>
                           </div>
                           <div class="col-8">
+                            <div class="form-group" v-if="pre_tagline">
+                              <b-form-group :label="$t('Tagline Title')">
+                                <v-select
+                                  :options="taglines"
+                                  v-model="register_tagline"
+                                />
+                              </b-form-group>
+                            </div>
+                            <div class="form-group" v-else>
+                              <b-form-group :label="$t('Tagline Title')">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  aria-describedby="emailHelp"
+                                  v-model="register_tagline"
+                                />
+                              </b-form-group>
+                            </div>
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Tagline Title</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                aria-describedby="emailHelp"
-                                v-model="register_tagline"
-                              />
+                              <b-form-checkbox
+                                id="checkbox-1"
+                                v-model="check_tagline"
+                                @change="changeTagline($event)"
+                              >
+                                write your own tagline
+                              </b-form-checkbox>
                             </div>
                           </div>
                         </div>
@@ -215,29 +321,7 @@
                     </div>
                   </div>
                 </tab-content>
-                <tab-content title="Layout Info">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="row">
-                          <b-form-select
-                            v-model="register_layout"
-                            :options="layoutOptions"
-                            plain
-                            @input="setSelected"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="layout_preview" class="row">
-                      <div class="col-12">
-                        <div class="row">
-                          <img :src="layout_preview" width="100%" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </tab-content>
+
                 <tab-content title="Personal details">
                   <div class="container">
                     <div class="row">
@@ -251,7 +335,9 @@
                           </div>
                           <div class="col-8">
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Add Location</label>
+                              <label for="exampleInputEmail1"
+                                >Add Location</label
+                              >
                               <input
                                 type="text"
                                 class="form-control"
@@ -263,11 +349,15 @@
                         </div>
                         <div class="row">
                           <div class="col-4">
-                            <p class="fl-micro-text">Name helps buyers to trust you</p>
+                            <p class="fl-micro-text">
+                              Name helps buyers to trust you
+                            </p>
                           </div>
                           <div class="col-8">
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Contact Username</label>
+                              <label for="exampleInputEmail1"
+                                >Contact Username</label
+                              >
                               <input
                                 type="text"
                                 class="form-control"
@@ -279,12 +369,15 @@
                         </div>
                         <div class="row">
                           <div class="col-4">
-                            <p class="fl-micro-text">Insert a valid phone number</p>
+                            <p class="fl-micro-text">
+                              Insert a valid phone number
+                            </p>
                           </div>
-      var layout_id = layout_id;
                           <div class="col-8">
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Phone Number</label>
+                              <label for="exampleInputEmail1"
+                                >Phone Number</label
+                              >
                               <input
                                 type="text"
                                 class="form-control"
@@ -311,7 +404,6 @@
                           </div>
                         </div>
                         <div class="row">
-      var layout_id = layout_id;
                           <div class="col-4">
                             <p class="fl-micro-text">Insert a valid password</p>
                           </div>
@@ -319,7 +411,7 @@
                             <div class="form-group">
                               <label for="exampleInputEmail1">Password</label>
                               <input
-                                type="text"
+                                type="password"
                                 class="form-control"
                                 aria-describedby="emailHelp"
                                 v-model="register_password"
@@ -333,9 +425,11 @@
                           </div>
                           <div class="col-8">
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Confirm Password</label>
+                              <label for="exampleInputEmail1"
+                                >Confirm Password</label
+                              >
                               <input
-                                type="text"
+                                type="password"
                                 class="form-control"
                                 aria-describedby="emailHelp"
                                 v-model="register_confirm_password"
@@ -362,12 +456,16 @@ import store from "../../store";
 import Cookies from "js-cookie";
 import axios from "axios";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
 //import POST_BUSINESS from "./mutations/POST_BUSINESS";
+import gql from "graphql-tag";
 
 export default {
   name: "Header",
   components: {
     VueUploadMultipleImage,
+    "v-select": vSelect,
   },
   data() {
     return {
@@ -393,19 +491,57 @@ export default {
       register_layout: null,
       aux_layout: [],
       layout_preview: null,
+      select_category: null,
+      aux_subcategories: null,
+      select_subcategory: null,
+      pre_tagline: true,
+      check_tagline: false,
     };
   },
   async mounted() {
     await axios
       .get(process.env.VUE_APP_STRAPI_API_URL + "/layouts/")
       .then((response) => {
-        var options = response.data;
-        this.aux_layout = options;
-        for (let index = 0; index < options.length; index++) {
-          this.layoutOptions.push(options[index].name);
-        }
+        this.aux_layout = response.data;
+        //console.log(this.aux_layout);
       });
-    //console.log(this.layoutOptions);
+  },
+  apollo: {
+    categories: gql`
+      query getCategories {
+        categories {
+          id
+          name
+          layouts {
+            id
+            name
+            preview {
+              url
+            }
+            mockup {
+              url
+            }
+          }
+          subcategories {
+            id
+            name
+            layouts {
+              id
+              name
+              preview {
+                url
+              }
+              mockup {
+                url
+              }
+            }
+          }
+          taglines {
+            text
+          }
+        }
+      }
+    `,
   },
   computed: {
     username() {
@@ -416,6 +552,35 @@ export default {
         return user.username;
       }
       return user;
+    },
+    aux_categories: function () {
+      var categories = [];
+
+      if (this.categories != null) {
+        for (let index = 0; index < this.categories.length; index++) {
+          const element = this.categories[index];
+          categories[index] = element.name;
+        }
+      }
+
+      return categories;
+    },
+    taglines: function () {
+      var taglines = [];
+
+      if (this.select_category != null) {
+        for (let index = 0; index < this.categories.length; index++) {
+          const element = this.categories[index];
+          if (element.name == this.select_category) {
+            for (let index2 = 0; index2 < element.taglines.length; index2++) {
+              const element2 = element.taglines[index2];
+              taglines.push(element2.text);
+            }
+          }
+        }
+      }
+
+      return taglines;
     },
   },
   methods: {
@@ -435,7 +600,7 @@ export default {
             message: "Welcome " + response.data.user.username,
           });
           this.setUser(response.data);
-          this.$router.go();
+          this.$router.push("/dashboard");
         })
         .catch((error) => {
           this.showLoginError({
@@ -513,7 +678,7 @@ export default {
                 var user = JSON.parse(localStorage.getItem("user"));
                 user.business = JSON.parse(request.response);
                 this.updateUser(user);
-                this.$router.go();
+                this.$router.push("/dashboard");
               }
             }
           };
@@ -536,6 +701,9 @@ export default {
     checkRegisterForm: function () {
       this.errors = [];
 
+      if (!this.register_layout) {
+        this.errors.push(" The layout is required.");
+      }
       if (!this.register_business_name) {
         this.errors.push(" The business name is required.");
       }
@@ -581,6 +749,42 @@ export default {
     editWorkImagesImage: function (formData, index, fileList) {
       this.register_work_images = fileList;
     },
+    selectCategory(select_category) {
+      var subcategories = [];
+      this.layoutOptions = [];
+      this.layout_preview = null;
+      this.register_layout = null;
+
+      if (this.categories != null) {
+        for (let index = 0; index < this.categories.length; index++) {
+          const element = this.categories[index];
+          if (element.name == select_category) {
+            for (
+              let index2 = 0;
+              index2 < element.subcategories.length;
+              index2++
+            ) {
+              const element2 = element.subcategories[index2];
+              subcategories[index2] = element2.name;
+            }
+          }
+        }
+      }
+
+      this.aux_subcategories = subcategories;
+    },
+    selectSubCategory(select_subcategory) {
+      this.layoutOptions = [];
+      this.layout_preview = null;
+      this.register_layout = null;
+
+      for (let index = 0; index < this.aux_layout.length; index++) {
+        const element = this.aux_layout[index];
+        if (element.subcategory.name == select_subcategory) {
+          this.layoutOptions.push(this.aux_layout[index].name);
+        }
+      }
+    },
     setSelected() {
       var layout_url = null;
 
@@ -592,6 +796,11 @@ export default {
       }
 
       this.layout_preview = process.env.VUE_APP_STRAPI_API_URL + layout_url;
+    },
+    changeTagline(event) {
+      this.register_tagline = null;
+      if (event == true) this.pre_tagline = false;
+      else this.pre_tagline = true;
     },
   },
   notifications: {

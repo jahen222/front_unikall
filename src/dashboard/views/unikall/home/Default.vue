@@ -7,6 +7,36 @@
       </b-colxx>
     </b-row>
     <b-row>
+      <b-colxx xxs="12">
+        <b-card class="mb-4" :title="$t('Welcome')" no-body>
+          <b-card-body>
+            <h4>
+              Welcome
+              <a @click="helpUserInfoForm">
+                <i
+                  class="iconsminds-speach-bubble-asking"
+                  style="color: #007bff"
+                />
+              </a>
+            </h4>
+            <b-row>
+              <b-colxx sm="12">
+                <a href="/dashboard/app/products/products"
+                  >Add a Product to Store</a
+                >
+                <br />
+                <a href="/dashboard/app/service/service">Add a Service</a>
+                <br />
+                <a href="/dashboard/app/blog/blog">Add a Blog Post</a>
+                <br />
+                <a href="/dashboard/app/business/layout">Select Your Bussines Layout</a>
+              </b-colxx>
+            </b-row>
+          </b-card-body>
+        </b-card>
+      </b-colxx>
+    </b-row>
+    <b-row>
       <b-colxx xl="6" lg="12">
         <icon-cards-carousel></icon-cards-carousel>
         <b-row>
@@ -76,6 +106,31 @@ export default {
     "sales-chart-card": SalesChartCard,
     "sortable-statictics-row": SortableStaticticsRow,
     "website-visit-chart-card": WebsiteVisitsChartCard,
+  },
+  methods: {
+    helpUserInfoForm: function () {
+      this.showInfo({
+        message:
+          "here you will find some important accesses within the dashboard",
+      });
+    },
+  },
+  notifications: {
+    showError: {
+      title: "Failed",
+      message: "Failed",
+      type: "error",
+    },
+    showSuccess: {
+      title: "Success",
+      message: "Success",
+      type: "success",
+    },
+    showInfo: {
+      title: "Information",
+      message: "Success",
+      type: "info",
+    },
   },
 };
 </script>

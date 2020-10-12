@@ -18,6 +18,7 @@
         :to="to"
         :total="total"
         :perPage="perPage"
+        :items="items"
       ></list-page-heading>
       <template v-if="isLoad">
         <list-page-listing
@@ -95,14 +96,14 @@ export default {
         )
         .then((response) => {
           var data = response.data;
-          //console.log("lo que llega del server",data);
+          console.log("lo que llega del server", data);
           var posts = data.business_services;
           for (let index = 0; index < posts.length; index++) {
             const element = posts[index];
 
             var image = "";
             if (element.image) {
-              image = element.image.formats.thumbnail.url
+              image = element.image[0].formats.thumbnail.url;
             }
 
             this.items[index] = {

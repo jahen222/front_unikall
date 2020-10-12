@@ -5,13 +5,30 @@
         <div class="col-lg-12 block-title">
           <div>
             <b-tabs content-class="mt-3">
-              <b-tab v-for="subcategory in subcategories" v-bind:key="subcategory.id">
-                <template v-slot:title style="color: black">{{subcategory.name}}</template>
-                <div v-if="subcategory.layouts && subcategory.layouts.length > 0" class="row">
-                  <div v-for="item in subcategory.layouts" v-bind:key="item.id" class="col-lg-6">
+              <b-tab
+                v-for="subcategory in subcategories"
+                v-bind:key="subcategory.id"
+              >
+                <template v-slot:title>{{ subcategory.name }}</template>
+                <div
+                  v-if="subcategory.layouts && subcategory.layouts.length > 0"
+                  class="row"
+                >
+                  <div
+                    v-for="item in subcategory.layouts"
+                    v-bind:key="item.id"
+                    class="col-lg-6"
+                  >
                     <div class="blog-one__single">
-                      <div class="blog-one__image" v-if="item.preview && item.preview.url">
-                        <img @click="showModal(item.id)" :src="api_url + item.preview.url" alt />
+                      <div
+                        class="blog-one__image"
+                        v-if="item.preview && item.preview.url"
+                      >
+                        <img
+                          @click="showModal(item.id)"
+                          :src="api_url + item.preview.url"
+                          alt
+                        />
                       </div>
                       <div class="blog-one__image" v-else>
                         <img
@@ -27,9 +44,16 @@
                       </div>
                     </div>
 
-                    <b-modal :ref="'modal'+item.id" hide-footer size="xl" class="text-center">
+                    <b-modal
+                      :ref="'modal' + item.id"
+                      hide-footer
+                      size="xl"
+                      class="text-center"
+                    >
                       <template v-slot:modal-header="{ close }">
-                        <b-button size="sm" variant="danger" @click="close()">Close</b-button>
+                        <b-button size="sm" variant="danger" @click="close()"
+                          >Close</b-button
+                        >
                       </template>
                       <form>
                         <form-wizard
@@ -45,7 +69,11 @@
                             class="text-center"
                             v-if="item.mockup && item.mockup.url"
                           >
-                            <img :src="api_url + item.mockup.url" width="70%" alt />
+                            <img
+                              :src="api_url + item.mockup.url"
+                              width="70%"
+                              alt
+                            />
                           </tab-content>
                           <tab-content
                             title="Layout details"
@@ -53,17 +81,23 @@
                             class="text-center"
                             v-else
                           >
-                            <img src="../../assets/unikall/images/default.jpg" alt />
+                            <img
+                              src="../../assets/unikall/images/default.jpg"
+                              alt
+                            />
                           </tab-content>
-                          <tab-content title="Personal details" icon="fas fa-user">
+                          <tab-content
+                            title="Personal details"
+                            icon="fas fa-user"
+                          >
                             <div class="container">
                               <div class="row">
                                 <div class="col-12">
                                   <div class="row">
                                     <div class="col-4">
                                       <p class="fl-micro-text">
-                                        How you wish your customers know the name
-                                        of your brand
+                                        How you wish your customers know the
+                                        name of your brand
                                       </p>
                                     </div>
                                     <div class="col-8">
@@ -71,7 +105,11 @@
                                         <input
                                           type="text"
                                           name="name"
-                                          style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;"
+                                          style="
+                                            border: 0px !important;
+                                            border-radius: 0 !important;
+                                            border-bottom: #000000 solid 1px !important;
+                                          "
                                           class="form-control"
                                           placeholder="Business Name"
                                           v-model="register_business_name"
@@ -82,16 +120,22 @@
                                   <div class="row">
                                     <div class="col-4">
                                       <p class="fl-micro-text">
-                                        It is optional to you to upload an image of your
-                                        business logo (jpg, png)
+                                        It is optional to you to upload an image
+                                        of your business logo (jpg, png)
                                       </p>
                                     </div>
                                     <div class="col-8">
                                       <div class="form-group">
-                                        <label for="exampleInputPassword1">Upload Logo</label>
+                                        <label for="exampleInputPassword1"
+                                          >Upload Logo</label
+                                        >
                                         <vue-upload-multiple-image
-                                          @upload-success="uploadWorkImagesSuccess"
-                                          @before-remove="beforeWorkImagesRemove"
+                                          @upload-success="
+                                            uploadWorkImagesSuccess
+                                          "
+                                          @before-remove="
+                                            beforeWorkImagesRemove
+                                          "
                                           @edit-image="editWorkImagesImage"
                                           dragText="Click to upload file"
                                           browseText
@@ -106,30 +150,59 @@
                                   <div class="row">
                                     <div class="col-4">
                                       <p class="fl-micro-text">
-                                        What Your Customer Wants : enter an attractive
-                                        title, a good title encourages buyers to see you! If
-                                        you want to use one of our suggested phrases
+                                        What Your Customer Wants : enter an
+                                        attractive title, a good title
+                                        encourages buyers to see you! If you
+                                        want to use one of our suggested phrases
                                         just click here
                                       </p>
                                     </div>
                                     <div class="col-8">
-                                      <div class="form-group">
+                                      <div
+                                        class="form-group"
+                                        v-if="pre_tagline"
+                                      >
+                                        <v-select
+                                          name="tagline"
+                                          type="text"
+                                          placeholder="Tagline Title"
+                                          :options="aux_tagline"
+                                          v-model="register_tagline"
+                                        />
+                                      </div>
+
+                                      <div class="form-group" v-else>
                                         <input
                                           name="tagline"
                                           type="text"
-                                          style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;"
+                                          style="
+                                            border: 0px !important;
+                                            border-radius: 0 !important;
+                                            border-bottom: #000000 solid 1px !important;
+                                          "
                                           class="form-control"
                                           placeholder="Tagline Title"
                                           v-model="register_tagline"
                                         />
                                       </div>
+                                      <div class="form-group">
+                                        <b-form-checkbox
+                                          id="checkbox-1"
+                                          v-model="check_tagline"
+                                          @change="changeTagline($event)"
+                                        >
+                                          write your own tagline
+                                        </b-form-checkbox>
+                                      </div>
                                     </div>
                                   </div>
+
                                   <div class="row">
                                     <div class="col-4">
                                       <p class="fl-micro-text">
-                                        In your own words, provide a brief description
-                                        about what do you offer or sell
+                                        In your own words, provide a brief
+                                        description about what do you offer or
+                                        sell
                                       </p>
                                     </div>
                                     <div class="col-8">
@@ -137,7 +210,11 @@
                                         <input
                                           name="description"
                                           type="text"
-                                          style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;"
+                                          style="
+                                            border: 0px !important;
+                                            border-radius: 0 !important;
+                                            border-bottom: #000000 solid 1px !important;
+                                          "
                                           class="form-control"
                                           placeholder="Your Work"
                                           v-model="register_description"
@@ -148,16 +225,18 @@
                                   <div class="row">
                                     <div class="col-4">
                                       <p class="fl-micro-text">
-                                        Write the name of the products or services,
-                                        features it includes and price for each one
+                                        Write the name of the products or
+                                        services, features it includes and price
+                                        for each one
                                       </p>
                                     </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-4">
                                       <p class="fl-micro-text">
-                                        Tap city Name and select from list. If you can’t
-                                        find your city, contact customers support
+                                        Tap city Name and select from list. If
+                                        you can’t find your city, contact
+                                        customers support
                                       </p>
                                     </div>
                                     <div class="col-8">
@@ -165,7 +244,11 @@
                                         <input
                                           name="address1"
                                           type="text"
-                                          style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;"
+                                          style="
+                                            border: 0px !important;
+                                            border-radius: 0 !important;
+                                            border-bottom: #000000 solid 1px !important;
+                                          "
                                           class="form-control"
                                           placeholder="Add Location"
                                           v-model="register_address"
@@ -175,14 +258,20 @@
                                   </div>
                                   <div class="row">
                                     <div class="col-4">
-                                      <p class="fl-micro-text">Insert a valid username</p>
+                                      <p class="fl-micro-text">
+                                        Insert a valid username
+                                      </p>
                                     </div>
                                     <div class="col-8">
                                       <div class="form-group">
                                         <input
                                           name="username"
                                           type="text"
-                                          style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;"
+                                          style="
+                                            border: 0px !important;
+                                            border-radius: 0 !important;
+                                            border-bottom: #000000 solid 1px !important;
+                                          "
                                           class="form-control"
                                           placeholder="Usernme"
                                           v-model="register_username"
@@ -192,14 +281,20 @@
                                   </div>
                                   <div class="row">
                                     <div class="col-4">
-                                      <p class="fl-micro-text">Insert a valid phone number</p>
+                                      <p class="fl-micro-text">
+                                        Insert a valid phone number
+                                      </p>
                                     </div>
                                     <div class="col-8">
                                       <div class="form-group">
                                         <input
                                           name="phone"
                                           type="text"
-                                          style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;"
+                                          style="
+                                            border: 0px !important;
+                                            border-radius: 0 !important;
+                                            border-bottom: #000000 solid 1px !important;
+                                          "
                                           class="form-control"
                                           placeholder="Phone Number"
                                           v-model="register_phone"
@@ -209,14 +304,20 @@
                                   </div>
                                   <div class="row">
                                     <div class="col-4">
-                                      <p class="fl-micro-text">Insert a valid email</p>
+                                      <p class="fl-micro-text">
+                                        Insert a valid email
+                                      </p>
                                     </div>
                                     <div class="col-8">
                                       <div class="form-group">
                                         <input
                                           name="email"
                                           type="text"
-                                          style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;"
+                                          style="
+                                            border: 0px !important;
+                                            border-radius: 0 !important;
+                                            border-bottom: #000000 solid 1px !important;
+                                          "
                                           class="form-control"
                                           placeholder="Email"
                                           v-model="register_email"
@@ -226,13 +327,19 @@
                                   </div>
                                   <div class="row">
                                     <div class="col-4">
-                                      <p class="fl-micro-text">Insert a valid password</p>
+                                      <p class="fl-micro-text">
+                                        Insert a valid password
+                                      </p>
                                     </div>
                                     <div class="col-8">
                                       <div class="form-group">
                                         <input
                                           type="password"
-                                          style="border:0px !important;border-radius:0 !important;border-bottom:#000000 solid 1px !important;"
+                                          style="
+                                            border: 0px !important;
+                                            border-radius: 0 !important;
+                                            border-bottom: #000000 solid 1px !important;
+                                          "
                                           class="form-control"
                                           placeholder="Password"
                                           v-model="register_password"
@@ -251,8 +358,10 @@
                 </div>
                 <div
                   v-if="!subcategory.layouts || subcategory.layouts.length == 0"
-                  class="row text-danger"
-                >No Templates Found...</div>
+                  class="row"
+                >
+                  No Templates Found...
+                </div>
               </b-tab>
             </b-tabs>
           </div>
@@ -262,19 +371,19 @@
   </section>
 </template>
 
-    width: 200px;
-    height: 100px;
-
 <script>
 import VueUploadMultipleImage from "vue-upload-multiple-image";
 import axios from "axios";
 import { mapMutations } from "vuex";
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
 
 export default {
   name: "GenericLayouts",
-  props: ["name", "id", "layouts", "subcategories"],
+  props: ["name", "id", "layouts", "subcategories", "taglines"],
   components: {
     VueUploadMultipleImage,
+    "v-select": vSelect,
   },
   data() {
     return {
@@ -295,15 +404,28 @@ export default {
       register_password: null,
       register_confirm_password: null,
       register_work_images: [],
+      aux_tagline: [],
+      check_tagline: false,
+      pre_tagline: true,
     };
   },
-  apollo: {},
+  mounted() {
+    for (let index = 0; index < this.taglines.length; index++) {
+      const element = this.taglines[index];
+      this.aux_tagline[index] = element.text;
+    }
+  },
   methods: {
     ...mapMutations({
       setUser: "setUser",
       updateUser: "updateUser",
       logout: "logout",
     }),
+    changeTagline(event) {
+      this.register_tagline = null;
+      if (event == true) this.pre_tagline = false;
+      else this.pre_tagline = true;
+    },
     showModal(i) {
       this.$refs["modal" + i][0].show();
     },
@@ -426,7 +548,7 @@ export default {
                 var user = JSON.parse(localStorage.getItem("user"));
                 user.business = JSON.parse(request.response);
                 this.updateUser(user);
-                this.$router.go();
+                this.$router.push("/dashboard");
               }
             }
           };

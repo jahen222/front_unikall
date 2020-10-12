@@ -2,19 +2,27 @@
   <b-row>
     <b-colxx xxs="12">
       <h1>
-        Posts
+        BLOG POSTS
         <a @click="helpUserInfoForm">
           <i class="iconsminds-speach-bubble-asking" style="color: #007bff" />
         </a>
       </h1>
+
       <div class="top-right-button-container">
         <b-button
           v-b-modal.modalright
           variant="primary"
           class="top-right-button"
-        >{{ $t('pages.add-new') }}</b-button>
+          >{{ $t("pages.add-new") }}</b-button
+        >
       </div>
       <add-new-modal></add-new-modal>
+      <h5>
+        Welcome to your Business Blog! Here you can create Blog posts to your
+        business and share this content through social media. *Attached you can
+        find an example of a Blog Post for you to have better guidance and start
+        sharing it
+      </h5>
       <div class="separator mb-5" />
     </b-colxx>
   </b-row>
