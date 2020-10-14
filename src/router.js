@@ -200,6 +200,7 @@ const routes = [
             path: "product/:pid",
             component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/productdetail")
         },{
+            name: "checkout",
             path: "checkout",
             component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/checkout")
         }]

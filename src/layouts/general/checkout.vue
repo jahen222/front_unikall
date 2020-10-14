@@ -139,7 +139,9 @@
                 <span class="count1">{{ item.quantity }}</span>
               </div>
               <div class="col-6 text-left m-auto">{{ item.name }}</div>
-              <div class="col-4 text-right m-auto">${{ item.price }}</div>
+              <div class="col-3 text-center m-auto">${{ item.price }}</div>
+              <div class="col-1 text-right m-auto" @click="removeItem(index)">X</div>
+              
             </div>
             <div class="form-row mt-3 border-top"></div>
             <div class="form-row mt-2">
@@ -148,10 +150,10 @@
                 <input
                   type=" text"
                   class="form-control"
-                  v-model="form.city"
-                  id="city"
-                  name="city"
-                  placeholder="City "
+                  v-model="coupon.code"
+                  id="coupon"
+                  name="coupon"
+                  placeholder="Coupon Code"
                 />
               </div>
               <div class="form-group col-4 text-right">
@@ -261,6 +263,9 @@ export default {
     },
   },
   methods: {
+    removeItem(index) {
+      return this.$store.dispatch("removeCartItem", index);
+    },
     updatequantity(direction) {
       if (direction) {
         this.selected_quantity = this.selected_quantity + 1;
@@ -337,7 +342,7 @@ export default {
       await axios
         .post(
           process.env.VUE_APP_STRAPI_API_URL + "/applycoupon/",
-          _orderItem,
+          null,
           {}
         )
         .then((response) => {
