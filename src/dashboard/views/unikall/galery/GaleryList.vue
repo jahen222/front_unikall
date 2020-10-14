@@ -32,6 +32,7 @@
           :changePage="changePage"
           :handleContextMenu="handleContextMenu"
           :onContextMenuAction="onContextMenuAction"
+          :total="total"
         ></list-page-listing>
       </template>
       <template v-else>

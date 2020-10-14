@@ -1,23 +1,39 @@
 <template>
   <div>
-    <b-row v-if="displayMode==='thumb'" key="thumb">
-      <b-colxx xxs="12" class="mb-3" v-for="(item,index) in items" :key="index" :id="item.id">
+    <b-row v-if="total == 0" style="padding-left: 45%;">
+      <plus-thumb-list-item
+        :key="0"
+        :selected-items="selectedItems"
+        @toggle-item="toggleItem"
+        v-contextmenu:contextmenu
+      />
+    </b-row>
+
+    <b-row v-if="displayMode === 'thumb'" key="thumb">
+      <b-colxx
+        xxs="12"
+        class="mb-3"
+        v-for="(item, index) in items"
+        :key="index"
+        :id="item.id"
+      >
         <thumb-list-item
           :key="item.id"
           :data="item"
           :selected-items="selectedItems"
           @toggle-item="toggleItem"
           v-contextmenu:contextmenu
+          :total="total"
         />
       </b-colxx>
     </b-row>
-    <b-row v-if="lastPage>1">
+    <b-row v-if="lastPage > 1">
       <b-colxx xxs="12">
         <b-pagination-nav
           :number-of-pages="lastPage"
           :link-gen="linkGen"
           :value="page"
-          @change="(a)=>changePage(a)"
+          @change="(a) => changePage(a)"
           :per-page="perPage"
           align="center"
         >
@@ -55,10 +71,12 @@
 </template>
 <script>
 import ThumbListItem from "../../components/Listing/ThumbListItem";
+import PlusthumbListItem from "../../components/Listing/PlusthumbListItem";
 
 export default {
   components: {
     "thumb-list-item": ThumbListItem,
+    "plus-thumb-list-item": PlusthumbListItem,
   },
   props: [
     "displayMode",
@@ -71,6 +89,7 @@ export default {
     "changePage",
     "handleContextMenu",
     "onContextMenuAction",
+    "total",
   ],
   data() {
     return {

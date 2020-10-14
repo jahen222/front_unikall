@@ -58,6 +58,11 @@ const data = [
       to: "/dashboard/app/business/layout"
     },
     {
+      icon: "iconsminds-id-card",
+      label: "Business Card",
+      to: "/dashboard/app/business/card"
+    },
+    {
       icon: "simple-icon-credit-card",
       label: "Orders",
       to: "/dashboard/app/business/orders"

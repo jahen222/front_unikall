@@ -292,7 +292,7 @@
                                 v-model="check_tagline"
                                 @change="changeTagline($event)"
                               >
-                                write your own tagline
+                                write your own tagline?
                               </b-form-checkbox>
                             </div>
                           </div>

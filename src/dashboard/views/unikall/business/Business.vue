@@ -53,12 +53,20 @@
                 </b-colxx>
                 <b-colxx sm="6">
                   <b-form-group :label="$t('latitude')">
-                    <b-form-input type="number" v-model="gridForm.latitude" />
+                    <b-form-input
+                      type="text"
+                      v-model="gridForm.latitude"
+                      disabled
+                    />
                   </b-form-group>
                 </b-colxx>
                 <b-colxx sm="6">
                   <b-form-group :label="$t('longitude')">
-                    <b-form-input type="number" v-model="gridForm.longitude" />
+                    <b-form-input
+                      type="text"
+                      v-model="gridForm.longitude"
+                      disabled
+                    />
                   </b-form-group>
                 </b-colxx>
               </b-row>
@@ -189,6 +197,7 @@ import { mapMutations } from "vuex";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
 import Cookies from "js-cookie";
 import axios from "axios";
+//import gql from "graphql-tag";
 
 export default {
   components: {
@@ -248,12 +257,28 @@ export default {
           this.logo_preview =
             process.env.VUE_APP_STRAPI_API_URL + this.business.logo.url;
         }
+
+        /*axios.get(
+          process.env.VUE_APP_STRAPI_API_URL + "/businesses/" + business.id,
+          config
+        );*/
       })
       .catch((error) => {
         this.showError({
           message: error.message,
         });
       });
+
+    this.$getLocation({
+      enableHighAccuracy: false,
+      timeout: Infinity,
+      maximumAge: 0,
+    }).then((coordinates) => {
+      this.gridForm.latitude = coordinates.lat;
+      this.gridForm.longitude = coordinates.lng;
+    });
+
+    console.log("aqui", this.business.user.layout);
   },
   methods: {
     ...mapMutations({

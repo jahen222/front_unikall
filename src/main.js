@@ -59,6 +59,8 @@ import 'firebase/auth'
 import marked from 'marked';
 // metadata
 import VueMeta from 'vue-meta';
+// geolocation
+import VueGeolocation from 'vue-browser-geolocation';
 
 // definitions
 const apolloProvider = new VueApollo({
@@ -133,6 +135,7 @@ Vue.use(VueMeta);
 
 firebase.initializeApp(firebaseConfig);
 Vue.config.productionTip = false;
+Vue.use(VueGeolocation);
 
 export default new Vue({
   i18n,

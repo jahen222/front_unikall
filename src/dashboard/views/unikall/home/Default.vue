@@ -6,7 +6,7 @@
         <div class="separator mb-5"></div>
       </b-colxx>
     </b-row>
-    <b-row>
+    <b-row v-if="true">
       <b-colxx xxs="12">
         <b-card class="mb-4" :title="$t('Welcome')" no-body>
           <b-card-body>
@@ -19,6 +19,11 @@
                 />
               </a>
             </h4>
+            <h5>
+              To start creating Your Web Profile, you should start filling the
+              information below:
+            </h5>
+
             <b-row>
               <b-colxx sm="12">
                 <a href="/dashboard/app/products/products"
@@ -29,7 +34,9 @@
                 <br />
                 <a href="/dashboard/app/blog/blog">Add a Blog Post</a>
                 <br />
-                <a href="/dashboard/app/business/layout">Select Your Bussines Layout</a>
+                <a href="/dashboard/app/business/layout"
+                  >Select Your Bussines Layout</a
+                >
               </b-colxx>
             </b-row>
           </b-card-body>

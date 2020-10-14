@@ -8,7 +8,7 @@
         </a>
       </h1>
 
-      <div v-if="items.lenght < 5" class="top-right-button-container">
+      <div v-if="total < 5" class="top-right-button-container">
         <b-button
           v-b-modal.modalright
           variant="primary"

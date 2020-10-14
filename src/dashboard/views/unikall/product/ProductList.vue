@@ -32,6 +32,7 @@
           :changePage="changePage"
           :handleContextMenu="handleContextMenu"
           :onContextMenuAction="onContextMenuAction"
+          :total="total"
         ></list-page-listing>
       </template>
       <template v-else>
@@ -110,7 +111,9 @@ export default {
               category: element.product_subcategory,
               status: element.status ? "ON HOLD" : "PROCESSED",
               statusColor: element.status ? "secondary" : "primary",
-              img: process.env.VUE_APP_STRAPI_API_URL + element.photos[0].formats.thumbnail.url,
+              img:
+                process.env.VUE_APP_STRAPI_API_URL +
+                element.photos[0].formats.thumbnail.url,
             };
           }
           this.total = products.length;

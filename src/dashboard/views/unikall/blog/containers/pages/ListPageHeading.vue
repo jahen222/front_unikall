@@ -8,7 +8,7 @@
         </a>
       </h1>
 
-      <div class="top-right-button-container">
+      <div class="top-right-button-container" v-if="total < 5">
         <b-button
           v-b-modal.modalright
           variant="primary"
@@ -52,6 +52,7 @@ export default {
     "perPage",
   ],
   data() {
+    console.log("aqui", this.total);
     return {
       categories: [],
       pageSizes: [4, 8, 12],

@@ -31,6 +31,7 @@
           :changePage="changePage"
           :handleContextMenu="handleContextMenu"
           :onContextMenuAction="onContextMenuAction"
+          :total="total"
         ></list-page-listing>
       </template>
       <template v-else>
@@ -101,7 +102,7 @@ export default {
 
             var image = "";
             if (element.image) {
-              image = element.image.formats.thumbnail.url
+              image = element.image.formats.thumbnail.url;
             }
 
             this.items[index] = {

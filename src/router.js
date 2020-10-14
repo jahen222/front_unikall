@@ -106,6 +106,20 @@ const routes = [
                     path: "layout",
                     component: () =>
                         import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/business/Layout")
+                },
+                {
+                    path: "card",
+                    component: () => import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/business/card"),
+                    redirect: "/dashboard/app/business/card/card",
+                    children: [
+                        {
+                            path: "card",
+                            component: () => import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/business/card/Card")
+                        }, 
+                        {
+                            path: "print",
+                            component: () => import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/business/card/Print")
+                        }]
                 }]
             },
             {
@@ -195,14 +209,14 @@ const routes = [
         components: require("./components/templates/ecommerce/index"),
         redirect: "/home",
         children: [
-        {   path: '', component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/home") },
-        {
-            path: "product/:pid",
-            component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/productdetail")
-        },{
-            path: "checkout",
-            component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/checkout")
-        }]
+            { path: '', component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/home") },
+            {
+                path: "product/:pid",
+                component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/productdetail")
+            }, {
+                path: "checkout",
+                component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/checkout")
+            }]
     },
     {
         path: "*",
