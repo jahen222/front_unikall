@@ -45,7 +45,7 @@
                 <div class="col-4 m-auto" style="cursor: pointer">
                   <i
                     class="simple-icon-plus bold"
-                    @click="updatequantity(true)"
+                    @click="updatequantity(true, product.quantity)"
                   />
                   <span
                     style="
@@ -58,7 +58,7 @@
                   >
                   <i
                     class="simple-icon-minus bold"
-                    @click="updatequantity(false)"
+                    @click="updatequantity(false, product.quantity)"
                   />
                 </div>
                 <div class="col-4">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-4">
                   <button
-                  @click="addToCartandcheckout(product)"
+                    @click="addToCartandcheckout(product)"
                     type="button"
                     class="btn btn-outline-secondary text-black poppinfont mt-2"
                   >
@@ -119,14 +119,19 @@ export default {
       this.showSuccess({
         message: "Item (" + item.name + ") added to cart",
       });
-      this.$router.push({ name: "checkout", params: { businessid: this.businessid }});
+      this.$router.push({
+        name: "checkout",
+        params: { businessid: this.businessid },
+      });
     },
-    updatequantity(direction) {
-      if (direction) {
-        this.selected_quantity = this.selected_quantity + 1;
-      } else {
-        if (this.selected_quantity > 1) {
-          this.selected_quantity = this.selected_quantity - 1;
+    updatequantity(direction, stock) {
+      if (stock > 0) {
+        if (direction) {
+          this.selected_quantity = this.selected_quantity + 1 > stock ? this.selected_quantity : this.selected_quantity + 1;
+        } else {
+          if (this.selected_quantity > 1) {
+            this.selected_quantity = this.selected_quantity - 1;
+          }
         }
       }
     },
