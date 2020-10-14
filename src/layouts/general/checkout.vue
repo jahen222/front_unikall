@@ -140,7 +140,7 @@
               </div>
               <div class="col-6 text-left m-auto">{{ item.name }}</div>
               <div class="col-3 text-center m-auto">${{ item.price }}</div>
-              <div class="col-1 text-right m-auto" @click="removeItem(index)">X</div>
+              <div title="Remove from cart" style="cursor:pointer;" class="col-1 text-right text-danger m-auto" @click="removeItem(index)">X</div>
               
             </div>
             <div class="form-row mt-3 border-top"></div>
