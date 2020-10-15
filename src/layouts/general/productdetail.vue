@@ -104,11 +104,21 @@ export default {
       product: null,
     };
   },
+  computed: {
+      cart() {
+          return this.$store.getters.CartItems;
+      }
+  },
   methods: {
     updateImage(url) {
       this.selected_image = url;
     },
     addToCart(item) {
+      var findProduct = this.cart.find(o => o.id === item.id)
+      if(findProduct){
+        findProduct.quantity +=1;
+          return;
+      }
       this.$store.dispatch("addCartItem", item);
       this.showSuccess({
         message: "Item (" + item.name + ") added to cart",
