@@ -25,7 +25,7 @@
 <script>
 export default {
     name: "EcommerceProducts",
-    props: ['products', 'businessid'],
+    props: ['products'],
     components: {},
     data() {
         return {
@@ -34,6 +34,11 @@ export default {
             sliding: null,
             blogdesc: "",
         }
+    },
+    computed: {
+        businessid() {
+            return this.$store.getters.BusinessId;
+        },
     },
     methods: {
         hideModal() {

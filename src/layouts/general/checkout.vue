@@ -257,7 +257,7 @@ export default {
       for (var items in this.cart) {
         sum =
           sum +
-          Number(this.cart[items].price) * Number(this.cart[items].quantity);
+          Number(this.cart[items].price) * Number(this.cart[items].selected_quantity);
       }
       return sum;
     },

@@ -116,9 +116,10 @@ export default {
     addToCart(item) {
       var findProduct = this.cart.find(o => o.id === item.id)
       if(findProduct){
-        findProduct.quantity +=1;
+        findProduct.selected_quantity +=1;
           return;
       }
+	  item.selected_quantity = selected_quantity;
       this.$store.dispatch("addCartItem", item);
       this.showSuccess({
         message: "Item (" + item.name + ") added to cart",
