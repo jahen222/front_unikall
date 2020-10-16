@@ -11,7 +11,7 @@
     <EcommerceProducts v-bind:businessId="business ? business.id : null" v-bind:products="business && business.products.length > 0 ? business.products.filter(x=>!x.featured).reverse() : []" />
     <EcommerceVisitUs v-bind:businessName="business ? business.name : 'Business Title'" v-bind:address="business ? business.address : 'your address goes here..'" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
     <EcommerceBlog v-bind:blogs="business && business.blogs.length > 0 ? business.blogs : []" />
-    <EcommerceContactUs />
+    <EcommerceContactUs v-bind:businessId="business ? business.id : null"/>
     <EcommerceGeneralFooter v-bind:logo="business && business.logo ? business.logo : null" v-bind:email="business ? business.email : 'email@yourbusiness.com'" v-bind:phone="business ? business.phone : '1231231234'" />
 </div>
 </template>

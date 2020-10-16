@@ -1,133 +1,218 @@
 <template>
-<!-- contact us modal section -->
-<b-modal id="my-booking" hide-footer title="Book your Meeting">
+  <!-- contact us modal section -->
+  <b-modal id="my-booking" size="xl" hide-footer title="Book your Meeting">
     <div class="container">
-        <form @submit.prevent="submit">
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <p class="text-black">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis.</p>
-                </div>
-                <div class="col-2"></div>
+      <form @submit.prevent="checkForm">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <p class="text-black">
+              We appreciate your contact with us about the pre-sale query. One
+              of the members of our customer service team will be getting back
+              to you shortly.
+            </p>
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-6">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input
+                  type=" text"
+                  class="form-control"
+                  v-model="form.first_name"
+                  id="first_name"
+                  name="first_name"
+                  placeholder="First Name"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="form.last_name"
+                  id="last_name"
+                  name="last_name"
+                  placeholder="Last Name"
+                />
+              </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-6">
-                    <p class="text-black">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna al</p>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <input type=" text" class="form-control" :class="{ 'hasError': $v.form.fname.$error }" v-model="form.fname" id="fname" name="fname" placeholder="First Name">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="text" class="form-control" :class="{ 'hasError': $v.form.lname.$error }" v-model="form.lname" id="lname" name="lname" placeholder="Last Name">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <input type="text" placeholder="| E-MAIL" class="form-control brand-border" :class="{ 'hasError': $v.form.contact_email.$error }" v-model="form.contact_email" id="contact_email" name="contact_email">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="text" placeholder="| PHONE NUMBER" class="form-control brand-border" :class="{ 'hasError': $v.form.contact_phone.$error }" v-model="form.contact_phone" id="contact_phone" name="contact_phone">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="| ADDRESS" class="form-control brand-border" :class="{ 'hasError': $v.form.address.$error }" v-model="form.address" id="address" name="address">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="| MESSAGE" class="form-control brand-border" :class="{ 'hasError': $v.form.message.$error }" v-model="form.message" rows="3" id="message" name="message"></textarea>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <datepicker :inline="true" v-model="form.dated" name="schedualed_data"></datepicker>
-                </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input
+                  type="text"
+                  placeholder="Email"
+                  class="form-control"
+                  v-model="form.email"
+                  id="email"
+                  name="email"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <input
+                  type="text"
+                  placeholder="Phone"
+                  class="form-control"
+                  v-model="form.phone"
+                  id="phone"
+                  name="phone"
+                />
+              </div>
             </div>
-            <div class="row mt-5">
-                <button type="submit" class="btn brand-gbcolor text-white poppinfont m-auto">BOOK MEETING</button>
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Address"
+                class="form-control"
+                v-model="form.address"
+                id="address"
+                name="address"
+              />
             </div>
-        </form>
+            <div class="form-group">
+              <textarea
+                placeholder="Message"
+                class="form-control"
+                v-model="form.message"
+                rows="4"
+                id="message"
+                name="message"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-6">
+            <datepicker
+              :inline="true"
+              v-model="form.date"
+              name="date"
+            ></datepicker>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <button
+            type="submit"
+            class="btn brand-gbcolor text-white poppinfont m-auto"
+          >
+            SEND
+          </button>
+        </div>
+      </form>
     </div>
-</b-modal>
+  </b-modal>
 </template>
 
 <script>
-import {
-    required,
-    email
-} from "vuelidate/lib/validators";
-import Datepicker from 'vuejs-datepicker';
+import Datepicker from "vuejs-datepicker";
+import axios from "axios";
+
 export default {
-    name: "EcommerceContactUs",
-    components: {
-        Datepicker
+  name: "EcommerceContactUs",
+  components: {
+    Datepicker,
+  },
+  props: ["businessId"],
+  data() {
+    return {
+      form: {
+        first_name: null,
+        last_name: null,
+        email: null,
+        phone: null,
+        address: null,
+        message: null,
+        date: null,
+      },
+    };
+  },
+  methods: {
+    checkForm: function () {
+      this.errors = [];
+      if (!this.form.first_name) {
+        this.errors.push(" The first name is required");
+      }
+      if (!this.form.last_name) {
+        this.errors.push(" The last name is required");
+      }
+      if (!this.form.email) {
+        this.errors.push(" The email is required");
+      }
+      if (!this.form.phone) {
+        this.errors.push(" The phone description is required");
+      }
+      if (!this.form.address) {
+        this.errors.push(" The address is required");
+      }
+      if (!this.form.message) {
+        this.errors.push(" The message is required");
+      }
+      if (!this.form.date) {
+        this.errors.push(" The date is required");
+      }
+      if (this.errors.length) {
+        this.showError({ message: this.errors });
+      } else {
+        this.handleSubmit();
+      }
     },
-    data() {
-        return {
-            form: {
-                fname: "",
-                lname: "",
-                contact_email: "",
-                contact_phone: "",
-                address: "",
-                message: "",
-                dated: ""
-            }
-        };
+    async handleSubmit() {
+      const bodyParameters = {
+        first_name: this.form.first_name,
+        last_name: this.form.last_name,
+        email: this.form.email,
+        phone: this.form.phone,
+        address: this.form.address,
+        message: this.form.message,
+        date: this.form.date,
+        business: this.businessId,
+      };
+      await axios
+        .post(process.env.VUE_APP_STRAPI_API_URL + "/messages", bodyParameters)
+        .then((response) => {
+          this.showSuccess({
+            message: "Send Message",
+          });
+          this.business = response.data;
+        })
+        .catch((error) => {
+          this.showError({
+            message: error.message,
+          });
+        });
     },
-    validations: {
-        form: {
-            fname: {
-                required
-            },
-            lname: {
-                required,
-            },
-            contact_email: {
-                required,
-                email
-            },
-            contact_phone: {
-                required,
-            },
-            address: {
-                required,
-            },
-            message: {
-                required,
-            },
-            dated: {
-                required,
-            }
-        }
+  },
+  notifications: {
+    showError: {
+      title: "Failed",
+      message: "Failed",
+      type: "error",
     },
-    methods: {
-        submit() {
-            this.$v.form.$touch();
-            if (this.$v.form.$error) return
-            // to form submit after this
-            alert('Form submitted')
-            alert(this.form.dated)
-        }
-    }
+    showSuccess: {
+      title: "Success",
+      message: "Success",
+      type: "success",
+    },
+  },
 };
 </script>
 
 <style>
 .vdp-datepicker__calendar {
-    width: 100% !important;
+  width: 100% !important;
 }
 
 .cell.day {
-    border: 1px solid #d7d7d7 !important;
-    padding: 1px;
+  border: 1px solid #d7d7d7 !important;
+  padding: 1px;
 }
 
 .vdp-datepicker .vdp-datepicker__calendar,
 .form-control {
-    border: 1px solid #000000 !important;
-    border-radius: 0.5rem !important;
+  border: 1px solid #000000 !important;
+  border-radius: 0.5rem !important;
 }
 
 .vdp-datepicker .vdp-datepicker__calendar .cell.day-header {
-    color: #000000 !important;
+  color: #000000 !important;
 }
 </style>

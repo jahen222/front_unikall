@@ -6,8 +6,8 @@
         class="back"
         v-bind:style="{ backgroundImage: 'url(' + business_card + ')' }"
       >
-        <img :src="logo_preview" alt="" width="100px" style="margin-left: 30px; margin-top: 30px;"/>
-        <h1 style="margin-left: 123px">{{ user.username }}</h1>
+        <img :src="logo_preview" alt="" width="100px" style="margin-left: 7%; margin-top: 20%;"/>
+        <h1 style="margin-left: 123px;">{{ user.username }}</h1>
         <p>{{ business.business_position }}</p>
         <br />
         <br />
@@ -175,7 +175,7 @@ p,
   font-family: "Lato";
   margin-left: 43%;
   line-height: 145%;
-  margin-top: -55px;
+  margin-top: -145px;
 }
 
 h1 {

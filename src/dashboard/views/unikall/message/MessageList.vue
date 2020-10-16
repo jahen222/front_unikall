@@ -32,7 +32,6 @@
           :changePage="changePage"
           :handleContextMenu="handleContextMenu"
           :onContextMenuAction="onContextMenuAction"
-          :total="total"
         ></list-page-listing>
       </template>
       <template v-else>
@@ -97,20 +96,20 @@ export default {
         )
         .then((response) => {
           var data = response.data;
-          var posts = data.business_services;
+          //console.log("lo que llega del server", data.messages);
+          var posts = data.messages;
           for (let index = 0; index < posts.length; index++) {
             const element = posts[index];
 
-            var image = "";
-            if (element.image) {
-              image = element.image[0].formats.thumbnail.url;
-            }
-
             this.items[index] = {
               id: element.id,
-              title: element.title,
-              description: element.description,
-              img: process.env.VUE_APP_STRAPI_API_URL + image,
+              first_name: element.first_name,
+              last_name: element.last_name,
+              email: element.email,
+              phone: element.phone,
+              address: element.address,
+              message: element.message,
+              date: element.date,
             };
           }
           this.total = posts.length;

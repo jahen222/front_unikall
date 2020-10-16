@@ -872,4 +872,7 @@ export default {
   border-top-right-radius: calc(0.3rem - 1px);
   padding-bottom: 20%;
 }
+.wizard-progress-with-circle{
+  display: none;
+}
 </style>
