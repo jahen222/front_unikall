@@ -1,19 +1,18 @@
 <template>
 <!-- contact us modal section -->
-<b-modal id="my-booking" hide-footer title="Book your Meeting">
+<b-modal id="my-booking" size="lg" hide-footer title="Book your Meeting">
     <div class="container">
         <form @submit.prevent="submit">
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
-                    <p class="text-black">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis.</p>
+                    <p class="text-black">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed .</p>
                 </div>
                 <div class="col-2"></div>
             </div>
             <div class="row mt-5">
                 <div class="col-6">
-                    <p class="text-black">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna al</p>
+                    <p class="text-black">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.</p>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <input type=" text" class="form-control" :class="{ 'hasError': $v.form.fname.$error }" v-model="form.fname" id="fname" name="fname" placeholder="First Name">
