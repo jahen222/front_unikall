@@ -33,7 +33,7 @@
             <div class="col-12">
               <h1>{{ product.name }}</h1>
             </div>
-            <div class="col-12">Availability: {{ product.quantity }}</div>
+            <div class="col-12">Availability: {{ product.stock }}</div>
             <div
               class="col-12"
               style="font-size: 1rem; font-weight: normal; line-height: 2rem"
@@ -45,7 +45,7 @@
                 <div class="col-4 m-auto" style="cursor: pointer">
                   <i
                     class="simple-icon-plus bold"
-                    @click="updatequantity(true, product.quantity)"
+                    @click="updatequantity(true, product.stock)"
                   />
                   <span
                     style="
@@ -58,7 +58,7 @@
                   >
                   <i
                     class="simple-icon-minus bold"
-                    @click="updatequantity(false, product.quantity)"
+                    @click="updatequantity(false, product.stock)"
                   />
                 </div>
                 <div class="col-4">
@@ -105,31 +105,28 @@ export default {
     };
   },
   computed: {
-      cart() {
-          return this.$store.getters.CartItems;
-      }
+    cart() {
+      return this.$store.getters.CartItems;
+    },
   },
   methods: {
     updateImage(url) {
       this.selected_image = url;
     },
     addToCart(item) {
-      var findProduct = this.cart.find(o => o.id === item.id)
-      if(findProduct){
-        findProduct.selected_quantity +=1;
-          return;
+      var findProduct = this.cart.find((o) => o.id === item.id);
+      if (findProduct) {
+        findProduct.quantity += 1;
+        return;
       }
-	  item.selected_quantity = selected_quantity;
+      item.quantity = this.selected_quantity;
       this.$store.dispatch("addCartItem", item);
       this.showSuccess({
         message: "Item (" + item.name + ") added to cart",
       });
     },
     addToCartandcheckout(item) {
-      this.$store.dispatch("addCartItem", item);
-      this.showSuccess({
-        message: "Item (" + item.name + ") added to cart",
-      });
+      this.addToCart(item);
       this.$router.push({
         name: "checkout",
         params: { businessid: this.businessid },
@@ -138,7 +135,10 @@ export default {
     updatequantity(direction, stock) {
       if (stock > 0) {
         if (direction) {
-          this.selected_quantity = this.selected_quantity + 1 > stock ? this.selected_quantity : this.selected_quantity + 1;
+          this.selected_quantity =
+            this.selected_quantity + 1 > stock
+              ? this.selected_quantity
+              : this.selected_quantity + 1;
         } else {
           if (this.selected_quantity > 1) {
             this.selected_quantity = this.selected_quantity - 1;
