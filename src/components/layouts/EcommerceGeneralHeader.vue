@@ -21,7 +21,7 @@
                     <a class="nav-link poppinfont brand-color-menu font-weight-normal" href="Javascript:;" v-on:click="gotoPage('blog')">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a v-b-modal="'my-booking'" class="nav-link brand-color-menu poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
+                    <a v-b-modal.modal-lg="'my-booking'" class="nav-link brand-color-menu poppinfont font-weight-normal" href="Javascript:;" v-on:click="gotoPage('contact')">Contact</a>
                 </li>
                 <li class="nav-item">
                     <div class="position-relative d-inline-block">
@@ -297,4 +297,5 @@ h1 {
     padding:10px !important;
     width:auto !important;
 }
+
 </style>
