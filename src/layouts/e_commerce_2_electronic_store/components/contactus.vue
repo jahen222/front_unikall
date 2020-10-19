@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-2"></div>
           <div class="col-8">
-            <p class="text-black">
+            <p class="text-black" style="font-weight: 800; font-size: large;">
               We appreciate your contact with us about the pre-sale query. One
               of the members of our customer service team will be getting back
               to you shortly.
@@ -75,13 +75,14 @@
                 placeholder="Message"
                 class="form-control"
                 v-model="form.message"
-                rows="4"
+                rows="5"
                 id="message"
                 name="message"
               ></textarea>
             </div>
           </div>
           <div class="col-6">
+            <h6>Please select the date you are planning to get the service or product:</h6>
             <datepicker
               :inline="true"
               v-model="form.date"
@@ -147,7 +148,7 @@ export default {
         this.errors.push(" The message is required");
       }
       if (!this.form.date) {
-        this.errors.push(" The date is required");
+        this.errors.push(" Please select the date you are planning to get the service");
       }
       if (this.errors.length) {
         this.showError({ message: this.errors });

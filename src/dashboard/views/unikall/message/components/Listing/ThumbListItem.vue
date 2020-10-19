@@ -13,7 +13,7 @@
         <p class="list-item-heading mb-0 truncate">{{data.address}}</p>
         <p class="list-item-heading mb-0 truncate">{{data.phone}}</p>
         <p class="list-item-heading mb-0 truncate">{{data.date}}</p>
-        <p class="list-item-heading mb-0 truncate">{{data.message}}</p>
+        <p class="mb-0 text-muted text-small w-15 w-sm-100">{{data.message.substring(0,50)}}</p>
       </div>
     </div>
     <edit-modal :post="data"></edit-modal>

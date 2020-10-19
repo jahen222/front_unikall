@@ -69,7 +69,7 @@ const data = [
     },
     {
       icon: "iconsminds-speach-bubble",
-      label: "menu.chat",
+      label: "Inbox",
       to: "/dashboard/app/message"
     }]
   },
