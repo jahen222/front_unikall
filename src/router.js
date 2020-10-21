@@ -115,7 +115,7 @@ const routes = [
                         {
                             path: "card",
                             component: () => import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/business/card/Card")
-                        }, 
+                        },
                         {
                             path: "print",
                             component: () => import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/business/card/Print")
@@ -217,22 +217,21 @@ const routes = [
     },
     {
         path: "/site/:id",
-        components: require("./containers/Selector.vue")
-    },
-    {
-        path: "/shop/:id",
-        components: require("./components/templates/ecommerce/index"),
-        redirect: "/home",
+        components: require("./containers/Selector.vue"),
         children: [
-        {   path: '', component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/home") },
-        {
-            path: "product/:pid",
-            component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/productdetail")
-        },{
-            name: "checkout",
-            path: "checkout",
-            component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/checkout")
-        }]
+            {
+                path: "service/:sid",
+                component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/servicedetail")
+            },
+            {
+                path: "product/:pid",
+                component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/productdetail")
+            },
+            {
+                path: "checkout/:cid",
+                component: () => import(/* webpackChunkName: "personal" */ "./layouts/general/checkout")
+            }
+        ]
     },
     {
         path: "*",

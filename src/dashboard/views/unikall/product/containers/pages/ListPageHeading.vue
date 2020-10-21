@@ -12,9 +12,13 @@
           v-b-modal.modalright
           variant="primary"
           class="top-right-button"
-        >{{ $t('pages.add-new') }}</b-button>
+          >{{ $t("pages.add-new") }}</b-button
+        >
       </div>
-      <add-new-modal :categories="categories" :statuses="statuses"></add-new-modal>
+      <add-new-modal
+        :categories="categories"
+        :statuses="statuses"
+      ></add-new-modal>
       <div class="separator mb-5" />
     </b-colxx>
   </b-row>
@@ -51,18 +55,18 @@ export default {
     "to",
     "total",
     "perPage",
-    "items"
+    "items",
   ],
   data() {
     return {
       categories: [],
       statuses: [
         {
-          text: "ON HOLD",
+          text: "NO",
           value: 0,
         },
         {
-          text: "PROCESSED",
+          text: "YES",
           value: 1,
         },
       ],

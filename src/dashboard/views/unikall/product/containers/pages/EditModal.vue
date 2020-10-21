@@ -1,7 +1,7 @@
 <template>
   <b-modal
-    :id="'modaledit'+product.id"
-    :ref="'modaledit'+product.id"
+    :id="'modaledit' + product.id"
+    :ref="'modaledit' + product.id"
     :title="$t('Edit Item')"
     modal-class="modal-right"
   >
@@ -10,7 +10,11 @@
         <b-form-input type="text" v-model="newItem.name" />
       </b-form-group>
       <b-form-group :label="$t('pages.category')">
-        <v-select :options="categories" v-model="newItem.category" @input="setSelected" />
+        <v-select
+          :options="categories"
+          v-model="newItem.category"
+          @input="setSelected"
+        />
       </b-form-group>
       <b-form-group :label="$t('Subcategory')">
         <v-select :options="subcategories" v-model="newItem.subcategory" />
@@ -37,21 +41,23 @@
           popupText="This image will be displayed as default"
         ></vue-upload-multiple-image>
       </b-form-group>
-      <b-form-group :label="$t('pages.status')">
-        <b-form-radio-group stacked class="pt-2" :options="statuses" v-model="newItem.status" />
+      <b-form-group :label="$t('Featured')">
+        <b-form-radio-group
+          stacked
+          class="pt-2"
+          :options="statuses"
+          v-model="newItem.featured"
+        />
       </b-form-group>
     </b-form>
 
     <template slot="modal-footer">
-      <b-button
-        variant="outline-secondary"
-        @click="hideModal('modalright')"
-      >{{ $t('pages.cancel') }}</b-button>
-      <b-button
-        variant="primary"
-        @click="checkNewProductForm()"
-        class="mr-1"
-      >{{ $t('pages.submit') }}</b-button>
+      <b-button variant="outline-secondary" @click="hideModal('modalright')">{{
+        $t("pages.cancel")
+      }}</b-button>
+      <b-button variant="primary" @click="checkNewProductForm()" class="mr-1">{{
+        $t("pages.submit")
+      }}</b-button>
     </template>
   </b-modal>
 </template>
@@ -78,6 +84,7 @@ export default {
         category: "",
         subcategory: "",
         description: "",
+        featured: 0,
         status: 0,
         price: 0,
         quantity: 0,
@@ -97,6 +104,7 @@ export default {
       data["price"] = this.newItem.price;
       data["quantity"] = this.newItem.quantity;
       data["business"] = this.business.id;
+      data["featured"] = this.newItem.featured;
 
       const product_photos = this.newItem.photos;
       //console.log(product_photos);
@@ -133,6 +141,7 @@ export default {
               subcategory: "",
               description: "",
               status: 0,
+              featured: 0,
               price: 0,
               quantity: 0,
               photos: [],
@@ -147,6 +156,7 @@ export default {
               subcategory: "",
               description: "",
               status: 0,
+              featured: 0,
               price: 0,
               quantity: 0,
               photos: [],
@@ -245,11 +255,13 @@ export default {
               value: item.product_subcategory.id,
             },
             description: item.description,
-            status: item.status,
+            featured: item.featured,
             price: item.price,
             quantity: item.quantity,
             photos: [],
           };
+
+          console.log("a ver", this.newItem);
         });
     },
     search: function (nameKey, myArray) {
@@ -299,7 +311,6 @@ export default {
     this.user = JSON.parse(Cookies.get("user"));
     this.business = JSON.parse(localStorage.getItem("user")).business;
     this.loadItem();
-    //console.log("a ver", this.newItem);
   },
 };
 </script>

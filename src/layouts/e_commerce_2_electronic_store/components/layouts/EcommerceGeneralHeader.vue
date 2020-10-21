@@ -7,8 +7,8 @@
     <div class="container">
       <router-link
         class="navbar-brand poppinfont brand-color-menu"
-        :to="'/shop/' + businessid"
-        >{{ businessName }}</router-link
+        :to="'/site/' + business.user.id"
+        >{{ business.name }}</router-link
       >
       <button
         class="navbar-toggler"
@@ -113,7 +113,7 @@
                           text-align: center;
                         "
                       >
-                        <router-link :to="'/shop/' + businessid + '/checkout'"
+                        <router-link :to="'/site/' + business.user.id + '/checkout/2607'"
                           >Proceed to Checkout</router-link
                         >
                       </div>
@@ -134,7 +134,7 @@
 export default {
   name: "EcommerceGeneralHeader",
   components: {},
-  props: ["businessName"],
+  props: ["business"],
   data() {
     return {
       api_url: process.env.VUE_APP_STRAPI_API_URL,

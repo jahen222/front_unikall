@@ -5,12 +5,12 @@
         <div class="row gallary">
             <div class="col-md-12 text-center">
                 <h1 class="capital poppinfont">NEW ARRIVALS</h1>
-                <div class="row">
+                <div class="row centered">
                     <div class="col-3 mt-3 text-center" v-for="(item,index) in products" :key="index">
                         <img class="d-block w-100" style="width:268px;height:268px;border:#ccc solid 1px;" :src="api_url + item.photos[0].url" alt="Image">
                         <div style="text-transform:capital">{{item.name}}</div>
                         <div style="font-weight:normal">${{item.price}}</div>
-                        <router-link :to="'/site/'+business.user.id+'/product/'+item.id">
+                        <router-link :to="'/shop/'+businessid+'/product/'+item.id">
                             <button v-b-modal="'product-details'" type="button" class="btn btn-outline-secondary text-black poppinfont mt-2"><b>Buy Now</b></button>
                         </router-link>
                     </div>
@@ -25,7 +25,7 @@
 <script>
 export default {
     name: "EcommerceProducts",
-    props: ['business', 'products'],
+    props: ['products'],
     components: {},
     data() {
         return {
@@ -64,11 +64,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .carousel-caption {
     position: relative !important;
     right: 0 !important;
     bottom: 0 !important;
     left: 0 !important;
+}
+.centered {
+    text-align: center;
+    display: block !important;
+}
+.centered > div {
+    float: none;
+    display: inline-block;
+    text-align: left;
 }
 </style>

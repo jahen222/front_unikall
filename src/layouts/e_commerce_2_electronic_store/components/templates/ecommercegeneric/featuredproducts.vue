@@ -1,17 +1,17 @@
 <template>
 <!-- Blog section -->
-<section class="py-5 bg-light">
+<section class="py-5">
     <div class="container">
         <div class="row gallary">
             <div class="col-md-12 text-center">
-                <h1 class="capital poppinfont">NEW ARRIVALS</h1>
-                <div class="row">
+                <h1 class="capital poppinfont">FEATURED PRODUCTS</h1>
+                <div class="row centered">
                     <div class="col-3 mt-3 text-center" v-for="(item,index) in products" :key="index">
                         <img class="d-block w-100" style="width:268px;height:268px;border:#ccc solid 1px;" :src="api_url + item.photos[0].url" alt="Image">
                         <div style="text-transform:capital">{{item.name}}</div>
                         <div style="font-weight:normal">${{item.price}}</div>
-                        <router-link :to="'/site/'+business.user.id+'/product/'+item.id">
-                            <button v-b-modal="'product-details'" type="button" class="btn btn-outline-secondary text-black poppinfont mt-2"><b>Buy Now</b></button>
+                        <router-link :to="'/shop/'+businessid+'/product/'+item.id">
+                            <button type="button" class="btn btn-outline-secondary text-black poppinfont mt-2"><b>Buy Now</b></button>
                         </router-link>
                     </div>
                 </div>
@@ -24,9 +24,8 @@
 
 <script>
 export default {
-    name: "EcommerceProducts",
-    props: ['business', 'products'],
-    components: {},
+    name: "EcommerceFeaturedProducts",
+    props: ['products'],
     data() {
         return {
             api_url: process.env.VUE_APP_STRAPI_API_URL,
@@ -41,13 +40,6 @@ export default {
         },
     },
     methods: {
-        hideModal() {
-            this.selected_product = null;
-            return this.showModal();
-        },
-        showModal() {
-            return this.selected_product ? true : false;
-        },
         onSlideStart() {
             this.sliding = true
         },
@@ -56,6 +48,7 @@ export default {
         },
         openblogpopup: function (desc) {
             this.blogdesc = desc;
+            console.log(desc);
         },
         closeblogpopup: function (dec) {
             this.blogdesc = dec;
@@ -64,11 +57,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .carousel-caption {
     position: relative !important;
     right: 0 !important;
     bottom: 0 !important;
     left: 0 !important;
+}
+.centered {
+    text-align: center;
+    display: block !important;
+}
+.centered > div {
+    float: none;
+    display: inline-block;
+    text-align: left;
 }
 </style>

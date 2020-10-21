@@ -93,6 +93,7 @@ import axios from "axios";
 
 export default {
   name: "EcommerceProductdetails",
+  props: ['business'],
   data() {
     return {
       api_url: process.env.VUE_APP_STRAPI_API_URL,
@@ -128,7 +129,7 @@ export default {
     addToCartandcheckout(item) {
       this.addToCart(item);
       this.$router.push({
-        name: "checkout",
+        path: '/site/'+this.business.user.id+'/checkout/2607',
         params: { businessid: this.businessid },
       });
     },

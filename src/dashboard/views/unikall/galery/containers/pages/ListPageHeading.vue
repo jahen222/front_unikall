@@ -19,9 +19,9 @@
       <add-new-modal></add-new-modal>
 
       <h5>
-        In this section you can add MAX 5 images or pictures to show your
-        business, products and services to your future clients (Max 2MB, JPG or
-        PNG)
+        In this section, you can add MAX 5 images or photographs to show
+        important information about your business, products, services or work
+        done to your future clients (Max 2MB, JPG or PNG)
       </h5>
 
       <div class="separator mb-5" />
@@ -63,7 +63,7 @@ export default {
     helpUserInfoForm: function () {
       this.showInfo({
         message:
-          "Galery section, you can add, edit and delete images for your business page.",
+          "Galery section, you can add, edit and delete images of your work for your business page.",
       });
     },
   },

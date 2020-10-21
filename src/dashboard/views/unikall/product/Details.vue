@@ -62,7 +62,7 @@
           <p class="text-muted text-small mb-2">{{$t('Description')}}</p>
           <p class="mb-3">{{item.description}}</p>
           <p class="text-muted text-small mb-2">{{$t('Stock')}}</p>
-          <p class="mb-3">{{ item.quantity }}$</p>
+          <p class="mb-3">{{ item.quantity }} unit</p>
           <p class="text-muted text-small mb-2">{{$t('Price')}}</p>
           <p class="mb-3">{{ item.price }}$</p>
           <p class="text-muted text-small mb-2">{{$t('Status')}}</p>

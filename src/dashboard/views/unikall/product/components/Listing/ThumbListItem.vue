@@ -46,11 +46,11 @@ export default {
       subcategory: null,
       statuses: [
         {
-          text: "ON HOLD",
+          text: "NO",
           value: 0,
         },
         {
-          text: "PROCESSED",
+          text: "YES",
           value: 1,
         },
       ],
