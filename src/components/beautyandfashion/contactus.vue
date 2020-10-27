@@ -1,6 +1,6 @@
 <template>
 <!-- contact us modal section -->
-<b-modal id="my-booking" hide-footer title="Book your Meeting">
+<b-modal id="my-booking" hide-footer title="">
     <div class="container">
         <form @submit.prevent="submit">
             <div class="row">

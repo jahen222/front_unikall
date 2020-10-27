@@ -78,9 +78,11 @@
     />
     <EcommerceVisitUs
       v-bind:businessName="business ? business.name : 'Business Title'"
-      v-bind:address="business ? business.address : 'your address goes here..'"
+      v-bind:address="business ? business.address1 : 'your address goes here..'"
       v-bind:email="business ? business.email : 'email@yourbusiness.com'"
       v-bind:phone="business ? business.phone : '1231231234'"
+      v-bind:latitude="business ? business.latitude : '25.19713900000002'"
+      v-bind:longitude="business ? business.longitude : '55.27411099999999'"
     />
     <EcommerceServices
       v-bind:business="business ? business : null"

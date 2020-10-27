@@ -65,7 +65,7 @@ const data = [
     {
       icon: "simple-icon-credit-card",
       label: "Orders",
-      to: "/dashboard/app/business/orders"
+      to: "/dashboard/app/orders"
     },
     {
       icon: "iconsminds-speach-bubble",

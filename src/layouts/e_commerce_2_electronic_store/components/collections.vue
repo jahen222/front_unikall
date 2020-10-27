@@ -5,7 +5,7 @@
         <div class="row gallary">
             <div class="col-md-12 text-center">
                 <h1 class="capital text-white poppinfont">Collections</h1>
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-md-3 mt-3" v-for="(item,index) in images" :key="index">
                         <a href="#">
                             <img :src="api_url + item.image.url" alt="Image" style="max-width:100%;">

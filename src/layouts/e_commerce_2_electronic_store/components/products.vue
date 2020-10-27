@@ -5,7 +5,7 @@
         <div class="row gallary">
             <div class="col-md-12 text-center">
                 <h1 class="capital poppinfont">NEW ARRIVALS</h1>
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-3 mt-3 text-center" v-for="(item,index) in products" :key="index">
                         <img class="d-block w-100" style="width:268px;height:268px;border:#ccc solid 1px;" :src="api_url + item.photos[0].url" alt="Image">
                         <div style="text-transform:capital">{{item.name}}</div>

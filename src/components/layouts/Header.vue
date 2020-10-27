@@ -860,9 +860,9 @@ export default {
 <style>
 .modal-header {
   display: flex;
-  background-image: url(../../assets/unikall/images/Unikall-home-final-particion.jpg);
+  background-image: url(../../assets/unikall/images/modal_header.png);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   align-items: flex-start;
   justify-content: space-between;

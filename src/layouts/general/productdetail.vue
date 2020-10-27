@@ -33,7 +33,7 @@
             <div class="col-12">
               <h1>{{ product.name }}</h1>
             </div>
-            <div class="col-12">Availability: {{ product.stock }}</div>
+            <div class="col-12">Availability: {{ product.quantity }}</div>
             <div
               class="col-12"
               style="font-size: 1rem; font-weight: normal; line-height: 2rem"
@@ -45,7 +45,7 @@
                 <div class="col-4 m-auto" style="cursor: pointer">
                   <i
                     class="simple-icon-plus bold"
-                    @click="updatequantity(true, product.stock)"
+                    @click="updatequantity(true, product.quantity)"
                   />
                   <span
                     style="
@@ -58,7 +58,7 @@
                   >
                   <i
                     class="simple-icon-minus bold"
-                    @click="updatequantity(false, product.stock)"
+                    @click="updatequantity(false, product.quantity)"
                   />
                 </div>
                 <div class="col-4">
@@ -93,7 +93,7 @@ import axios from "axios";
 
 export default {
   name: "EcommerceProductdetails",
-  props: ['business'],
+  props: ["business"],
   data() {
     return {
       api_url: process.env.VUE_APP_STRAPI_API_URL,
@@ -102,7 +102,7 @@ export default {
         : "",
       selected_quantity: 1,
       productid: this.$route.params.pid,
-      product: null,
+      product: [],
     };
   },
   computed: {
@@ -116,28 +116,30 @@ export default {
     },
     addToCart(item) {
       var findProduct = this.cart.find((o) => o.id === item.id);
+      //console.log("findProduct: ", findProduct);
       if (findProduct) {
-        findProduct.quantity += 1;
+        //findProduct.quantity += 1;
         return;
+      } else {
+        item.quantity = this.selected_quantity;
+        this.$store.dispatch("addCartItem", item);
+        this.showSuccess({
+          message: "Item (" + item.name + ") added to cart",
+        });
       }
-      item.quantity = this.selected_quantity;
-      this.$store.dispatch("addCartItem", item);
-      this.showSuccess({
-        message: "Item (" + item.name + ") added to cart",
-      });
     },
     addToCartandcheckout(item) {
       this.addToCart(item);
       this.$router.push({
-        path: '/site/'+this.business.user.id+'/checkout/2607',
+        path: "/site/" + this.business.user.id + "/checkout/2607",
         params: { businessid: this.businessid },
       });
     },
-    updatequantity(direction, stock) {
-      if (stock > 0) {
+    updatequantity(direction, quantity) {
+      if (quantity > 0) {
         if (direction) {
           this.selected_quantity =
-            this.selected_quantity + 1 > stock
+            this.selected_quantity + 1 > quantity
               ? this.selected_quantity
               : this.selected_quantity + 1;
         } else {
@@ -153,6 +155,7 @@ export default {
       .get(process.env.VUE_APP_STRAPI_API_URL + "/products/" + this.productid)
       .then((response) => {
         this.product = response.data;
+        console.log("product: ", response.data.quantity);
         this.selected_image = this.product
           ? this.api_url + this.product.photos[0].url
           : "";

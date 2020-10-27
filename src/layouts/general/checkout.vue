@@ -1,10 +1,10 @@
 <template>
   <!-- Product Details section -->
   <section class="py-5 bg-light">
-    <div class="container">      
-        <div class="row">
-          <div class="col-6">
-            <form @submit.prevent="submit">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <form @submit.prevent="submit">
             <div class="form-row">
               <h1>Contact Information</h1>
             </div>
@@ -13,11 +13,22 @@
                 <input
                   type=" text"
                   class="form-control"
+                  :class="{ hasError: $v.form.email.$error }"
+                  v-model="form.email"
+                  id="phone"
+                  name="phone"
+                  placeholder="Email "
+                />
+              </div>
+              <div class="form-group col-12">
+                <input
+                  type=" text"
+                  class="form-control"
                   :class="{ hasError: $v.form.phone.$error }"
                   v-model="form.phone"
                   id="phone"
                   name="phone"
-                  placeholder="Phone / Email "
+                  placeholder="Phone"
                 />
               </div>
             </div>
@@ -126,26 +137,35 @@
                 </button>
               </div>
             </div>
-            </form>
-          </div>
-          <div class="col-6">
-            <div class="row mt-2" v-for="(item, index) in cart" :key="index">
-              <div class="col-2">
-                <img
-                  style="width: 100%"
-                  :src="api_url + item.photos[0].url"
-                  :alt="item.name"
-                />
-                <span class="count1">{{ item.quantity }}</span>
-              </div>
-              <div class="col-6 text-left m-auto">{{ item.name }}</div>
-              <div class="col-3 text-center m-auto">${{ item.price }}</div>
-              <div title="Remove from cart" style="cursor:pointer;" class="col-1 text-right text-danger m-auto" @click="removeItem(index)">X</div>
-              
+          </form>
+        </div>
+        <div class="col-6">
+          <div class="row mt-2" v-for="(item, index) in cart" :key="index">
+            <div class="col-2">
+              <img
+                style="width: 100%"
+                :src="api_url + item.photos[0].url"
+                :alt="item.name"
+              />
+              <span class="count1">{{ item.quantity }}</span>
             </div>
-            <div class="form-row mt-3 border-top"></div>
-            <div class="form-row mt-2">
-              <form @submit.prevent="applycoupon" style="width: 100%;display: inline-flex;">
+            <div class="col-6 text-left m-auto">{{ item.name }}</div>
+            <div class="col-3 text-center m-auto">${{ item.price }}</div>
+            <div
+              title="Remove from cart"
+              style="cursor: pointer"
+              class="col-1 text-right text-danger m-auto"
+              @click="removeItem(index)"
+            >
+              X
+            </div>
+          </div>
+          <div class="form-row mt-3 border-top"></div>
+          <div class="form-row mt-2">
+            <form
+              @submit.prevent="applycoupon"
+              style="width: 100%; display: inline-flex"
+            >
               <div class="form-group col-8">
                 <input
                   type=" text"
@@ -164,25 +184,24 @@
                   <b class="text-black">APPLY</b>
                 </button>
               </div>
-              </form>
-            </div>
-            <div class="form-row mt-3 border-top"></div>
-            <div class="form-row mt-2">
-              <div class="form-group col-6 text-left">Sub Total</div>
-              <div class="form-group col-6 text-right">${{ subtotal }}</div>
-              <div class="form-group col-6 text-left">Shipping Cost</div>
-              <div class="form-group col-6 text-right">
-                Determine after wardsd
-              </div>
-            </div>
-            <div class="form-row mt-3 border-top"></div>
-            <div class="form-row mt-2">
-              <div class="form-group col-6 text-left">Total</div>
-              <div class="form-group col-6 text-right">${{ subtotal }}</div>
+            </form>
+          </div>
+          <div class="form-row mt-3 border-top"></div>
+          <div class="form-row mt-2">
+            <div class="form-group col-6 text-left">Sub Total</div>
+            <div class="form-group col-6 text-right">${{ subtotal }}</div>
+            <div class="form-group col-6 text-left">Shipping Cost</div>
+            <div class="form-group col-6 text-right">
+              Determine after wardsd
             </div>
           </div>
+          <div class="form-row mt-3 border-top"></div>
+          <div class="form-row mt-2">
+            <div class="form-group col-6 text-left">Total</div>
+            <div class="form-group col-6 text-right">${{ subtotal }}</div>
+          </div>
         </div>
-      
+      </div>
     </div>
   </section>
 </template>
@@ -193,6 +212,7 @@ import { required } from "vuelidate/lib/validators";
 import axios from "axios";
 export default {
   name: "EcommerceProductcheckout",
+  props: ["business"],
   data() {
     return {
       api_url: process.env.VUE_APP_STRAPI_API_URL,
@@ -206,10 +226,11 @@ export default {
         country: "",
         province: "",
         postalcode: "",
+        email: "",
       },
       coupon: {
-        code: ""
-      }
+        code: "",
+      },
     };
   },
   validations: {
@@ -235,14 +256,17 @@ export default {
       province: {
         required,
       },
+      email: {
+        required,
+      },
       postalcode: {
         required,
       },
     },
     coupon: {
-      code : {
+      code: {
         required,
-      }
+      },
     },
   },
   computed: {
@@ -280,7 +304,8 @@ export default {
       if (this.$v.form.$error) return;
       // to form submit after this
       let order = {
-        contact_information: this.form.phone,
+        phone: this.form.phone,
+        email: this.form.email,
         name: this.form.fname + this.form.lname,
         shipping_address:
           this.form.address +
@@ -293,8 +318,9 @@ export default {
         total: this.subtotal - 0,
         discount: 0,
         subtotal: this.subtotal,
+        business: this.business.id,
       };
-
+      //console.log(order);
       await axios
         .post(process.env.VUE_APP_STRAPI_API_URL + "/orders/", order, {})
         .then((response) => {
@@ -329,29 +355,19 @@ export default {
           {}
         )
         .then((response) => {
-          this.showSuccess({
-            message: "Order information updated successfully",
-          });
           console.log(response.data);
         });
     },
-    async applycoupon(){
+    async applycoupon() {
       this.$v.coupon.$touch();
-      if (this.$v.coupon.$error) return;      
-      
+      if (this.$v.coupon.$error) return;
+
       await axios
-        .post(
-          process.env.VUE_APP_STRAPI_API_URL + "/applycoupon/",
-          null,
-          {}
-        )
+        .post(process.env.VUE_APP_STRAPI_API_URL + "/applycoupon/", null, {})
         .then((response) => {
-          this.showSuccess({
-            message: "Order information updated successfully",
-          });
           console.log(response.data);
         });
-    }
+    },
   },
   notifications: {
     showError: {

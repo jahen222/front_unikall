@@ -198,6 +198,21 @@ const routes = [
                 }]
             },
             {
+                path: "orders",
+                component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/orders"),
+                redirect: "/dashboard/app/orders/orders",
+                children: [{
+                    path: "orders",
+                    component: () =>
+                        import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/orders/OrderList")
+                },
+                {
+                    path: "details/:id",
+                    component: () =>
+                        import(/* webpackChunkName: "personal" */ "./dashboard/views/unikall/orders/Details")
+                }]
+            },
+            {
                 path: "payment",
                 component: () => import(/* webpackChunkName: "product" */ "./dashboard/views/unikall/payment/Payment"),
             },
